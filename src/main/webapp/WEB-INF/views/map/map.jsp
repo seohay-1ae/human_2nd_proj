@@ -16,7 +16,10 @@
 <body>
 <h2>카카오 지도</h2>
 <div id="map"></div>
+<!-- 지도 아래에 상세 정보 표시용 영역 추가 -->
+<div id="place-detail" style="display:none; padding:10px; border-top:1px solid #ccc;"></div>
 
+<jsp:include page="/WEB-INF/views/common/bottomNav.jsp"/>
 <!-- ✅ 우리가 만든 외부 JS -->
 <script src="/js/map.js"></script>
 </body>
