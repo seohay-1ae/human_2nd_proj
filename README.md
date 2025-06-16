@@ -21,19 +21,21 @@ https://ysy2000.tistory.com/151
   <title>제목</title>
 
   <!-- 공통 및 페이지별 CSS -->
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css"/>
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css"/> (필수)
   <link rel="stylesheet" href="${pageContext.request.contextPath}/css/각 페이지에서만 쓰이는 css(만들것).css"/>
 </head>
 
 <body>
-  <div class="page-content">
-    <div class="character-header">
-      <!-- html작성 -->
+  <div class="page-container"> (필수)
+    <div class="page-content"> (필수)
+      <div class="container"> (양옆으로 마진20 필요할 때)
+        <!-- html작성 -->
+      </div>
     </div>
-  </div>
+ </div>
 
   <!-- 하단 nav바 -->
-  <jsp:include page="/WEB-INF/views/common/bottomNav.jsp"/>
+  <jsp:include page="/WEB-INF/views/common/bottomNav.jsp"/> (필수)
 
   <script>
     <!-- js 작성 -->
