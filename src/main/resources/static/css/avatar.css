@@ -69,7 +69,6 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 16px;
-    padding: 20px;
 }
 
 .item-box {
@@ -108,8 +107,8 @@
 
 /* 저장 버튼 */
 .save-button {
-    width: calc(100% - 32px);
-    margin: 20px 16px;
+    width: 100%;
+    margin: 16px 0;
     background-color: #fd7052;
     color: white;
     font-size: 16px;

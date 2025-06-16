@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.project.travelquest.openapi.mapper.TourPlaceMapper">
+<mapper namespace="com.project.travelquest.openapi.mapper.tourPlaceMapper">
 
     <insert id="insertTourPlace" parameterType="com.project.travelquest.openapi.dto.TourPlaceDTO">
         INSERT INTO TOUR_PLACE (CONTENTID, AREACODE, ADDR1, ADDR2, CREATEDTIME, FIRSTIMAGE,
