@@ -45,8 +45,7 @@ git clone https://github.com/DBJARa/DBjar-project.git .
 <br> <br>
 
 ### 4. 본인 브랜치로 이동
-![image](https://github.com/user-attachments/assets/54d29694-0fa0-44be-9c60-62970ef4813c)
->더블클릭
+![image](https://github.com/user-attachments/assets/9d1db82d-3258-4981-a87e-315c9246c3c2)
 
 <br> <br>
 
