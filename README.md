@@ -22,7 +22,7 @@ https://ysy2000.tistory.com/151
 
   <!-- 공통 및 페이지별 CSS -->
   <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css"/>
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/avatar.css"/>
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/각 페이지에서만 쓰이는 css(만들것).css"/>
 </head>
 
 <body>
