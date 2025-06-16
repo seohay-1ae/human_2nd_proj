@@ -30,7 +30,7 @@
 <h2>나의 아바타</h2>
 
 <div class="avatar">
-    <img src="/avatars/line.svg" class="layer line" />
+    <img src="/avatars/line.png" class="layer line" />
     <img src="/avatars/${preset.skin}" class="layer skin" />
     <img src="/avatars/${preset.hands}" class="layer hands" />
     <img src="/avatars/${preset.bottoms}" class="layer bottoms" />
