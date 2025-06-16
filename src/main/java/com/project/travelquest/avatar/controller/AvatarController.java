@@ -12,12 +12,11 @@ public class AvatarController {
     public String showAvatar(Model model) {
         // 예시 아바타 데이터
         AvatarPresetDto preset = new AvatarPresetDto();
-        preset.setSkin("skins/07.svg");
-        preset.setFace("faces/02.svg");
-        preset.setHands("hands/10.png");
-        preset.setBottoms("bottoms/10.svg");
-        preset.setTops("tops/02.svg");
-        preset.setHats("hats/03.svg");
+        preset.setSkin("skins/02.png");
+        preset.setHands("hands/01.png");
+        preset.setBottoms("bottoms/01.png");
+        preset.setTops("tops/04.png");
+        preset.setHats("hats/03.png");
 
         model.addAttribute("preset", preset);
         return "avatar"; // avatar.jsp
