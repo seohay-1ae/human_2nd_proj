@@ -6,6 +6,42 @@ DB.jar
 https://ysy2000.tistory.com/151
 
 ---
+## 공통 요소 삽입 방법 (헤더 / 푸터 / 스타일)
+
+각 .jsp에서 아래와 같이 공통 요소를 포함합니다:
+
+```jsp
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>제목</title>
+
+  <!-- 공통 및 페이지별 CSS -->
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css"/>
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/avatar.css"/>
+</head>
+
+<body>
+  <div class="page-content">
+    <div class="character-header">
+      <!-- html작성 -->
+    </div>
+  </div>
+
+  <!-- 하단 nav바 -->
+  <jsp:include page="/WEB-INF/views/common/bottomNav.jsp"/>
+
+  <script>
+    <!-- js 작성 -->
+  </script>
+</body>
+</html>
+```
+---
 
 ## 🧑‍💻 팀원 작업 가이드
 
