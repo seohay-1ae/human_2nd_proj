@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/DBJAR_project.iml" filepath="$PROJECT_DIR$/DBJAR_project.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/travelquest.iml" filepath="$PROJECT_DIR$/.idea/modules/travelquest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/travelquest.main.iml" filepath="$PROJECT_DIR$/.idea/modules/travelquest.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/travelquest.test.iml" filepath="$PROJECT_DIR$/.idea/modules/travelquest.test.iml" />
     </modules>
   </component>
 </project>
