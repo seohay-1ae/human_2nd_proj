@@ -1,0 +1,120 @@
+/* avatar.css */
+
+/* 헤더 */
+.character-header {
+    background-color: #ffe2ca;
+    padding: 12px 16px;
+    font-size: 18px;
+    font-weight: 600;
+    text-align: center;
+    position: relative;
+}
+
+/* 뒤로가기 버튼 */
+.character-header .back-button {
+    position: absolute;
+    left: 16px;
+    top: 12px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+/* 캐릭터 + 포인트 */
+.character-info {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.character-image {
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+    margin-bottom: 10px;
+}
+
+.point-box {
+    display: inline-block;
+    background-color: #f5f5f5;
+    border-radius: 20px;
+    padding: 8px 16px;
+    font-size: 14px;
+    color: #333;
+    line-height: 1.4;
+}
+
+/* 탭 메뉴 */
+.tab-menu {
+    display: flex;
+    justify-content: space-around;
+    border-bottom: 1px solid #ccc;
+    padding: 8px 0;
+    font-size: 14px;
+    background-color: white;
+}
+
+.tab-menu div {
+    padding: 6px 10px;
+    cursor: pointer;
+    color: #555;
+}
+
+.tab-menu .active {
+    border-bottom: 2px solid black;
+    font-weight: bold;
+    color: black;
+}
+
+/* 아이템 그리드 */
+.item-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    padding: 20px;
+}
+
+.item-box {
+    width: 100%;
+    padding-top: 100%; /* 정사각형 비율 유지 */
+    position: relative;
+    background-color: #f9f9f9;
+    border-radius: 12px;
+    box-shadow: 0 0 4px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+.item-box img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 60%;
+    transform: translate(-50%, -50%);
+}
+
+/* 잠금 아이템 표시 */
+.item-box.locked {
+    position: relative;
+    filter: grayscale(100%);
+    opacity: 0.6;
+}
+
+.item-box.locked::after {
+    content: '🔒';
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    font-size: 18px;
+    color: #333;
+}
+
+/* 저장 버튼 */
+.save-button {
+    width: calc(100% - 32px);
+    margin: 20px 16px;
+    background-color: #fd7052;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 14px 0;
+    border: none;
+    border-radius: 12px;
+}
