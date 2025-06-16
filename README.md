@@ -2,6 +2,9 @@
 
 DB.jar
 
+⚠️⚠️⚠️push가 안 될 때⚠️⚠️⚠️
+https://ysy2000.tistory.com/151
+
 ---
 
 ## 🧑‍💻 팀원 작업 가이드
