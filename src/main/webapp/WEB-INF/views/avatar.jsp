@@ -22,7 +22,7 @@
         .line { z-index: 30; }
         .bottoms { z-index: 40; }
         .tops { z-index: 50; }
-        .face { z-index: 60; }
+        /*.face { z-index: 60; }*/
         .hats { z-index: 70; }
     </style>
 </head>
@@ -30,9 +30,8 @@
 <h2>나의 아바타</h2>
 
 <div class="avatar">
-    <img src="/avatars/line.svg" class="layer line" />
+    <img src="/avatars/line.png" class="layer line" />
     <img src="/avatars/${preset.skin}" class="layer skin" />
-    <img src="/avatars/${preset.face}" class="layer face" />
     <img src="/avatars/${preset.hands}" class="layer hands" />
     <img src="/avatars/${preset.bottoms}" class="layer bottoms" />
     <img src="/avatars/${preset.tops}" class="layer tops" />
