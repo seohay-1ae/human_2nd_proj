@@ -37,6 +37,7 @@ git clone https://github.com/DBJARa/DBjar-project.git .
 ![image](https://github.com/user-attachments/assets/ee0a5975-0350-41fe-83cb-5c1d4664fbbc)
 ![image](https://github.com/user-attachments/assets/fb908737-0faa-4dbf-ae82-898a3fb8e77b)
 
+>nyang progress, pet 제외
 <br> <br>
 
 
