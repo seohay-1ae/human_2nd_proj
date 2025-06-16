@@ -69,24 +69,7 @@ git clone https://github.com/DBJARa/DBjar-project.git .
 ```
 dev 브랜치 기준 폴더구조
 
-sidemenu/
-├── .vscode/       # vscode 설정(⚠️건들지 마세요)
-├── admin/         # 관리자페이지 작업 폴더
-├── common/        # 공통 헤더/푸터, 공용 스타일 및 유틸 스크립트
-├── community/     # 커뮤니티
-├── experience/    # 견학/체험
-├── festival/      # 축제
-├── login_join/    # 로그인_회원가입
-├── mainpage/      # 메인페이지
-├── mypage/        # 마이페이지
-├── node_modules/  # node js 관련 (⚠️건들지 마세요)
-├── notice/        # 공지사항
-├── product/       # 상품
-├── project/       # 프로젝트
-├── resources/     # 이미지
-├── index.html     # 전체 페이지 목록 테스트용
-├── README.md      # 공지사항용 (⚠️건들지 마세요)
-└── 그 외 파일      # 세팅용 (⚠️건들지 마세요)
+
 ```
 
 ---
