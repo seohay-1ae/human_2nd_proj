@@ -8,9 +8,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>가입 완료</title>
 </head>
 <body>
-
+    <h2>회원가입 완료</h2>
+    <p>아이디: ${email}</p>
+    <p>환영합니다. ${nameName} 님!</p>
 </body>
 </html>
