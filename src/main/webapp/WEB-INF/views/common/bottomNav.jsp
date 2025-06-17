@@ -1,5 +1,5 @@
 <!-- /WEB-INF/views/common/bottomNav.jsp -->
-<<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!-- Bootstrap Icons (최신 버전 CDN) -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
 
@@ -42,12 +42,12 @@
 </style>
 
 <nav class="bottom-nav">
-    <a href="/travel" class="nav-item ${pageName eq 'travel' ? 'active' : ''}">
+    <a href="/" class="nav-item ${pageName eq 'travel' ? 'active' : ''}">
         <i class="bi bi-suitcase-lg" style="font-size: 24px;"></i>
         <br/>
         여행지역
     </a>
-    <a href="/community" class="nav-item ${pageName eq 'community' ? 'active' : ''}">
+    <a href="/map" class="nav-item ${pageName eq 'map' ? 'active' : ''}">
         <i class="bi bi-crosshair" style="font-size: 24px;"></i>
         <br/>
         내 위치
