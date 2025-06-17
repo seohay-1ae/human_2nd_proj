@@ -18,7 +18,7 @@ public class UserRepository {
     
     // DB에서 이메일 중복 검사 로직
     public boolean existsByEmail(String email){
-        String sql = "SELECT COUNT(*) FROM users WHERE email = ?";
+        String sql = "SELECT COUNT(*) FROM t_users WHERE email = ?";
 
         try (Connection conn = dataSource.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
@@ -38,7 +38,7 @@ public class UserRepository {
         
         // 회원정보를 DB에 저장하는 로직
     public void saveUser(UserVO user) {
-        String sql = "INSERT INTO users (email, password, username, phone_number, cert_number) VALUES (?,?,?,?,?)";
+        String sql = "INSERT INTO t_users (email, password, passwordCheck, username, phone_number, cert_number) VALUES (?,?,?,?,?,?)";
 
         try (
                 Connection conn = dataSource.getConnection();
@@ -46,9 +46,10 @@ public class UserRepository {
         ) {
             pstmt.setString(1, user.getEmail());
             pstmt.setString(2, user.getPassword());
-            pstmt.setString(3, user.getUserName());
-            pstmt.setString(4, user.getPhoneNumber());
-            pstmt.setString(5, user.getCertNumber());
+            pstmt.setString(3, user.getPasswordCheck());
+            pstmt.setString(4, user.getUsername());
+            pstmt.setString(5, user.getPhone_number());
+            pstmt.setString(6, user.getCert_number());
 
             pstmt.executeUpdate();
         } catch (SQLException e) {

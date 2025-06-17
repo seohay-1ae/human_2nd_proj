@@ -10,13 +10,13 @@
 <head>
     <title>회원가입</title>
     <script>
-        let idChecked = false; // 이메일 중복 체크 여부 저장
-        let validId = ""; // 중복 확인된 이메일 값 저장
+        let emailChecked = false; // 이메일 중복 체크 여부 저장
+        let validEmail = ""; // 중복 확인된 이메일 값 저장
 
-        function checkIdDuplicate() {
-            const emailInput = document.forms["signupForm"]["id"].value;
+        function checkEmailDuplicate() {
+            const emailInput = document.forms["signupForm"]["email"].value;
 
-            if (!idInput) {
+            if (!emailInput) {
                 alert("이메일을 먼저 입력해주세요.");
                 return;
         }
@@ -25,13 +25,15 @@
 
         fetch(`/check-email?email=${encodeURIComponent(emailInput)}`)
             .then(response => response.text())
-            .tnen(result => {
+            .then(result => {
                 if (result === "duplicate") {
                     alert("이미 사용 중인 이메일 입니다.");
-                    idChecked = false;
+                    emailChecked = false;
+                    validEmail = "";
                 } else if (result === "available") {
                     alert("사용 가능한 이메일 입니다.");
-                    idChecked = true;
+                    emailChecked = true;
+                    validEmail = emailInput;
                 }
             })
             .catch(error => {
@@ -45,7 +47,7 @@
             const password = document.forms["signupForm"]["password"].value;
             const passwordCheck = document.forms["signupForm"]["passwordCheck"].value;
 
-            if (!emailChecked || currentId !== validEmail) {
+            if (!emailChecked || currentEmail !== validEmail) {
                 alert("이메일 중복 확인을 완료해주세요.");
                 return false;
             }
@@ -61,23 +63,23 @@
 </head>
 <body>
     <h2>회원가입</h2>
-    <form name="signupForm" action="/signup" method="post" onsubmit="validateForm()">
+    <form name="signupForm" action="/signup" method="post" onsubmit="return validateForm()">
         이메일<br />
         <input type="email" name="email" required placeholder="example@naver.com"/>
-        <button type="button" onclick="checkIdDuplicate()">중복확인</button>
+        <button type="button" onclick="checkEmailDuplicate()">중복확인</button>
         <br/>
         비밀번호<br />
         <input type="password" name="password" required/><br/>
         비밀번호 확인<br />
         <input type="password" name="passwordCheck" required/><br/>
         이름<br />
-        <input type="text" name="userName" required/><br />
+        <input type="text" name="username" required/><br />
         휴대폰 번호<br />
-        <input type="text" name="phoneNumber" required/>
+        <input type="text" name="phone_number" required/>
         <button type="button">인증번호 받기</button>
         <br/>
         인증번호<br />
-        <input type="text" name="certNumber" required/>
+        <input type="text" name="cert_number" required/>
         <button type="button">인증번호 조회</button>
         <br/>
         <br/>

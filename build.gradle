@@ -34,6 +34,8 @@ dependencies {
 	implementation 'jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api:3.0.0'
 	implementation 'org.glassfish.web:jakarta.servlet.jsp.jstl:3.0.1'
 
+	compileOnly 'jakarta.servlet:jakarta.servlet-api:4.0.1'
+
 	// WAR 환경용 (필요할 때만 사용)
 	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
 

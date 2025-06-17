@@ -5,10 +5,7 @@ import com.project.travelquest.member.vo.UserVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class SignUpController {
@@ -18,10 +15,10 @@ public class SignUpController {
 
     // 이메일 중복 확인용 (AJAX 용)서비스/DB 체크 로직
     @GetMapping("/check-email")
+    @ResponseBody
     public String checkEmail(@RequestParam String email) {
         // DB에서 이메일(id) 존재 여부 확인
         boolean exists = userService.existsByEmail(email); //직접 구현
-
         return exists ? "duplicate" : "available";
     }
     //회원가입 폼 페이지
@@ -50,7 +47,7 @@ public class SignUpController {
 
         // 화면 출력만 하는 로직
         model.addAttribute("email", user.getEmail() );
-        model.addAttribute("name", user.getUserName() );
+        model.addAttribute("name", user.getUsername() );
 
         return "mypage/signup_success";
     }

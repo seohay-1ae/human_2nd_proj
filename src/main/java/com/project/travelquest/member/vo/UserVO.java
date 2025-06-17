@@ -9,10 +9,10 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class UserVO {
-    private String userName;
+    private String username;
     private String password;
     private String passwordCheck;
     private String email;
-    private String phoneNumber;
-    private String certNumber;
+    private String phone_number;
+    private String cert_number;
     }
