@@ -8,7 +8,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <title>로그인</title>
-        <link rel = "stylesheet" href = "${contextPath}/resources/static/css/emailLogin.css">
+        <link rel = "stylesheet" href = "${contextPath}/css/loginForm.css">
         <c:if test='${not empty message}'>
             <script>
                 window.onload=function()
@@ -24,12 +24,16 @@
     </head>
 
     <body>
-        <div class = "login-box">
-            <h2>로그인</h2>
-	        <form action="${contextPath}/mypage/emailLogin" method="post">
-	            <label for = "email">이메일</label>
-	            <input type = "email" id = "email" name = "email"
-	                   placeholder = "이메일을 입력해주세요" required />
+        <div class = "login-form-wrapper">
+            <div class = "login-form-header">
+                <button class = "backButton" onclick = "history.back()"> ← </button>
+                <span class = "header-title">로그인</span>
+            </div>
+
+            <form action="${contextPath}/mypage/loginForm" method="post" class = "login-form">
+                <label for = "email">이메일</label>
+                <input type = "email" id = "email" name = "email"
+                       placeholder = "이메일을 입력해주세요" required />
 
                 <label for = "password">비밀번호</label>
                 <input type = "password" id = "password" name = "password"
@@ -40,8 +44,8 @@
                     <a href="#">비밀번호 찾기</a>
                 </div>
 
-                <button type = "submit">로그인 하기</button>
-            </div>
-        </form>
+                <button type = "submit" class = "login-btn">로그인 하기</button>
+            </form>
+        </div>
     </body>
 </html>

@@ -9,8 +9,8 @@ import java.sql.Date;
 @Getter
 @Setter
 @NoArgsConstructor
-
 public class UserVO {
+
     private String user_id;
     private String user_pw;
     private String user_name;
