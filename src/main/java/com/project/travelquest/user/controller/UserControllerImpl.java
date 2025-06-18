@@ -1,14 +1,21 @@
 package com.project.travelquest.user.controller;
 
 import com.project.travelquest.user.service.UserService;
+import com.project.travelquest.user.vo.UserVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/mypage")
 public class UserControllerImpl implements UserController {
+
+    @Autowired
+    UserService userService;
 
     @GetMapping("/loginSelect")
     public String loginSelect() {
@@ -23,5 +30,13 @@ public class UserControllerImpl implements UserController {
     @GetMapping("/joinForm")
     public String JoinForm() {
         return "mypage/joinForm";
+    }
+
+    @GetMapping("/listUsers")
+    public String listUsers(Model model) throws Exception {
+
+        List<UserVO> usersList = userService.listUsers();
+        model.addAttribute("usersList", usersList);
+        return "/listUsers";
     }
 }
