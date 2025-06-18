@@ -1,4 +1,4 @@
-package com.project.travelquest.member.vo;
+package com.project.travelquest.user.vo;
 
 
 import lombok.Getter;
@@ -11,7 +11,7 @@ import lombok.Setter;
 public class UserVO {
     private String username;
     private String password;
-    private String passwordCheck;
+    private String password_check;
     private String email;
     private String phone_number;
     private String cert_number;

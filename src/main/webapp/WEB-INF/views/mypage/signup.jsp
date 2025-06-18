@@ -8,8 +8,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>회원가입</title>
-    <script>
+   <title>회원가입</title>
+     /* <script>
         let emailChecked = false; // 이메일 중복 체크 여부 저장
         let validEmail = ""; // 중복 확인된 이메일 값 저장
 
@@ -45,21 +45,21 @@
         function validateForm() {
             const currentEmail = document.forms["signupForm"]["email"].value;
             const password = document.forms["signupForm"]["password"].value;
-            const passwordCheck = document.forms["signupForm"]["passwordCheck"].value;
+            const password_check = document.forms["signupForm"]["password_check"].value;
 
             if (!emailChecked || currentEmail !== validEmail) {
                 alert("이메일 중복 확인을 완료해주세요.");
                 return false;
             }
 
-            if (password !== passwordCheck) {
+            if (password !== password_check) {
                 alert("비밀번호가 일치 하지 않습니다. ");
                 return false; // 폼 제출 차단
             } else {
                 return true; // 일치하면 폼 제출 허용
             }
         }
-    </script>
+    </script> */
 </head>
 <body>
     <h2>회원가입</h2>
@@ -71,7 +71,7 @@
         비밀번호<br />
         <input type="password" name="password" required/><br/>
         비밀번호 확인<br />
-        <input type="password" name="passwordCheck" required/><br/>
+        <input type="password" name="password_check" required/><br/>
         이름<br />
         <input type="text" name="username" required/><br />
         휴대폰 번호<br />
