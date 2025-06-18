@@ -11,9 +11,9 @@
 
     <insert id="saveUser" parameterType="com.project.travelquest.user.vo.UserVO">
         INSERT INTO t_users (
-        email, password, username, phone_number, cert_number, password_check
+        email, password, username, phone_number, cert_number
         ) VALUES (
-        #{email}, #{password}, #{username}, #{phone_number}, #{cert_number}, #{password_check}
+        #{email}, #{password}, #{username}, #{phone_number}, #{cert_number}
         )
     </insert>
 
