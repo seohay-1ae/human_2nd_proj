@@ -8,58 +8,57 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-   <title>회원가입</title>
-     /* <script>
+    <title>회원가입</title>
+    <script>
         let emailChecked = false; // 이메일 중복 체크 여부 저장
         let validEmail = ""; // 중복 확인된 이메일 값 저장
 
-        function checkEmailDuplicate() {
-            const emailInput = document.forms["signupForm"]["email"].value;
+        // 이메일 중복 확인 함수
+                function checkEmailDuplicate() {
+                    const emailInput = document.forms["signupForm"]["email"].value;
 
-            if (!emailInput) {
-                alert("이메일을 먼저 입력해주세요.");
-                return;
-        }
+                    if (!emailInput) {
+                                    alert("이메일을 먼저 입력해주세요.");
+                                    return;
+                            }
 
-        // AJAX 요청
-
-        fetch(`/check-email?email=${encodeURIComponent(emailInput)}`)
-            .then(response => response.text())
-            .then(result => {
-                if (result === "duplicate") {
-                    alert("이미 사용 중인 이메일 입니다.");
-                    emailChecked = false;
-                    validEmail = "";
-                } else if (result === "available") {
-                    alert("사용 가능한 이메일 입니다.");
-                    emailChecked = true;
-                    validEmail = emailInput;
+                    fetch("/check-email?email=" + encodeURIComponent(emailInput))
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.exists) {
+                                alert("이미 사용 중인 이메일입니다.");
+                                emailChecked = false;
+                            } else {
+                                alert("사용 가능한 이메일입니다.");
+                                emailChecked = true;
+                                validEmail = emailInput;
+                            }
+                        })
+                        .catch(error => {
+                            console.error("에러 발생:", error);
+                            alert("이메일 확인 중 오류가 발생했습니다.");
+                        });
                 }
-            })
-            .catch(error => {
-                console.error("에러 발생:", error);
-                alert("서버 요청에 실패했습니다.")
-            });
-        }
 
-        function validateForm() {
-            const currentEmail = document.forms["signupForm"]["email"].value;
-            const password = document.forms["signupForm"]["password"].value;
-            const password_check = document.forms["signupForm"]["password_check"].value;
+        // 폼 유효성 검사 로직
+            function validateForm() {
+                const currentEmail = document.forms["signupForm"]["email"].value;
+                const password = document.forms["signupForm"]["password"].value;
+                const password_check = document.forms["signupForm"]["password_check"].value;
 
-            if (!emailChecked || currentEmail !== validEmail) {
-                alert("이메일 중복 확인을 완료해주세요.");
-                return false;
+                if (!emailChecked || currentEmail !== validEmail) {
+                    alert("이메일 중복 확인을 완료해주세요.");
+                    return false;
+                }
+
+                if (password !== password_check) {
+                    alert("비밀번호가 일치 하지 않습니다. ");
+                    return false; // 폼 제출 차단
+                } else {
+                    return true; // 일치하면 폼 제출 허용
+                }
             }
-
-            if (password !== password_check) {
-                alert("비밀번호가 일치 하지 않습니다. ");
-                return false; // 폼 제출 차단
-            } else {
-                return true; // 일치하면 폼 제출 허용
-            }
-        }
-    </script> */
+    </script>
 </head>
 <body>
     <h2>회원가입</h2>

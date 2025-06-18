@@ -4,7 +4,6 @@ import lombok.Data;
 
 public class AvatarPresetDto {
     private String skin;
-    private String face;
     private String hands;
     private String bottoms;
     private String tops;
@@ -13,9 +12,6 @@ public class AvatarPresetDto {
     // Getters & Setters
     public String getSkin() { return skin; }
     public void setSkin(String skin) { this.skin = skin; }
-
-    public String getFace() { return face; }
-    public void setFace(String face) { this.face = face; }
 
     public String getHands() { return hands; }
     public void setHands(String hands) { this.hands = hands; }

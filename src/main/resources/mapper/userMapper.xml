@@ -4,21 +4,17 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.project.travelquest.user.dao.UserDAO">
+    <select id="existsByEmail" resultType="int">
+        SELECT COUNT(*) FROM t_users WHERE email = #{email}
+    </select>
 
-<!--    &lt;!&ndash; 이메일 중복 검사 &ndash;&gt;-->
-<!--    <select id="existsByEmail" resultType="int" parameterType="String">-->
-<!--        SELECT CASE WHEN COUNT(*) > 0 THEN 1 ELSE 0 END-->
-<!--        FROM t_users-->
-<!--        WHERE email = #{email}-->
-<!--    </select>-->
 
-    <!-- 회원정보 저장 -->
-<!--    <insert id="saveUser" parameterType="UserVO">-->
-<!--        INSERT INTO t_users (-->
-<!--        email, password, password_check, username, phone_number, cert_number-->
-<!--        ) VALUES (-->
-<!--        #{email}, #{password}, #{password_check}, #{username}, #{phone_number}, #{cert_number}-->
-<!--        )-->
-<!--    </insert>-->
+    <insert id="saveUser" parameterType="com.project.travelquest.user.vo.UserVO">
+        INSERT INTO t_users (
+        email, password, username, phone_number, cert_number, password_check
+        ) VALUES (
+        #{email}, #{password}, #{username}, #{phone_number}, #{cert_number}, #{password_check}
+        )
+    </insert>
 
 </mapper>
