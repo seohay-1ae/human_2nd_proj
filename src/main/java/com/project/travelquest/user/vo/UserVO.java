@@ -13,7 +13,7 @@ public class UserVO {
     private String password;
     private String email;
     private String phone_number;
-    private String cert_number;
+    private String cert_number; // 인증번호 (서버에서 비교용)
     
     // 비밀번호 확인용: DB 저장 제외
     private transient String password_check;

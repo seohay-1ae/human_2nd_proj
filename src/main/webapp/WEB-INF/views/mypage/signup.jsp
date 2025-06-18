@@ -30,7 +30,7 @@
         <br/>
         인증번호<br />
         <input type="text" name="cert_number" required/>
-        <button type="button">인증번호 조회</button>
+        <button type="button">인증번호 확인</button>
         <br/>
         <br/>
         <input type="submit" value="회원가입하기"/>
