@@ -13,47 +13,132 @@ window.onload = function () {
             .then(res => res.json())
             .then(locations => {
                 locations.forEach(loc => {
+                    const markerPosition = new kakao.maps.LatLng(loc.mapy, loc.mapx);
+
                     const marker = new kakao.maps.Marker({
                         map: map,
-                        position: new kakao.maps.LatLng(loc.mapy, loc.mapx),
+                        position: markerPosition,
                         title: loc.title
                     });
 
-                    const infowindow = new kakao.maps.InfoWindow({
-                        content: `<div style="padding:5px;">${loc.title}<br/>${loc.addr1}</div>`
-                    });
+                    // ✅ 마커 옆에 항상 표시되는 CustomOverlay (말풍선 대신)
+                    const overlayContent = document.createElement('div');
+                    overlayContent.innerHTML = `
+                        <div style="
+                            background:#fff;
+                            padding:4px 8px;
+                            border:1px solid #555;
+                            border-radius:4px;
+                            font-size:12px;
+                            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+                            white-space: nowrap;
+                        ">
+                            ${loc.title}
+                        </div>
+                    `;
 
-                    kakao.maps.event.addListener(marker, 'mouseover', function () {
-                        infowindow.open(map, marker);
+                    const customOverlay = new kakao.maps.CustomOverlay({
+                        content: overlayContent,
+                        position: markerPosition,
+                        yAnchor: 1.5
                     });
-                    kakao.maps.event.addListener(marker, 'mouseout', function () {
-                        infowindow.close();
-                    });
+                    customOverlay.setMap(map);
 
-                    // ✅ 마커 클릭 시 상세 정보 영역에 표시
+                    // ✅ 마커 클릭 시 요약 카드 표시
                     kakao.maps.event.addListener(marker, 'click', function () {
-                        // 세션 저장 (필요 시)
                         fetch('/api/session/set-content-id', {
                             method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json'
-                            },
-                            body: JSON.stringify({ contentId: loc.contentId })
+                            headers: {'Content-Type': 'application/json'},
+                            body: JSON.stringify({contentId: loc.contentId})
                         });
 
-                        // 상세 정보 표시
                         detailBox.innerHTML = `
-                            <h3>${loc.title}</h3>
-                            <p><strong>주소:</strong> ${loc.addr1 || '정보 없음'}</p>
-                            <p><strong>전화번호:</strong> ${loc.tel || '정보 없음'}</p>
-                            <p><strong>설명:</strong> ${loc.overview || '설명 없음'}</p>
-                            <!-- 필요 시 이미지도 추가 -->
-                            ${loc.firstImage ? `<img src="${loc.firstImage}" alt="${loc.title}" style="max-width:100%; height:auto;">` : ''}
+                            <div class="summary-card" onclick="openDetailModal(${loc.contentId})">
+                                <h3>${loc.title}</h3>
+                                <p><strong>주소:</strong> ${loc.addr1 || '정보 없음'}</p>
+                            </div>
                         `;
                         detailBox.style.display = 'block';
-                        detailBox.scrollIntoView({ behavior: 'smooth' });
                     });
                 });
             });
+
+        // 현재 탭 상태 저장
+        window.currentTab = 'info';
+
+        window.openDetailModal = function (contentId) {
+            document.getElementById('detail-modal').style.display = 'block';
+            renderTab(contentId, window.currentTab);
+        }
+
+        window.closeModal = function () {
+            document.getElementById('detail-modal').style.display = 'none';
+            window.currentTab = 'info';
+        }
+
+        window.renderTab = function (contentId, tab) {
+            window.currentTab = tab;
+            const contentDiv = document.getElementById('modal-content');
+            const tabBar = document.getElementById('modal-tabs');
+
+            tabBar.innerHTML = `
+                <button onclick="renderTab(${contentId}, 'info')" class="${tab === 'info' ? 'active-tab' : ''}">정보</button>
+                <button onclick="renderTab(${contentId}, 'reviews')" class="${tab === 'reviews' ? 'active-tab' : ''}">리뷰</button>
+                <button onclick="renderTab(${contentId}, 'photos')" class="${tab === 'photos' ? 'active-tab' : ''}">사진</button>
+            `;
+
+            if (tab === 'info') {
+                fetch(`/api/places/${contentId}`)
+                    .then(res => res.json())
+                    .then(data => {
+                        contentDiv.innerHTML = `
+                            <h2>${data.title}</h2>
+                            <p><strong>주소:</strong> ${data.addr1}</p>
+                            <p><strong>전화:</strong> ${data.tel || '없음'}</p>
+                        `;
+                    });
+            } else if (tab === 'reviews') {
+                fetch(`/api/reviews/${contentId}`)
+                    .then(res => res.json())
+                    .then(reviews => {
+                        contentDiv.innerHTML = `
+                            <h3>리뷰 목록</h3>
+                            <ul>
+                                ${reviews.map(r => `<li><strong>${r.userName}</strong>: ${r.content}</li>`).join('')}
+                            </ul>
+                            <button onclick="renderTab(${contentId}, 'write')">리뷰쓰기</button>
+                        `;
+                    });
+            } else if (tab === 'write') {
+                contentDiv.innerHTML = `
+                    <h3>리뷰 작성</h3>
+                    <textarea id="review-content" rows="5" style="width:100%;"></textarea>
+                    <br/>
+                    <button onclick="submitReview(${contentId})">제출</button>
+                    <button onclick="renderTab(${contentId}, 'reviews')">뒤로</button>
+                `;
+            } else if (tab === 'photos') {
+                contentDiv.innerHTML = `<p>사진 탭은 준비 중입니다.</p>`;
+            }
+        }
+
+        window.submitReview = function (contentId) {
+            const content = document.getElementById('review-content').value;
+            if (!content) {
+                alert("리뷰 내용을 입력해주세요.");
+                return;
+            }
+
+            fetch('/api/review', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({contentId, content})
+            })
+                .then(res => res.json())
+                .then(() => {
+                    alert('리뷰가 등록되었습니다.');
+                    renderTab(contentId, 'reviews');
+                });
+        }
     });
 };

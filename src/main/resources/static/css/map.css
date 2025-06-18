@@ -1,0 +1,12 @@
+#modal-tabs button {
+    padding: 10px 15px;
+    margin-right: 5px;
+    background: #eee;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+#modal-tabs .active-tab {
+    background: #007bff;
+    color: white;
+}
