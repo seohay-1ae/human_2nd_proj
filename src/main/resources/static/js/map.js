@@ -139,7 +139,8 @@ window.onload = function () {
                     <h3><span>${loc.title}</span></h3>
                     <p> ${loc.addr1 || '정보 없음'}</p>
                     <span style="color: ${status === '영업중' ? '#1E4CD1' : 'red'};">${status}</span>
-                    <p>휴무: ${loc.restdate || ''} / 영업시간: ${loc.usetime || ''}</p>
+                    <p>휴무: ${loc.restdate || ''} </p>
+                    <p>영업시간: ${loc.usetime || ''} </p>
                     
                         <img src="${loc.firstimage}" alt="${loc.title}" style=" width: 100%;
                             max-width: 390px; margin: 5px auto 0 auto; max-height: 150px; object-fit: cover;" />

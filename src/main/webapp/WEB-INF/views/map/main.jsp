@@ -54,7 +54,9 @@
 
 <nav class="top-nav">
     <div class="logo">
-        <img src="${pageContext.request.contextPath}/logo.png" alt="logo"/>
+        <a href="${pageContext.request.contextPath}/">
+            <img src="${pageContext.request.contextPath}/logo.png" alt="logo"/>
+        </a>
     </div>
 </nav>
 <div class="page-container">
