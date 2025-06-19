@@ -17,7 +17,7 @@ public class PlaceListRepository {
     private JdbcTemplate jdbcTemplate;
 
     public List<TourPlace> findByCondition(int areacode, int sigungucode, String addr1Keyword) {
-        String sql = "SELECT contentid, areacode, addr1, sigungucode FROM tour_place WHERE areacode = ? AND sigungucode = ?";
+        String sql = "SELECT contentid, areacode, addr1, sigungucode FROM tb_tourplace WHERE areacode = ? AND sigungucode = ?";
         List<Object> params = new ArrayList<>();
         params.add(areacode);
         params.add(sigungucode);

@@ -21,7 +21,7 @@ public class TourPlaceRepository {
     }
 
     public int insertTourPlaces(List<TourPlaceItem> places) {
-        String sql = "INSERT INTO tour_place (contentid, areacode, addr1, addr2, createdtime, firstimage, firstimage2, mapx, mapy, modifiedtime, sigungucode, tel, title, contenttypeid) " +
+        String sql = "INSERT INTO tb_tourplace (contentid, areacode, addr1, addr2, createdtime, firstimage, firstimage2, mapx, mapy, modifiedtime, sigungucode, tel, title, contenttypeid) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         int count = 0;
 
@@ -55,7 +55,7 @@ public class TourPlaceRepository {
     // 1. contentid 목록 불러오기
     public List<String> getAllContentIds() {
         List<String> contentIds = new ArrayList<>();
-        String sql = "SELECT contentid FROM tour_place";
+        String sql = "SELECT contentid FROM tb_tourplace";
 
         try (Connection conn = dataSource.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -73,7 +73,7 @@ public class TourPlaceRepository {
     // 🔹 contentid + contenttypeid 목록 반환
     public List<Map<String, Object>> getAllContentIdAndType() {
         List<Map<String, Object>> result = new ArrayList<>();
-        String sql = "SELECT contentid, contenttypeid FROM tour_place";
+        String sql = "SELECT contentid, contenttypeid FROM tb_tourplace";
 
         try (Connection conn = dataSource.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -95,7 +95,7 @@ public class TourPlaceRepository {
 
     // 2. 관광지 상세 정보 업데이트
     public void updateTourPlaceDetail(String contentid, String homepage, String overview, String tel) {
-        String sql = "UPDATE tour_place SET homepage = ?, overview = ?, tel = ? WHERE contentid = ?";
+        String sql = "UPDATE tb_tourplace SET homepage = ?, overview = ?, tel = ? WHERE contentid = ?";
 
         try (Connection conn = dataSource.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -115,7 +115,7 @@ public class TourPlaceRepository {
     // 🔹 intro 공통 정보 업데이트 (contentTypeId 12, 14 공통)
     public void updateTourPlaceIntroCommon(String contentid, String opendate, String infocenter,
                                            String restdate, String usetime) {
-        String sql = "UPDATE tour_place SET opendate = ?, infocenter = ?, restdate = ?, usetime = ? WHERE contentid = ?";
+        String sql = "UPDATE tb_tourplace SET opendate = ?, infocenter = ?, restdate = ?, usetime = ? WHERE contentid = ?";
 
         try (Connection conn = dataSource.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -135,7 +135,7 @@ public class TourPlaceRepository {
 
     // 🔹 intro useFee 추가 업데이트 (contentTypeId = 14 전용)
     public void updateTourPlaceIntroUseFee(String contentid, String usefee) {
-        String sql = "UPDATE tour_place SET usefee = ? WHERE contentid = ?";
+        String sql = "UPDATE tb_tourplace SET usefee = ? WHERE contentid = ?";
 
         try (Connection conn = dataSource.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {

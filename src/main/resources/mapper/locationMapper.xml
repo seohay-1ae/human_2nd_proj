@@ -3,6 +3,26 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.project.travelquest.map.mapper.LocationMapper">
     <select id="getAllLocations" resultType="com.project.travelquest.map.model.Location">
-        SELECT contentid, title, addr1, mapx, mapy, firstimage FROM tour_place
+        SELECT contentid,
+               areacode,
+               addr1,
+               addr2,
+               createdtime,
+               firstimage,
+               firstimage2,
+               mapx,
+               mapy,
+               modifiedtime,
+               sigungucode,
+               title,
+               homepage,
+               overview,
+               opendate,
+               infocenter,
+               restdate,
+               usetime,
+               usefee,
+               contenttypeid
+        FROM tb_tourplace
     </select>
 </mapper>

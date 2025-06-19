@@ -15,7 +15,7 @@ public class PlaceDetailMapper {
     }
 
     public PlaceDetail findByContentId(Long contentId) throws SQLException {
-        String sql = "SELECT * FROM tour_place WHERE contentid = ?";
+        String sql = "SELECT * FROM tb_tourplace WHERE contentid = ?";
         try (Connection conn = dataSource.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
 

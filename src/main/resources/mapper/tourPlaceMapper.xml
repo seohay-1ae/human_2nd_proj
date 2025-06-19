@@ -6,7 +6,7 @@
 <mapper namespace="com.project.travelquest.openapi.mapper.TourPlaceMapper">
 
     <insert id="insertTourPlace" parameterType="com.project.travelquest.openapi.dto.TourPlaceDTO">
-        INSERT INTO TOUR_PLACE (CONTENTID, AREACODE, ADDR1, ADDR2, CREATEDTIME, FIRSTIMAGE,
+        INSERT INTO tb_tourplace (CONTENTID, AREACODE, ADDR1, ADDR2, CREATEDTIME, FIRSTIMAGE,
                                 FIRSTIMAGE2, MAPX, MAPY, MODIFIEDTIME, SIGUNGUCODE, TEL, TITLE,
                                 HOMEPAGE, OVERVIEW, OPENDATE, INFOCENTER, RESTDATE, USETIME,
                                 INFOCENTERCULTURE, RESTDATECULTURE, USEFEE, USETIMECULTURE)
@@ -19,7 +19,7 @@
     </insert>
 
     <insert id="insertTourPlaces" parameterType="java.util.List">
-        INSERT INTO TOUR_PLACE (
+        INSERT INTO tb_tourplace (
         CONTENTID, AREACODE, ADDR1, ADDR2, CREATEDTIME, FIRSTIMAGE, FIRSTIMAGE2, MAPX, MAPY, MODIFIEDTIME,
         SIGUNGUCODE, TEL, TITLE, HOMEPAGE, OVERVIEW, OPENDATE, INFOCENTER, RESTDATE, USETIME, INFOCENTERCULTURE,
         RESTDATECULTURE, USEFEE, USETIMECULTURE

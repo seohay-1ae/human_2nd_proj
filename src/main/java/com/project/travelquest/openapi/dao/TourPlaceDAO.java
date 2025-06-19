@@ -26,7 +26,7 @@ public class TourPlaceDAO {
         int result = 0;
         try {
             con = dataFactory.getConnection();
-            String sql = "INSERT INTO tour_place (contentid, areacode, addr1, addr2, createdtime, firstimage, firstimage2, mapx, mapy, modifiedtime, sigungucode, tel, title, contenttypeid) " +
+            String sql = "INSERT INTO tb_tourplace (contentid, areacode, addr1, addr2, createdtime, firstimage, firstimage2, mapx, mapy, modifiedtime, sigungucode, tel, title, contenttypeid) " +
                     "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)";
 
             for (Item item : itemList) {
@@ -64,7 +64,7 @@ public class TourPlaceDAO {
 
         try {
             con = dataFactory.getConnection();
-            pstmt = con.prepareStatement("SELECT * FROM tour_place");
+            pstmt = con.prepareStatement("SELECT * FROM tb_tourplace");
             rs = pstmt.executeQuery();
 
             while (rs.next()) {

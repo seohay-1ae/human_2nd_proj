@@ -14,24 +14,37 @@
         .top-nav {
             position: fixed;
             top: 0;
-            width: 100%;
+            width: 100vw; /* 화면 전체 너비 대신 vw로 */
+            max-width: 420px; /* 모바일 최대 너비 고정 */
+            margin: 0 auto; /* 좌우 중앙 정렬 */
             height: 60px;
             background: #fff;
             border-bottom: 1px solid #ccc;
             display: flex;
-            justify-content: space-around;
+            justify-content: center; /* 중앙 정렬 기본 */
             align-items: center;
             z-index: 999;
+            left: 0;
+            right: 0;
         }
-
         .logo {
-            width: 50%;
+            width: 80%;
         }
 
         .koreaMap {
-            width: 80%;
-            margin: 10px auto 0 auto;
+            width: 100%;
+            height: 100%; /* 전체 채움 */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
             padding: 0;
+        }
+        /* SVG object */
+        #koreaMap {
+            width: 100%;
+            height: 100%;
+            display: block;
         }
 
     </style>

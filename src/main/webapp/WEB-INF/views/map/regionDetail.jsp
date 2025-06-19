@@ -6,40 +6,54 @@
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>${region} 지도</title></head>
+    <title>${regionKr} 지도</title>
 
-<!-- 공통 및 페이지별 CSS -->
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css"/>
+    <!-- 공통 및 페이지별 CSS -->
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css"/>
 
-<style>
-    .top-nav {
-        position: fixed;
-        top: 0;
-        width: 100%;
-        height: 60px;
-        background: #fff;
-        border-bottom: 1px solid #ccc;
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        z-index: 999;
-    }
+    <style>
+        .top-nav {
+            position: fixed;
+            top: 0;
+            width: 100vw; /* 화면 전체 너비 대신 vw로 */
+            max-width: 420px; /* 모바일 최대 너비 고정 */
+            margin: 0 auto; /* 좌우 중앙 정렬 */
+            height: 60px;
+            background: #fff;
+            border-bottom: 1px solid #ccc;
+            display: flex;
+            justify-content: center; /* 중앙 정렬 기본 */
+            align-items: center;
+            z-index: 999;
+            left: 0;
+            right: 0;
+            padding: 0 1rem;
+        }
 
-    /*.logo {*/
-    /*    width: 50%;*/
-    /*}*/
+        .regionMap {
+            width: 100%;
+            height: 100%; /* 전체 채움 */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            padding: 0 10px;
+        }
 
-    .regionMap {
-        width: 80%;
-        margin: 10px auto 0 auto;
-        padding: 0;
-    }
-
-</style>
+        #svgEmbed {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+    </style>
+</head>
 <body>
 <nav class="top-nav">
     <div class="back-button">
-        <a href="/">← 전국 지도</a>
+        <a href="/">← </a>
+    </div>
+    <div class="title">
+        ${regionKr} 지도
     </div>
 </nav>
 <div class="page-container">

@@ -7,7 +7,9 @@
     .bottom-nav {
         position: fixed;
         bottom: 0;
-        width: 100%;
+        width: 100vw;
+        max-width: 420px;
+        margin: 0 auto;
         height: 60px;
         background: #fff;
         border-top: 1px solid #ccc;
@@ -15,6 +17,8 @@
         justify-content: space-around;
         align-items: center;
         z-index: 999;
+        left: 0;
+        right: 0;
     }
     .nav-item {
         text-align: center;
@@ -28,16 +32,18 @@
         display: block;
         margin: 0 auto 2px;
     }
-    .nav-item.active {
-        color: red;
-        font-weight: bold;
-    }
+    /*.nav-item.active {*/
+    /*    font-weight: bold;*/
+    /*    color:#8D6AEF;*/
+    /*}*/
+
+
     .nav-item:hover {
-        color: #007bff; /* hover 시 텍스트 색상 */
+        color: #2f65f8; /* hover 시 텍스트 색상 */
     }
 
     .nav-item:hover i {
-        color: #007bff; /* hover 시 아이콘 색상 */
+        color: #2f65f8; /* hover 시 아이콘 색상 */
     }
 </style>
 
