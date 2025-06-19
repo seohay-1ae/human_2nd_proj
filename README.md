@@ -21,21 +21,47 @@ https://ysy2000.tistory.com/151
   <title>제목</title>
 
   <!-- 공통 및 페이지별 CSS -->
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css"/> (필수)
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/각 페이지에서만 쓰이는 css(만들것).css"/>
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css"/> <!-- (필수) -->
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/<!--각 페이지에서만 쓰이는 css(만들것).css -->"/>
 </head>
 
 <body>
-  <div class="page-container"> (필수)
-    <div class="page-content"> (필수)
-      <div class="container"> (양옆으로 마진20 필요할 때)
+  <!-- 상단 네비게이션 -->
+  <nav class="top-nav">
+
+      <!-- 로고 넣을 때 -->
+      <div class="logo">
+          <a href="${pageContext.request.contextPath}/">
+              <img src="${pageContext.request.contextPath}/logo.png" alt="logo"/>
+          </a>
+      </div>
+      <!-- 로고 넣을 때 -->
+
+      <!-- 뒤로가기 넣을 때 -->
+      <div class="back-button">
+          <a href="/<!-- 경로는 맞춰서 수정 -->">← </a> 
+      </div>
+      <!-- 뒤로가기 넣을 때 -->
+
+      <!-- 타이틀 넣을 때 -->
+      <div class="title">
+          마이페이지
+      </div>
+      <!-- 타이틀 넣을 때 -->
+
+    </nav>
+    <!-- 상단 네비게이션 -->
+
+  <div class="page-container"> <!-- (필수) -->
+    <div class="page-content"> <!-- (필수) -->
+      <div class="container"> <!-- (양옆으로 마진20 필요할 때) -->
         <!-- html작성 -->
       </div>
     </div>
  </div>
 
   <!-- 하단 nav바 -->
-  <jsp:include page="/WEB-INF/views/common/bottomNav.jsp"/> (필수)
+  <jsp:include page="/WEB-INF/views/common/bottomNav.jsp"/> <!-- (필수) -->
 
   <script>
     <!-- js 작성 -->
