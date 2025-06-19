@@ -1,26 +1,23 @@
 package com.project.travelquest.user.vo;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import java.util.Date;
+
+@Getter
+@Setter
+@NoArgsConstructor
 public class UserVO {
-    private String name;
-    private String email;
-
-    // 기본 생성자
-    public UserVO() {}
-
-    // getter & setter
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
+    private Long user_id;
+    private String user_name;
+    private String user_email;
+    private String user_phone_num;
+    private String user_password;
+    private Date user_joindate;
+    private String user_profile_text;
+    private String user_role;
+    private String user_status;
+    private String avatar_preset_id;
 }

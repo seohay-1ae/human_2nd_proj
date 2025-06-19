@@ -8,40 +8,45 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css"/>
 
     <style>
-        .top-nav {
-            position: fixed;
-            top: 0;
-            width: 100vw; /* 화면 전체 너비 대신 vw로 */
-            max-width: 420px; /* 모바일 최대 너비 고정 */
-            margin: 0 auto; /* 좌우 중앙 정렬 */
-            height: 60px;
-            background: #fff;
-            border-bottom: 1px solid #ccc;
-            display: flex;
-            justify-content: center; /* 중앙 정렬 기본 */
-            align-items: center;
-            z-index: 999;
-            left: 0;
-            right: 0;
-            padding: 0 1rem;
+        #locationList {
+            list-style: none;
+            padding: 1rem;
         }
 
-        .regionMap {
-            width: 100%;
-            height: 100%; /* 전체 채움 */
+        #locationList li {
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            justify-content: center;
-            margin: 0;
-            padding: 0 10px;
+            gap: 1rem;
+
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
         }
 
-        #svgEmbed {
-            width: 100%;
-            height: 100%;
+        .location-text {
+            flex: 1;
+        }
+
+        .location-text strong {
             display: block;
+            font-size: 16px;
+            margin-bottom: 0.3rem;
+        }
+
+        .location-text span {
+            font-size: 14px;
+            color: #555;
+        }
+
+        #locationList img {
+            width: 100px;
+            height: auto;
+            object-fit: cover;
+            border-radius: 4px;
         }
     </style>
+
 </head>
 <body>
 <nav class="top-nav">
@@ -55,23 +60,52 @@
 
 <div class="page-container">
     <div class="page-content">
-        <c:if test="${not empty placeList}">
-            <ul>
-                <c:forEach var="place" items="${placeList}">
-                    <li>
-                        ID: ${place.contentid}, 주소: ${place.addr1}
-                    </li>
-                </c:forEach>
-            </ul>
-        </c:if>
-
-        <c:if test="${empty placeList}">
-            <p>해당 지역에 관광지 정보가 없습니다.</p>
-        </c:if>
+            <ul id="locationList"></ul>
     </div>
 </div>
 <!-- 하단 nav바 -->
 <jsp:include page="/WEB-INF/views/common/bottomNav.jsp"/>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+    const region = '${region}';
+    const subregion = '${subregion}';
+
+    fetch(`/api/locations?region=${region}&subregion=${subregion}`)
+        .then(res => res.json())
+        .then(locations => {
+            console.log(locations);
+            const list = document.getElementById('locationList');
+
+            if (locations.length === 0) {
+                list.innerHTML = '<li>관광지가 없습니다.</li>';
+                return;
+            }
+
+            locations.forEach(loc => {
+                const li = document.createElement('li');
+
+                const textDiv = document.createElement('div');
+                textDiv.className = 'location-text';
+                textDiv.innerHTML = `<strong>\${loc.title}</strong><br> <span style="font-size:12px;">\${loc.addr1}</span>`;
+                li.appendChild(textDiv);
+
+                if (loc.firstimage) {
+                    const img = document.createElement('img');
+                    img.src = loc.firstimage;
+                    img.alt = loc.title;
+                    img.width = 100;
+                    li.appendChild(img);
+                }
+                list.appendChild(li);
+            });
+
+        })
+        .catch(err => {
+            console.error(err);
+        });
+    });
+</script>
 </body>
 </html>
 

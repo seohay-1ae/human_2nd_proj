@@ -43,10 +43,10 @@
                                  style="width: 60px; height: 60px; border-radius: 50%; margin-right: 15px;">
                             <div>
                                 <div style="font-weight: bold; font-size: 16px;">
-                                        ${loginUser.name}
+                                        ${loginUser.user_name}
                                 </div>
                                 <div style="font-size: 14px; color: gray;">
-                                        ${loginUser.email}
+                                        ${loginUser.user_email}
                                 </div>
                             </div>
                         </div>
@@ -90,8 +90,8 @@
                 <div style="padding-top: 30px;">
                     <h3 style="margin-bottom: 10px;">문의 및 알림</h3>
                     <ul style="line-height: 2;">
-                        <li><a href="mypage/customerCenter">고객 센터</a></li>
-                        <li><a href="mypage/termsAndPrivacy">약관 및 정책</a></li>
+                        <li><a href="/customerCenter">고객 센터</a></li>
+                        <li><a href="/termsAndPrivacy">약관 및 정책</a></li>
                     </ul>
                 </div>
             </div>
@@ -99,12 +99,9 @@
 
             <%-- ❗ 비회원 상태일 때 --%>
             <c:otherwise>
-                <div style="padding: 40px 20px; text-align: center;">
-                    <div style="font-size: 60px; color: #aaa;"><i class="fa-regular fa-user"
-                                                                  style="font-size: 24px; margin-bottom: 5px;"></i>
-                    </div>
-                    <div style="font-size: 18px; margin-top: 10px;"><a href="mypage/login">로그인을 해주세요</a></div>
-                </div>
+                <script>
+                    location.href = '${pageContext.request.contextPath}/loginSelect';
+                </script>
             </c:otherwise>
 
         </c:choose>

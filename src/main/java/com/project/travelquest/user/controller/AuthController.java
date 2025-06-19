@@ -11,7 +11,7 @@ public class AuthController {
     @GetMapping("/logout")
     public String logout(HttpSession session) {
         session.invalidate(); // 세션 종료
-        return "redirect:/mypage/login"; // 로그인 폼으로 리다이렉트
+        return "redirect:/loginSelect"; // 로그인셀렉트 폼으로 리다이렉트
     }
 }
 
