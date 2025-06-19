@@ -19,18 +19,18 @@
         <button type="button" onclick="checkEmailDuplicate()">중복확인</button>
         <br/>
         비밀번호<br />
-        <input type="password" name="password" required/><br/>
+        <input type="password" name="password" maxlength=16 required/><br/>
         비밀번호 확인<br />
-        <input type="password" name="password_check" required/><br/>
+        <input type="password" name="password_check" maxlength=16 required/><br/>
         이름<br />
-        <input type="text" name="username" required/><br />
+        <input type="text" name="username" maxlength=4 required/><br />
         휴대폰 번호<br />
-        <input type="text" name="phone_number" required/>
-        <button type="button">인증번호 받기</button>
+        <input type="text" name="phone_number" maxlength=11 required/>
+        <button type="button" onclick="sendCertNumber()">인증번호 받기</button>
         <br/>
         인증번호<br />
-        <input type="text" name="cert_number" required/>
-        <button type="button">인증번호 확인</button>
+        <input type="text" name="cert_number" maxlength=6 minlength=6 required/>
+        <button type="button" onclick="verifyCertNumber()" required>인증번호 확인</button>
         <br/>
         <br/>
         <input type="submit" value="회원가입하기"/>
