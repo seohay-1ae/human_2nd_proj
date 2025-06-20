@@ -5,7 +5,7 @@
 
         // 이메일 중복 확인 함수
                 function checkEmailDuplicate() {
-                    const emailInput = document.forms["signupForm"]["email"];
+                    const emailInput = document.forms["signUpForm"]["email"];
                     const email = emailInput.value.trim(); //유지 보수 이유로 따로 변수를 지정해서 다시 사용
                     // 이메일 양식 검사 정규식
                     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -42,7 +42,7 @@
 
         // 인증번호 받기
             function sendCertNumber() {
-                const phoneInput = document.forms["signupForm"]["phone_number"];
+                const phoneInput = document.forms["signUpForm"]["phone_number"];
                 const phone = phoneInput.value.trim();
 
                 // 기본 유효셩 검사
@@ -62,7 +62,7 @@
 
         // 인증 번호 확인
             function verifyCertNumber() {
-                const certInput = document.forms["signupForm"]["cert_number"];
+                const certInput = document.forms["signUpForm"]["cert_number"];
                 const cert = certInput.value.trim();
 
                 if (cert === "") {
@@ -81,10 +81,10 @@
 
         // 최종 폼 제출 시 유효성 확인 로직
             function validateForm() {
-                const currentEmail = document.forms["signupForm"]["email"].value;
-                const password = document.forms["signupForm"]["password"].value;
-                const password_check = document.forms["signupForm"]["password_check"].value;
-                const currentCert = document.forms["signupForm"]["cert_number"].value;
+                const currentEmail = document.forms["signUpForm"]["email"].value;
+                const password = document.forms["signUpForm"]["password"].value;
+                const password_check = document.forms["signUpForm"]["password_check"].value;
+                const currentCert = document.forms["signUpForm"]["cert_number"].value;
 
                 if (!emailChecked || currentEmail !== validEmail) {
                     alert("이메일 중복 확인을 완료해주세요.");

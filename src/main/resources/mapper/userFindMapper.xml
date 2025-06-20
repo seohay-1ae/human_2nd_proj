@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.project.travelquest.user.dao.SUserDAO">
+
+<!--    이메일로 사용자 1명 정보 조회-->
+    <select id="findByUsername" parameterType="String" resultType="com.project.travelquest.user.vo.UserVO">
+        SELECT * FROM t_users WHERE username = #{username, jdbcType=VARCHAR}
+    </select>
+</mapper>

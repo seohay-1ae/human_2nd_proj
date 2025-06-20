@@ -9,11 +9,11 @@
 <html>
 <head>
     <title>회원가입</title>
-    <script src="/js/signup.js"></script>
+    <script src="/js/signUp.js"></script>
 </head>
 <body>
     <h2>회원가입</h2>
-    <form name="signupForm" action="/signup" method="post" onsubmit="return validateForm()">
+    <form name="signUpForm" action="/signUp" method="post" onsubmit="return validateForm()">
         이메일<br />
         <input type="email" name="email" required placeholder="example@naver.com"/>
         <button type="button" onclick="checkEmailDuplicate()">중복확인</button>
