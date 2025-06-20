@@ -1,5 +1,5 @@
 <!-- /WEB-INF/views/common/bottomNav.jsp -->
-<<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!-- Bootstrap Icons (최신 버전 CDN) -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
 
@@ -7,7 +7,9 @@
     .bottom-nav {
         position: fixed;
         bottom: 0;
-        width: 100%;
+        width: 100vw;
+        max-width: 420px;
+        margin: 0 auto;
         height: 60px;
         background: #fff;
         border-top: 1px solid #ccc;
@@ -15,6 +17,8 @@
         justify-content: space-around;
         align-items: center;
         z-index: 999;
+        left: 0;
+        right: 0;
     }
     .nav-item {
         text-align: center;
@@ -28,26 +32,28 @@
         display: block;
         margin: 0 auto 2px;
     }
-    .nav-item.active {
-        color: red;
-        font-weight: bold;
-    }
+    /*.nav-item.active {*/
+    /*    font-weight: bold;*/
+    /*    color:#8D6AEF;*/
+    /*}*/
+
+
     .nav-item:hover {
-        color: #007bff; /* hover 시 텍스트 색상 */
+        color: #2f65f8; /* hover 시 텍스트 색상 */
     }
 
     .nav-item:hover i {
-        color: #007bff; /* hover 시 아이콘 색상 */
+        color: #2f65f8; /* hover 시 아이콘 색상 */
     }
 </style>
 
 <nav class="bottom-nav">
-    <a href="/travel" class="nav-item ${pageName eq 'travel' ? 'active' : ''}">
+    <a href="/" class="nav-item ${pageName eq 'travel' ? 'active' : ''}">
         <i class="bi bi-suitcase-lg" style="font-size: 24px;"></i>
         <br/>
         여행지역
     </a>
-    <a href="/community" class="nav-item ${pageName eq 'community' ? 'active' : ''}">
+    <a href="/map" class="nav-item ${pageName eq 'map' ? 'active' : ''}">
         <i class="bi bi-crosshair" style="font-size: 24px;"></i>
         <br/>
         내 위치

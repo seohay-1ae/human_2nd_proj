@@ -5,7 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-@MapperScan({"com.project.travelquest", "com.project.travelquest.map.mapper"})
+@MapperScan("com.project.travelquest")
 public class TravelquestApplication {
 
 	public static void main(String[] args) {
