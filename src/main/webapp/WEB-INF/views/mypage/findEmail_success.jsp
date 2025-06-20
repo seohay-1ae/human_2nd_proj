@@ -12,6 +12,6 @@
 </head>
 <body>
     <h2>가입된 이메일</h2>
-    <p>아이디: ${email}</p>
+    <p>아이디: ${user_email}</p>
 </body>
 </html>

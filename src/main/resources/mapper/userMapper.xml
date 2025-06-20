@@ -5,14 +5,14 @@
 
 <mapper namespace="com.project.travelquest.user.dao.SUserDAO">
     <select id="existsByEmail" resultType="int">
-        SELECT COUNT(*) FROM t_users WHERE email = #{email}
+        SELECT COUNT(*) FROM tb_user WHERE user_email = #{user_email}
     </select>
 
     <insert id="saveUser" parameterType="com.project.travelquest.user.vo.UserVO">
-        INSERT INTO t_users (
-        email, password, username
+        INSERT INTO tb_user (
+        user_email, user_password, user_name
         ) VALUES (
-        #{email}, #{password}, #{username}
+        #{user_email}, #{user_password}, #{user_name}
         )
     </insert>
 

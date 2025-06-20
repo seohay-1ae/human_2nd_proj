@@ -12,7 +12,7 @@
 </head>
 <body>
     <h2>로그인 완료</h2>
-    <p>아이디: ${email}</p>
-    <p>환영합니다. ${username} 님!</p>
+    <p>아이디: ${user_email}</p>
+    <p>환영합니다. ${user_name} 님!</p>
 </body>
 </html>

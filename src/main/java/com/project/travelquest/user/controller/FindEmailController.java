@@ -14,10 +14,10 @@ public class FindEmailController {
     @Autowired
     SUserService sUserService;
 
-    @GetMapping("/user/username")
+    @GetMapping("/user/user_name")
     @ResponseBody
-    public UserVO getUserInfoByUsername(@RequestParam String username) {
-        return sUserService.getUserByUsername(username);
+    public UserVO getUserInfoByUsername(@RequestParam String user_name) {
+        return sUserService.getUserByUsername(user_name);
     }
 
     //이메일 찾기 폼 페이지
@@ -29,15 +29,17 @@ public class FindEmailController {
     //이메일 찾기 폼 처리
     @PostMapping("/findEmail")
     public String processFindEmail(@ModelAttribute UserVO user, Model model) {
-        String username = user.getUsername(); // 입력값에서 이름 가져오기
-        UserVO foundUser = sUserService.getUserByUsername(username);
+        String user_name = user.getUser_name(); // 입력값에서 이름 가져오기
+        UserVO foundUser = sUserService.getUserByUsername(user_name);
 
         if (foundUser != null) {
-            model.addAttribute("email", foundUser.getEmail());
+            model.addAttribute("user_email", foundUser.getUser_email());
+            System.out.println("받아온 이메일: " + foundUser.getUser_email());
         } else {
-            model.addAttribute("email", "해당 이메일이 존재하지 않습니다.");
+            model.addAttribute("user_email", "해당 이메일이 존재하지 않습니다.");
         }
-        System.out.println("입력된 이메일: " + username);
+        System.out.println("입력된 이름: " + user_name);
+        System.out.println("조회된 이름: " + foundUser);
         return "mypage/findEmail_success";
     }
 }

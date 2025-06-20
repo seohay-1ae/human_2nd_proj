@@ -7,6 +7,6 @@
 
 <!--    이메일로 사용자 1명 정보 조회 (jdbcType=VARCHAR -> null값 떄문에 사용)-->
     <select id="findByUsername" parameterType="String" resultType="com.project.travelquest.user.vo.UserVO">
-        SELECT * FROM t_users WHERE username = #{username, jdbcType=VARCHAR}
+        SELECT * FROM tb_user WHERE user_name = #{username}
     </select>
 </mapper>

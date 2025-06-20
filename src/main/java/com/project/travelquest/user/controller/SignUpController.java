@@ -16,10 +16,10 @@ public class SignUpController {
     SUserService sUserService;
 
     // 이메일 중복 확인용 Api
-    @GetMapping("/check-email")
+    @GetMapping("/check-user_email")
     @ResponseBody
-    public EmailCheckResponse checkEmail(@RequestParam("email") String email) {
-        boolean exists = sUserService.existsByEmail(email);
+    public EmailCheckResponse checkEmail(@RequestParam("user_email") String user_email) {
+        boolean exists = sUserService.existsByEmail(user_email);
         return new EmailCheckResponse(exists);
     }
 
@@ -41,8 +41,8 @@ public class SignUpController {
         }
 
         //화면 출력만 하는 로직
-        model.addAttribute("email", user.getEmail() );
-        model.addAttribute("username", user.getUsername() );
+        model.addAttribute("user_email", user.getUser_email() );
+        model.addAttribute("user_name", user.getUser_name() );
 
         return "mypage/signUp_success";
     }
