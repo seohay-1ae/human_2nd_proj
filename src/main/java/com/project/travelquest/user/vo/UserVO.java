@@ -11,11 +11,12 @@ import java.sql.Date;
 @Setter
 @NoArgsConstructor
 public class UserVO {
+    //회원가입 및 아이디 찾기용
     private String username;
     private String password;
     private String email;
 
-    // 로그인용 UserVO
+    // 로그인용 UserVO -> 변수명 확실하지 않아서 따로 빼 놓음
     private String userId;
     private String userPw;
     private String userName;
