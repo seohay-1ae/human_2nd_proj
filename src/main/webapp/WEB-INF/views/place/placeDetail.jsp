@@ -135,3 +135,11 @@
 
 <!-- JS 파일 로딩 -->
 <script src="${pageContext.request.contextPath}/js/placeDetail.js"></script>
+<script>
+    // JSP에서 location 객체에 contentId가 있다고 가정
+    const contentId = ${location.contentid != null ? location.contentid : 0};
+    // 페이지 로드 후 initPlaceModal 호출
+    window.addEventListener('DOMContentLoaded', () => {
+        initPlaceModal(contentId);
+    });
+</script>

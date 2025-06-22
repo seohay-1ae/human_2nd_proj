@@ -5,6 +5,7 @@
         }
         .region:hover .shape {
         fill: #84CD49;
+        cursor:pointer;
         }
     </style>
 

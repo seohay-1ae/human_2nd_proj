@@ -17,19 +17,29 @@ function initPlaceModal(contentId) {
             const content = this.content.value.trim();
             if (!content) return alert("내용을 입력하세요.");
 
-            fetch('/review/save', {
+            // POST 요청할 때 body 형태를 ReviewDTO에 맞춰서 보냄
+            const reviewData = {
+                contentId: contentId,
+                reviewContent: content
+                // userId는 보통 백엔드에서 세션으로 처리하므로 클라이언트에서 안 넘김
+            };
+
+            fetch('/api/reviews', {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({placeId: contentId, content})
+                body: JSON.stringify(reviewData)
             }).then(res => {
                 if (res.ok) {
                     alert("리뷰가 등록되었습니다.");
                     this.reset();
                     loadReviews(contentId);
+                } else if (res.status === 401) { // 인증 실패
+                    alert("로그인을 해주세요.");
+                    window.location.href = '/loginSelect';
                 } else {
                     alert("리뷰 등록에 실패했습니다.");
                 }
-            });
+            }).catch(() => alert("서버 오류로 리뷰 등록에 실패했습니다."));
         });
     }
 
@@ -40,12 +50,13 @@ function initPlaceModal(contentId) {
     fetch(`/place/location?contentid=${contentId}`)
         .then(res => res.json())
         .then(data => {
-            // autoload=false 이므로 kakao.maps.load() 필요
             if (window.kakao && window.kakao.maps && kakao.maps.load) {
                 kakao.maps.load(function () {
                     const mapContainer = document.querySelector('.content-map');
                     if (!mapContainer) return;
 
+                    // kakao.maps.LatLng(x, y) 순서 주의: 보통 위도(lat), 경도(lng) 순
+                    // data가 mapx, mapy면 확인 필요 (보통 mapx=경도, mapy=위도)
                     const mapOption = {
                         center: new kakao.maps.LatLng(data.mapy, data.mapx),
                         level: 3
@@ -66,7 +77,7 @@ function initPlaceModal(contentId) {
 }
 
 function loadReviews(contentId) {
-    fetch(`/review/list?placeId=${contentId}`)
+    fetch(`/api/reviews?contentId=${contentId}`)
         .then(res => res.json())
         .then(reviews => {
             const listDiv = document.getElementById('reviewList');
@@ -75,13 +86,29 @@ function loadReviews(contentId) {
                 return;
             }
             listDiv.innerHTML = reviews.map(r => `
-                <div class="review-item">
-                    <strong>${r.writer}</strong><br>
-                    <span>${r.content}</span>
+                <div class="review-item" data-review-id="${r.reviewId}">
+                    <strong>${r.userName}</strong> <small>${new Date(r.createdTime).toLocaleString()}</small><br>
+                    <span>${r.reviewContent}</span>
+                    <button onclick="deleteReview(${r.reviewId}, ${contentId})" style="margin-left:10px; color:red;">삭제</button>
                 </div>
             `).join('');
         })
         .catch(() => {
             document.getElementById('reviewList').innerHTML = '<p>리뷰를 불러오는데 실패했습니다.</p>';
         });
+}
+
+function deleteReview(reviewId, contentId) {
+    if (!confirm('리뷰를 삭제하시겠습니까?')) return;
+
+    fetch(`/api/reviews/${reviewId}`, {
+        method: 'DELETE'
+    }).then(res => {
+        if (res.ok) {
+            alert('리뷰가 삭제되었습니다.');
+            loadReviews(contentId);  // 삭제 후 리뷰 리스트 갱신
+        } else {
+            alert('리뷰 삭제에 실패했습니다.');
+        }
+    }).catch(() => alert('서버 오류로 리뷰 삭제에 실패했습니다.'));
 }
