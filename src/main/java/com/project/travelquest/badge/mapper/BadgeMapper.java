@@ -11,5 +11,4 @@ import java.util.List;
 public interface BadgeMapper {
     List<BadgeDTO> selectBadgesByUserId(Long userId);
     BadgeDTO selectBadgeDetail(@Param("userId") Long userId, @Param("badgeId") Long badgeId);
-
 }

@@ -14,6 +14,6 @@ public interface LocationMapper {
 
     Location getLocationById(@Param("contentid") Long contentid);
 
-    Location getBadgeImgbyContentId(@Param("contentid") int contentid);
+    Location getBadgeImgbyContentId(@Param("contentId") String contentid);
 
 }

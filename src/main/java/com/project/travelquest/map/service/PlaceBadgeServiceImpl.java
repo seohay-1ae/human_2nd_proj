@@ -15,10 +15,9 @@ public class PlaceBadgeServiceImpl implements PlaceBadgeService {
     }
 
     @Override
-    public Location getBadgeImgbyContentId(int contentId) {
-        Location location = locationMapper.getBadgeImgbyContentId(contentId);
+    public Location getBadgeImgbyContentId(String contentId) {  // contentId를 String으로 처리
+        Location location = locationMapper.getBadgeImgbyContentId(contentId);  // 쿼리에서 String 처리
         System.out.println("DB 조회된 badgeImgPath: " + location.getBadgeImgPath());
         return location;
     }
 }
-

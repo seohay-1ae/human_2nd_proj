@@ -43,9 +43,9 @@ public class TourPlaceService {
                     "&MobileOS=ETC" +
                     "&arrange=Q" +
                     "&contentTypeId=14" +
-                    "&areaCode=4" +
+                    "&areaCode=34" +
                     "&_type=json" +
-                    "&numOfRows=5" +
+                    "&numOfRows=70" +
                     "&pageNo=1";
 
             log.info("최종 요청 URL: {}", url);

@@ -23,5 +23,4 @@ public class BadgeService {
     public BadgeDTO getBadgeDetail(Long userId, Long badgeId) {
         return badgeMapper.selectBadgeDetail(userId, badgeId);
     }
-
 }
