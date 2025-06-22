@@ -12,21 +12,55 @@
     <!-- 공통 및 페이지별 CSS -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/avatar.css"/>
+    <style>
+        .my-character {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            justify-items: center;
+        }
+
+        .my-character img {
+            width: 229px;
+            height: 229px;
+
+        }
+    </style>
 </head>
 <body>
-<div class="page-container">
+<!-- 상단 네비게이션 -->
+<nav class="top-nav">
+    <!-- 뒤로가기 넣을 때 -->
+    <div class="back-button">
+        <a href="/mypage">← </a>
+    </div>
+    <!-- 뒤로가기 넣을 때 -->
 
-    <div class="page-content">
+    <!-- 타이틀 넣을 때 -->
+    <div class="title">
+        내 아바타
+    </div>
+    <!-- 타이틀 넣을 때 -->
 
-        <div class="character-header">
-            <div class="back-button">←</div>
-            내 캐릭터
+</nav>
+<!-- 상단 네비게이션 -->
+
+<div class="page-container"> <!-- (필수) -->
+    <div class="page-content"> <!-- (필수) -->
+
+        <div class="container">
+
+            <div class="my-character">
+                <img src="${pageContext.request.contextPath}/${avatarPaths.HATS_PATH}" alt="모자" class="layer hats"/>
+                <img src="${pageContext.request.contextPath}/${avatarPaths.TOPS_PATH}" alt="상의" class="layer tops"/>
+                <img src="${pageContext.request.contextPath}/${avatarPaths.BOTTOMS_PATH}" alt="하의"
+                     class="layer bottoms"/>
+                <img src="${pageContext.request.contextPath}/${avatarPaths.HANDS_PATH}" alt="손" class="layer hands"/>
+                <img src="${pageContext.request.contextPath}/${avatarPaths.SKINS_PATH}" alt="피부" class="layer skin"/>
+                <img src="${pageContext.request.contextPath}/${avatarPaths.LINE_PATH}" alt="외곽선" class="layer line"/>
+            </div>
         </div>
-
-        <div class="character-info">
-            <img src="${pageContext.request.contextPath}/avatars/line.png" alt="캐릭터" class="character-image"/>
-            <div class="point-box">현재 보유 포인트<br>120p</div>
-        </div>
+        <div class="point-box">현재 보유 포인트<br>120p</div>
 
 
         <div class="container">

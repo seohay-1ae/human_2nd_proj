@@ -31,7 +31,7 @@
                     <button type="submit" class="login-button">로그인 하기</button>
                 </form>
 
-                <form action="${contextPath}/joinForm" method="get">
+                <form action="${contextPath}/signUp" method="get">
                     <button type="submit" class="join-button">이메일 가입하기</button>
                 </form>
             </div>

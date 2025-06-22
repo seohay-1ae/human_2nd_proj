@@ -1,5 +1,6 @@
 package com.project.travelquest.map.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -27,4 +28,13 @@ public class Location {
     private String usetime;
     private String usefee;
     private String contenttypeid;
+    //    @JsonProperty("areaname")
+    private String areaname;
+    //    @JsonProperty("sigunguname")
+    private String sigunguname;
+    private Long badgeId;
+
+    // com.project.travelquest.map.model.Location
+    private String badgeImgPath;
+
 }

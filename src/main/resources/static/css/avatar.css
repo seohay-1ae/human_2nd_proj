@@ -117,3 +117,22 @@
     border: none;
     border-radius: 12px;
 }
+.avatar {
+    position: relative;
+    width: 200px;
+    height: 200px;
+}
+
+.layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.hands { z-index: 10; }
+.skin { z-index: 20; }
+.line { z-index: 30; }
+.bottoms { z-index: 40; }
+.tops { z-index: 50; }
+.hats { z-index: 70; }

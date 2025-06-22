@@ -23,9 +23,9 @@ public class MypageController {
     }
 
     // 이메일로 가입하기
-    @RequestMapping("/joinForm")
+    @RequestMapping("/signUp")
     public String joinForm() {
-        return "mypage/joinForm";
+        return "mypage/signUp";
     }
 
     // 마이페이지
