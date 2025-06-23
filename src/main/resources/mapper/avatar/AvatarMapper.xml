@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.travelquest.avatar.mapper.AvatarMapper">
+
+    <select id="getItemsByType" parameterType="string" resultType="com.project.travelquest.avatar.vo.AvatarVO">
+        SELECT
+            AVATAR_ITEM_ID   AS avatar_item_id,
+            AVATAR_ITEM_TYPE AS avatar_item_type,
+            AVATAR_ITEM_PATH AS avatar_item_path
+        FROM tb_avatar
+        WHERE AVATAR_ITEM_TYPE = #{avatar_item_type}
+        ORDER BY AVATAR_ITEM_ID
+    </select>
+
+    <select id="getAvatarPathsByEmail" resultType="map">
+        SELECT
+            hats.avatar_item_path AS HATS_PATH,
+            tops.avatar_item_path AS TOPS_PATH,
+            bottoms.avatar_item_path AS BOTTOMS_PATH,
+            hands.avatar_item_path AS HANDS_PATH,
+            skins.avatar_item_path AS SKINS_PATH,
+            line.avatar_item_path AS LINE_PATH
+        FROM TB_AVATAR_PRESET preset
+                 LEFT JOIN TB_AVATAR hats ON preset.AVATAR_HATS = hats.avatar_item_id
+                 LEFT JOIN TB_AVATAR tops ON preset.AVATAR_TOPS = tops.avatar_item_id
+                 LEFT JOIN TB_AVATAR bottoms ON preset.AVATAR_BOTTOMS = bottoms.avatar_item_id
+                 LEFT JOIN TB_AVATAR hands ON preset.AVATAR_HANDS = hands.avatar_item_id
+                 LEFT JOIN TB_AVATAR skins ON preset.AVATAR_SKINS = skins.avatar_item_id
+                 LEFT JOIN TB_AVATAR line ON preset.AVATAR_LINE = line.avatar_item_id
+        WHERE preset.USER_ID = (
+            SELECT user_id FROM TB_USER WHERE user_email = #{userEmail}
+        )
+    </select>
+
+    <insert id="insertOrUpdateAvatarPreset" parameterType="com.project.travelquest.avatar.vo.AvatarPresetVO">
+        MERGE INTO TB_AVATAR_PRESET preset
+            USING (
+                SELECT u.USER_ID,
+                       #{handsId}   AS AVATAR_HANDS,
+                       #{skinsId}   AS AVATAR_SKINS,
+                       #{bottomsId} AS AVATAR_BOTTOMS,
+                       #{topsId}    AS AVATAR_TOPS,
+                       #{hatsId}    AS AVATAR_HATS
+                FROM TB_USER u
+                WHERE u.USER_EMAIL = #{userEmail}
+            ) src
+            ON (preset.USER_ID = src.USER_ID)
+            WHEN MATCHED THEN UPDATE SET
+                preset.AVATAR_HANDS   = CASE WHEN src.AVATAR_HANDS IS NOT NULL THEN src.AVATAR_HANDS ELSE preset.AVATAR_HANDS END,
+                preset.AVATAR_SKINS   = CASE WHEN src.AVATAR_SKINS IS NOT NULL THEN src.AVATAR_SKINS ELSE preset.AVATAR_SKINS END,
+                preset.AVATAR_BOTTOMS = CASE WHEN src.AVATAR_BOTTOMS IS NOT NULL THEN src.AVATAR_BOTTOMS ELSE preset.AVATAR_BOTTOMS END,
+                preset.AVATAR_TOPS    = CASE WHEN src.AVATAR_TOPS IS NOT NULL THEN src.AVATAR_TOPS ELSE preset.AVATAR_TOPS END,
+                preset.AVATAR_HATS    = CASE WHEN src.AVATAR_HATS IS NOT NULL THEN src.AVATAR_HATS ELSE preset.AVATAR_HATS END
+            WHEN NOT MATCHED THEN INSERT (
+                                          USER_ID,
+                                          AVATAR_HANDS,
+                                          AVATAR_SKINS,
+                                          AVATAR_BOTTOMS,
+                                          AVATAR_TOPS,
+                                          AVATAR_HATS
+                ) VALUES (
+                             src.USER_ID,
+                             src.AVATAR_HANDS,
+                             src.AVATAR_SKINS,
+                             src.AVATAR_BOTTOMS,
+                             src.AVATAR_TOPS,
+                             src.AVATAR_HATS
+                         )
+    </insert>
+</mapper>

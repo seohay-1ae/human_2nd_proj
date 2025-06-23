@@ -17,6 +17,9 @@
             margin-right: 3px;
 
         }
+        .menu-list li{
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -69,7 +72,7 @@
                             <i class="fa-regular fa-bookmark" style="font-size: 24px; margin-bottom: 5px;"></i>
                             <div>관심지역</div>
                         </li>
-                        <li>
+                        <li onclick="location.href='/myavatar'">
                             <i class="fa-regular fa-user" style="font-size: 24px; margin-bottom: 5px;"></i>
                             <div>내 캐릭터</div>
                         </li>
@@ -85,16 +88,16 @@
                 </div>
                 <hr style="border: 0.8px solid #ccc;"/>
 
-            <div class="container">
-                <%-- 문의 및 알림 --%>
-                <div style="padding-top: 30px;">
-                    <h3 style="margin-bottom: 10px;">문의 및 알림</h3>
-                    <ul style="line-height: 2;">
-                        <li><a href="/customerCenter">고객 센터</a></li>
-                        <li><a href="/termsAndPrivacy">약관 및 정책</a></li>
-                    </ul>
+                <div class="container">
+                        <%-- 문의 및 알림 --%>
+                    <div style="padding-top: 30px;">
+                        <h3 style="margin-bottom: 10px;">문의 및 알림</h3>
+                        <ul style="line-height: 2;">
+                            <li><a href="/customerCenter">고객 센터</a></li>
+                            <li><a href="/termsAndPrivacy">약관 및 정책</a></li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
             </c:when>
 
             <%-- ❗ 비회원 상태일 때 --%>

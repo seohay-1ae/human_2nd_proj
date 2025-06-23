@@ -1,5 +1,7 @@
 package com.project.travelquest.avatar.dto;
 
+import lombok.Data;
+
 public class AvatarPresetDto {
     private String skin;
     private String hands;

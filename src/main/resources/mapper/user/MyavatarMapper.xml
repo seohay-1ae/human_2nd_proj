@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.travelquest.avatar.service.MyAvatarService">
+    <select id="getAvatarPathsByEmail" resultType="map" parameterType="String">
+        SELECT p.avatar_hands,
+               p.avatar_skins,
+               p.avatar_line,
+               p.avatar_bottoms,
+               p.avatar_tops,
+               p.avatar_hats,
+               a1.avatar_item_path AS hands_path,
+               a2.avatar_item_path AS skins_path,
+               a3.avatar_item_path AS line_path,
+               a4.avatar_item_path AS bottoms_path,
+               a5.avatar_item_path AS tops_path,
+               a6.avatar_item_path AS hats_path
+        FROM tb_user u
+                 JOIN tb_avatar_preset p ON u.avatar_preset_id = p.avatar_preset_id
+                 LEFT JOIN tb_avatar a1 ON p.avatar_hands = a1.avatar_item_id
+                 LEFT JOIN tb_avatar a2 ON p.avatar_skins = a2.avatar_item_id
+                 LEFT JOIN tb_avatar a3 ON p.avatar_line = a3.avatar_item_id
+                 LEFT JOIN tb_avatar a4 ON p.avatar_bottoms = a4.avatar_item_id
+                 LEFT JOIN tb_avatar a5 ON p.avatar_tops = a5.avatar_item_id
+                 LEFT JOIN tb_avatar a6 ON p.avatar_hats = a6.avatar_item_id
+        WHERE u.user_email = #{user_email}
+    </select>
+
+</mapper>

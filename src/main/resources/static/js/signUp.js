@@ -5,24 +5,24 @@
 
         // 이메일 중복 확인 함수
                 function checkEmailDuplicate() {
-                    const emailInput = document.forms["signUpForm"]["user_email"];
-                    const user_email = emailInput.value.trim(); //유지 보수 이유로 따로 변수를 지정해서 다시 사용
+                    const emailInput = document.forms["signUpForm"]["email"];
+                    const email = emailInput.value.trim(); //유지 보수 이유로 따로 변수를 지정해서 다시 사용
                     // 이메일 양식 검사 정규식
                     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
                     // 이메일 공란 및 양식 확인
-                    if (!user_email) {
+                    if (!email) {
                         alert("이메일을 먼저 입력해주세요.");
                         emailInput.focus();
                         return;
-                    } else if (!emailRegex.test(user_email)) {
+                    } else if (!emailRegex.test(email)) {
                         alert("잘못된 이메일 양식입니다. 예: example@domain.com");
                         emailInput.focus();
                         return;
                     }
 
                     // 이메일 중복 체크를 위한 AJAX 요청
-                    fetch("/check-user_email?user_email=" + encodeURIComponent(user_email))
+                    fetch("/check-email?email=" + encodeURIComponent(email))
                         .then(response => response.json())
                         .then(data => {
                             if (data.exists) {
@@ -31,7 +31,7 @@
                             } else {
                                 alert("사용 가능한 이메일입니다.");
                                 emailChecked = true;
-                                validEmail = user_email;
+                                validEmail = email;
                             }
                         })
                         .catch(error => {
@@ -81,8 +81,8 @@
 
         // 최종 폼 제출 시 유효성 확인 로직
             function validateForm() {
-                const currentEmail = document.forms["signUpForm"]["user_email"].value;
-                const user_password = document.forms["signUpForm"]["user_password"].value;
+                const currentEmail = document.forms["signUpForm"]["email"].value;
+                const password = document.forms["signUpForm"]["password"].value;
                 const password_check = document.forms["signUpForm"]["password_check"].value;
                 const currentCert = document.forms["signUpForm"]["cert_number"].value;
 
@@ -91,7 +91,7 @@
                     return false; // 폼 제출 차단
                 }
 
-                if (user_password !== password_check) {
+                if (password !== password_check) {
                     alert("비밀번호가 일치 하지 않습니다. ");
                     return false; // 폼 제출 차단
                 }
