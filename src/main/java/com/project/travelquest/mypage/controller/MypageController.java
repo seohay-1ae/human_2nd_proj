@@ -31,7 +31,7 @@ public class MypageController {
 
     // 이메일로 가입하기
     @RequestMapping("/signUp")
-    public String joinForm() {
+    public String signUp() {
         return "mypage/signUp";
     }
 

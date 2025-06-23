@@ -2,6 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.project.travelquest.user.dao.UserDAO">
+    <!-- 공통 ResultMap -->
     <resultMap id="usersResult" type="com.project.travelquest.user.vo.UserVO">
         <result property="user_id" column="user_id" />
         <result property="user_name" column="user_name" />
@@ -15,25 +16,64 @@
         <result property="avatar_preset_id" column="avatar_preset_id" />
     </resultMap>
 
+    <!-- 로그인 -->
     <select id="login" parameterType="com.project.travelquest.user.vo.UserVO" resultMap="usersResult">
         <![CDATA[
-        select * from tb_user
-        where user_email=#{user_email}
-          and user_password=#{user_password}
+        SELECT * FROM tb_user
+        WHERE user_email = #{user_email}
+          AND user_password = #{user_password}
         ]]>
     </select>
 
+    <!-- 이메일 중복 체크 -->
+    <select id="existsByEmail" resultType="int">
+        SELECT COUNT(*) FROM tb_user WHERE user_email = #{user_email}
+    </select>
+
+    <!-- 유저 저장 -->
+    <insert id="saveUser" parameterType="com.project.travelquest.user.vo.UserVO" keyProperty="user_id" useGeneratedKeys="false">
+        <selectKey keyProperty="user_id" resultType="long" order="BEFORE">
+            SELECT seq_user_id.nextval FROM dual
+        </selectKey>
+        INSERT INTO tb_user (
+        user_id, user_email, user_password, user_name, user_phone_num
+        ) VALUES (
+        #{user_id}, #{user_email}, #{user_password}, #{user_name}, #{user_phone_num}
+        )
+    </insert>
+
+    <!-- 아바타 프리셋 저장 -->
+    <insert id="insertAvatarPreset" parameterType="long">
+        INSERT INTO tb_avatar_preset (user_id)
+        VALUES (#{user_id})
+    </insert>
+
+    <!-- 배지 저장 -->
+    <insert id="insertUserBadge" parameterType="map">
+        INSERT INTO tb_user_badge (user_id, badge_id)
+        VALUES (#{user_id}, #{badge_id})
+    </insert>
+
+    <!-- 전체 유저 조회 -->
     <select id="selectAllUsersList" resultMap="usersResult">
         SELECT * FROM tb_user
     </select>
 
+    <!-- 유저 프로필 수정 -->
     <update id="updateUserProfileText">
-        UPDATE TB_USER
-        SET USER_PROFILE_TEXT = #{profileText}
-        WHERE USER_ID = #{userId}
+        UPDATE tb_user
+        SET user_profile_text = #{profileText}
+        WHERE user_id = #{userId}
     </update>
 
-    <select id="getUserById" resultType="com.project.travelquest.user.vo.UserVO">
-        SELECT * FROM TB_USER WHERE USER_ID = #{userId}
+    <!-- 유저 ID로 조회 -->
+    <select id="getUserById" resultMap="usersResult">
+        SELECT * FROM tb_user WHERE user_id = #{userId}
     </select>
+
+    <!-- 이름으로 유저 조회 -->
+    <select id="findByUsername" parameterType="String" resultMap="usersResult">
+        SELECT * FROM tb_user WHERE user_name = #{user_name}
+    </select>
+
 </mapper>
