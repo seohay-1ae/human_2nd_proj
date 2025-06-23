@@ -10,14 +10,18 @@
     <title>로그인</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css"/>
     <link rel="stylesheet" href="${contextPath}/css/loginForm.css">
-    <c:if test='${not empty message}'>
+    <c:if test="${messageType eq 'loginFail'}">
         <script>
             window.onload = function () {
-                result();
-            }
-
-            function result() {
                 alert("아이디나 비밀번호가 틀립니다. 다시 로그인해주세요");
+            }
+        </script>
+    </c:if>
+
+    <c:if test="${messageType eq 'resetSuccess'}">
+        <script>
+            window.onload = function () {
+                alert("비밀번호가 성공적으로 변경되었습니다. 다시 로그인해주세요");
             }
         </script>
     </c:if>
@@ -47,7 +51,7 @@
 
                 <div class="find">
                     <a href="/findEmail">이메일 찾기</a>
-                    <a href="#">비밀번호 찾기</a>
+                    <a href="/findPw">비밀번호 찾기</a>
                 </div>
 
                 <button type="submit" class="login-btn" style="margin-top:40px;">로그인 하기</button>

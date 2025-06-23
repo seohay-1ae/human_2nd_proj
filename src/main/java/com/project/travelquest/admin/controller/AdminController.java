@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
@@ -16,6 +17,12 @@ public class AdminController {
 
     @Autowired
     private AdminUserService adminUserService;
+
+    //관리자 페이지 메인화면
+    @RequestMapping("/adminPage")
+    public String adminPage() {
+        return "admin/index"; // 관리자 JSP 경로
+    }
 
     //회원계정 맵핑(사용자 관리)
     @GetMapping("/admin/adminPage")

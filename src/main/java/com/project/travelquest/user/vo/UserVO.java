@@ -22,6 +22,7 @@ public class UserVO {
     private String user_role;
     private String user_status;
     private String avatar_preset_id;
+    private String pass_auth;
 
     // 비밀번호 확인용: DB 저장 제외
     private transient String password_check;
@@ -29,4 +30,4 @@ public class UserVO {
     // 인증번호 확인용: DB 저장 제외
     private transient String phone_number;
     private transient String cert_number;
-    }
+}

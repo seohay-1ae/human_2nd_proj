@@ -35,7 +35,7 @@
         <div class="page-content">
             <div class="tab-menu">
                 <a href="${pageContext.request.contextPath}/admin/adminPage" class="tab-button">사용자 관리</a>
-                <a href="${pageContext.request.contextPath}/admin/travelPage" class="tab-button">여행지역</a>
+                <a href="${pageContext.request.contextPath}/admin/adminTravelPage" class="tab-button">여행지역</a>
                 <a href="${pageContext.request.contextPath}/admin/communityPage" class="tab-button">커뮤니티</a>
                 <a href="${pageContext.request.contextPath}/admin/badgePage" class="tab-button">뱃지</a>
             </div>

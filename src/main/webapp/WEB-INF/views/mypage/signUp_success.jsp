@@ -15,7 +15,6 @@
       <link rel="stylesheet" href="${pageContext.request.contextPath}/css/<!--각 페이지에서만 쓰이는 css(만들것).css -->"/>
 </head>
 <body>
-    <body>
       <!-- 상단 네비게이션 -->
       <nav class="top-nav">
 
@@ -35,7 +34,7 @@
           <div class="container"> <!-- (양옆으로 마진20 필요할 때) -->
                 <p>아이디: ${user_email}</p>
                 <p>환영합니다. ${user_name} 님!</p>
-                <form action="${contextPath}/loginSelect" method="get">
+                <form action="${pageContext.request.contextPath}/loginSelect" method="get">
                     <button type="submit" class="signUp_check">확인</button>
                 </form>
           </div>

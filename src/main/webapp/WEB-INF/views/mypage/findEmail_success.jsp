@@ -35,7 +35,7 @@
           <div class="container"> <!-- (양옆으로 마진20 필요할 때) -->
                 <h2>가입된 이메일</h2>
                 <p>이메일: ${user_email}</p>
-                <form action="${contextPath}/loginForm" method="get">
+                <form action="${pageContext.request.contextPath}/loginSelect" method="get">
                     <button type="submit" class="findEmail_check">확인</button>
                 </form>
           </div>

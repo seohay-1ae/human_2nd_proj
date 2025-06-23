@@ -76,4 +76,41 @@
         SELECT * FROM tb_user WHERE user_name = #{user_name}
     </select>
 
+    <!-- 비밀번호 재설정 -->
+    <update id="updatePw" parameterType="com.project.travelquest.user.vo.UserVO">
+        <![CDATA[
+        update tb_user
+        set user_password = #{user_password}
+        where user_email = #{user_email}
+        ]]>
+    </update>
+
+    <!-- 인증요청 시 발송코드 -->
+    <update id="updateAuthCode" parameterType="com.project.travelquest.user.vo.UserVO">
+        <![CDATA[
+        update tb_user
+        set pass_auth = #{pass_auth}
+        where user_email = #{user_email}
+        ]]>
+    </update>
+
+    <!-- DAO에 String이 들어가는 경우 -->
+    <!-- 인증코드 입력 시 불러오는 코드  -->
+    <select id="getAuthCode" resultType="string" parameterType="string">
+        <![CDATA[
+        select pass_auth
+        from tb_user
+        where user_email = #{email}
+        ]]>
+    </select>
+
+    <!-- 재설정 성공 시 인증코드 null값 변환 -->
+    <update id="clearAuthCode" parameterType="string">
+        <![CDATA[
+        update tb_user
+        set pass_auth = NULL
+        where user_email = #{email}
+        ]]>
+    </update>
+
 </mapper>

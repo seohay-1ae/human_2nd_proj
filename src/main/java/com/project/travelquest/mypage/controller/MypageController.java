@@ -2,6 +2,7 @@ package com.project.travelquest.mypage.controller;
 
 import com.project.travelquest.avatar.service.MyAvatarService;
 import com.project.travelquest.user.service.UserService;
+import com.project.travelquest.user.service.VerifyService;
 import com.project.travelquest.user.vo.UserVO;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.Map;
 
@@ -20,8 +22,12 @@ public class MypageController {
 
     @Autowired
     UserService userService;
+
     @Autowired
     MyAvatarService myAvatarService;
+
+    @Autowired
+    VerifyService verifyService;
 
     // 로그인하기 / 이메일로 가입하기 선택하는 페이지
     @RequestMapping("/loginSelect")
@@ -131,11 +137,48 @@ public class MypageController {
         if (loginUser != null) {
             session.setAttribute("loginUser", loginUser);
             System.out.println("로그인 성공");
-            return "redirect:/mypage";
+
+            // user_role이 '0'이면 관리자 페이지로 이동
+            if ("0".equals(loginUser.getUser_role())) {
+                return "redirect:/adminPage"; // 관리자 페이지 URL로 변경
+            }
+
+            return "redirect:/mypage"; // 일반 유저는 마이페이지로
+
         } else {
             model.addAttribute("message", "fail");
+            model.addAttribute("messageType", "loginFail");
             System.out.println("로그인 실패");
             return "mypage/loginForm";
         }
+    }
+
+    // 비밀번호찾기
+    @RequestMapping("/findPw")
+    public String findPassword() { return "mypage/findPwForm"; }
+
+
+    //  인증번호요청
+    @PostMapping("/sendCode")
+    @ResponseBody
+    public String sendCode(String email) {
+        verifyService.generateAndSendCode(email);
+        return "인증번호가 전송되었습니다.";
+    }
+
+    //  인증번호확인
+    @PostMapping("/verifyCode")
+    @ResponseBody
+    public String verifyCode(String email, String code) {
+        return verifyService.checkCode(email, code) ? "인증 성공" : "인증 실패";
+    }
+
+    //  비밀번호 재설정
+    @PostMapping("/resetPw")
+    public String resetPw(UserVO userVO, Model model) {
+        userService.updatePw(userVO);
+        model.addAttribute("message", "비밀번호 변경 완료");
+        model.addAttribute("messageType", "resetSuccess");
+        return "mypage/loginForm";
     }
 };

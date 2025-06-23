@@ -37,4 +37,16 @@ public interface UserDAO {
 
     // 이름으로 유저 조회
     UserVO findByUsername(@Param("user_name") String user_name);
+
+    // 비밀번호 재설정
+    void updatePw(UserVO userVO);
+
+    // 인증번호 db저장
+    void updateAuthCode(UserVO userVO);
+
+    // 인증번호 발급
+    String getAuthCode(String email);
+
+    // 인증번호 초가화
+    void clearAuthCode(String email);
 }

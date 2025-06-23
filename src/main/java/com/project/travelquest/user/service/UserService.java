@@ -81,4 +81,9 @@ public class UserService {
 
         return null; // 성공 시
     }
+
+    // 비밀번호 업데이트
+    public void updatePw(UserVO userVO) {
+        userDAO.updatePw(userVO);
+    }
 }
