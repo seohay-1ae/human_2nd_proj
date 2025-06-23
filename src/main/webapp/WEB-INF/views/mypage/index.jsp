@@ -44,13 +44,36 @@
             object-fit: cover;
         }
 
-        .layer { position: absolute; top: 0; left: 0; width: 100%; }
-        .hands { z-index: 10; }
-        .skins { z-index: 20; }
-        .line { z-index: 30; }
-        .bottoms { z-index: 40; }
-        .tops { z-index: 50; }
-        .hats { z-index: 70; }
+        .layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+        }
+
+        .hands {
+            z-index: 10;
+        }
+
+        .skins {
+            z-index: 20;
+        }
+
+        .line {
+            z-index: 30;
+        }
+
+        .bottoms {
+            z-index: 40;
+        }
+
+        .tops {
+            z-index: 50;
+        }
+
+        .hats {
+            z-index: 70;
+        }
 
         .profile-section {
             display: flex;
@@ -115,12 +138,18 @@
                 <div class="profile-section">
                     <div class="profile-info">
                         <div class="my-avatar">
-                            <img src="${pageContext.request.contextPath}/${avatarPaths.HATS_PATH}" alt="모자" class="layer hats"/>
-                            <img src="${pageContext.request.contextPath}/${avatarPaths.TOPS_PATH}" alt="상의" class="layer tops"/>
-                            <img src="${pageContext.request.contextPath}/${avatarPaths.BOTTOMS_PATH}" alt="하의" class="layer bottoms"/>
-                            <img src="${pageContext.request.contextPath}/${avatarPaths.HANDS_PATH}" alt="손" class="layer hands"/>
-                            <img src="${pageContext.request.contextPath}/${avatarPaths.SKINS_PATH}" alt="피부" class="layer skins"/>
-                            <img src="${pageContext.request.contextPath}/${avatarPaths.LINE_PATH}" alt="외곽선" class="layer line"/>
+                            <img src="${pageContext.request.contextPath}/${avatarPaths.HATS_PATH}" alt="모자"
+                                 class="layer hats"/>
+                            <img src="${pageContext.request.contextPath}/${avatarPaths.TOPS_PATH}" alt="상의"
+                                 class="layer tops"/>
+                            <img src="${pageContext.request.contextPath}/${avatarPaths.BOTTOMS_PATH}" alt="하의"
+                                 class="layer bottoms"/>
+                            <img src="${pageContext.request.contextPath}/${avatarPaths.HANDS_PATH}" alt="손"
+                                 class="layer hands"/>
+                            <img src="${pageContext.request.contextPath}/${avatarPaths.SKINS_PATH}" alt="피부"
+                                 class="layer skins"/>
+                            <img src="${pageContext.request.contextPath}/${avatarPaths.LINE_PATH}" alt="외곽선"
+                                 class="layer line"/>
                         </div>
                         <div class="user-text">
                             <span class="name">${loginUser.user_name}</span>
@@ -138,19 +167,15 @@
 
                 <div class="section">
                     <ul class="menu-list">
-                        <li>
-                            <i class="fa-regular fa-bookmark"></i>
-                            <div>관심지역</div>
-                        </li>
                         <li onclick="location.href='/myavatar'">
                             <i class="fa-regular fa-user"></i>
                             <div>내 아바타</div>
                         </li>
-                        <li>
+                        <li onclick="location.href='/myPost'">
                             <i class="fa-regular fa-pen-to-square"></i>
                             <div>내가 쓴 글</div>
                         </li>
-                        <li>
+                        <li onclick="location.href='/likedPost'">
                             <i class="fa-regular fa-heart"></i>
                             <div>관심 글</div>
                         </li>

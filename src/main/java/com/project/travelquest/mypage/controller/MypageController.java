@@ -111,6 +111,18 @@ public class MypageController {
         return "mypage/customerCenter";
     }
 
+    // 내가 쓴 글
+    @RequestMapping("/myPost")
+    public String myPost() {
+        return "mypage/myPost";
+    }
+
+    // 관심 글
+    @RequestMapping("/likedPost")
+    public String likedPost() {
+        return "mypage/likedPost";
+    }
+
     @PostMapping("/login")
     public String login(UserVO userVO, HttpSession session, Model model) {
 
