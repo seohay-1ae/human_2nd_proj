@@ -24,6 +24,12 @@ window.onload = function () {
             });
 
             loadMarkers(); // 마커 불러오기
+
+            // 지도 클릭 시 요약 카드 닫기
+            kakao.maps.event.addListener(map, 'click', function () {
+                detailBox.style.display = 'none';
+                detailBox.dataset.currentId = '';
+            });
         }
 
         // ✅ 2. GPS로 위치 설정 또는 기본값
@@ -107,6 +113,7 @@ window.onload = function () {
                     });
                 });
         }
+
 
         // ✅ 5. 요약 카드 표시
         function showSummaryCard(loc) {
