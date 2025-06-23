@@ -27,4 +27,13 @@
         SELECT * FROM tb_user
     </select>
 
+    <update id="updateUserProfileText">
+        UPDATE TB_USER
+        SET USER_PROFILE_TEXT = #{profileText}
+        WHERE USER_ID = #{userId}
+    </update>
+
+    <select id="getUserById" resultType="com.project.travelquest.user.vo.UserVO">
+        SELECT * FROM TB_USER WHERE USER_ID = #{userId}
+    </select>
 </mapper>

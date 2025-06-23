@@ -23,4 +23,12 @@ public class UserService {
     public List<UserVO> listUsers() throws Exception {
         return userDAO.selectAllUsersList();
     }
+
+    public void updateUserProfileText(Long userId, String profileText) {
+        userDAO.updateUserProfileText(userId, profileText);
+    }
+
+    public UserVO getUserById(Long userId) {
+        return userDAO.getUserById(userId);
+    }
 }

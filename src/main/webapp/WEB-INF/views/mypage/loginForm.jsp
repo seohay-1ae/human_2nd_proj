@@ -37,11 +37,11 @@
         <div class="login-form-wrapper">
 
             <form action="${contextPath}/login" method="post" class="login-form">
-                <label for="email">이메일</label>
+                <label for="email" style="margin-bottom: 10px;">이메일</label>
                 <input type="email" id="user_email" name="user_email"
                        placeholder="이메일을 입력해주세요" required/>
 
-                <label for="password">비밀번호</label>
+                <label for="password" style="margin-bottom: 10px;">비밀번호</label>
                 <input type="password" id="user_password" name="user_password"
                        placeholder="비밀번호를 입력해주세요" required/>
 
@@ -50,7 +50,7 @@
                     <a href="#">비밀번호 찾기</a>
                 </div>
 
-                <button type="submit" class="login-btn">로그인 하기</button>
+                <button type="submit" class="login-btn" style="margin-top:40px;">로그인 하기</button>
             </form>
         </div>
     </div>

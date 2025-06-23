@@ -26,6 +26,7 @@
         background: #f0f0f0;
         border: none;
         cursor: pointer;
+        color:black;
     }
 
     .tabs button.active {
