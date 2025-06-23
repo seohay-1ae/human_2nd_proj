@@ -5,7 +5,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-//import com.project.travelquest.utils.RegionNameMapper;
+import com.project.travelquest.utils.RegionNameMapper;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/region")
@@ -19,7 +23,7 @@ public class RegionController {
     @GetMapping("/{region}")
     public String showRegionMap(@PathVariable String region, Model model) {
         model.addAttribute("region", region); // 영문
-//        model.addAttribute("regionKr", RegionNameMapper.getRegionKr(region)); // 한글
+        model.addAttribute("regionKr", RegionNameMapper.getRegionKr(region)); // 한글
         return "map/regionDetail"; // /WEB-INF/views/map/regionDetail.jsp
     }
 }

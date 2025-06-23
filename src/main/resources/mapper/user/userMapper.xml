@@ -23,4 +23,8 @@
         ]]>
     </select>
 
+    <select id="selectAllUsersList" resultMap="usersResult">
+        SELECT * FROM tb_user
+    </select>
+
 </mapper>

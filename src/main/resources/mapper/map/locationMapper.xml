@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.travelquest.map.mapper.LocationMapper">
+    <select id="getAllLocations" resultType="com.project.travelquest.map.model.Location">
+        SELECT contentid,
+               areacode,
+               addr1,
+               addr2,
+               createdtime,
+               firstimage,
+               firstimage2,
+               mapx,
+               mapy,
+               modifiedtime,
+               sigungucode,
+               title,
+               homepage,
+               overview,
+               opendate,
+               infocenter,
+               restdate,
+               usetime,
+               usefee,
+               contenttypeid,
+               areaname,
+               sigunguname,
+               badge_id
+        FROM tb_tourplace
+    </select>
+
+    <select id="getLocationsByFilter" resultType="com.project.travelquest.map.model.Location">
+        SELECT
+        contentid,
+        areacode,
+        addr1,
+        addr2,
+        createdtime,
+        firstimage,
+        firstimage2,
+        mapx,
+        mapy,
+        modifiedtime,
+        sigungucode,
+        title,
+        homepage,
+        overview,
+        opendate,
+        infocenter,
+        restdate,
+        usetime,
+        usefee,
+        contenttypeid,
+        areaname,
+        sigunguname,
+        badge_id
+        FROM tb_tourplace
+        <where>
+            <if test="region != null and region != ''">
+                areaname = #{region}
+            </if>
+            <if test="subregion != null and subregion != ''">
+                <choose>
+                    <when test="region != null and region != ''">
+                        AND sigunguname = #{subregion}
+                    </when>
+                    <otherwise>
+                        sigunguname = #{subregion}
+                    </otherwise>
+                </choose>
+            </if>
+        </where>
+    </select>
+
+    <select id="getLocationById" resultType="com.project.travelquest.map.model.Location">
+        SELECT contentid,
+               areacode,
+               addr1,
+               addr2,
+               createdtime,
+               firstimage,
+               firstimage2,
+               mapx,
+               mapy,
+               modifiedtime,
+               sigungucode,
+               title,
+               homepage,
+               overview,
+               opendate,
+               infocenter,
+               restdate,
+               usetime,
+               usefee,
+               contenttypeid,
+               areaname,
+               sigunguname,
+               badge_id
+        FROM tb_tourplace
+        WHERE contentid = #{contentid}
+    </select>
+
+    <select id="getBadgeImgbyContentId" resultType="com.project.travelquest.map.model.Location">
+        SELECT
+        t.contentid,
+        t.areacode,
+        t.addr1,
+        t.addr2,
+        t.createdtime,
+        t.firstimage,
+        t.firstimage2,
+        t.mapx,
+        t.mapy,
+        t.modifiedtime,
+        t.sigungucode,
+        t.title,
+        t.homepage,
+        t.overview,
+        t.opendate,
+        t.infocenter,
+        t.restdate,
+        t.usetime,
+        t.usefee,
+        t.contenttypeid,
+        t.areaname,
+        t.sigunguname,
+        t.badge_id AS badgeId,
+        b.badge_icon_path AS badgeImgPath
+        FROM TB_TOURPLACE t
+        LEFT JOIN TB_BADGE b ON t.badge_id = b.badge_id
+        WHERE t.contentid = #{contentId}  <!-- contentId를 String으로 처리 -->
+    </select>
+
+</mapper>
+
