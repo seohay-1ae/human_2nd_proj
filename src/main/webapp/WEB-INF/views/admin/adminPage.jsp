@@ -10,7 +10,6 @@
 <html>
 <head>
     <title>관리자 페이지</title>
-    <script src="/js/signUp.js"></script>
         <!-- 공통 및 페이지별 CSS -->
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css"/> <!-- (필수) -->
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/admin.css"/>
@@ -35,10 +34,10 @@
     <div class="page-container">
         <div class="page-content">
             <div class="tab-menu">
-                <button class="tab-button" onclick="user">사용자 관리</button>
-                <button class="tab-button" onclick="travel">여행지역</button>
-                <button class="tab-button" onclick="community">커뮤니티</button>
-                <button class="tab-button" onclick="badge">뱃지</button>
+                <a href="${pageContext.request.contextPath}/admin/adminPage" class="tab-button">사용자 관리</a>
+                <a href="${pageContext.request.contextPath}/admin/adminTravelPage" class="tab-button">여행지역</a>
+                <a href="${pageContext.request.contextPath}/admin/adminCommunityPage" class="tab-button">커뮤니티</a>
+                <a href="${pageContext.request.contextPath}/admin/adminBadgePage" class="tab-button">뱃지</a>
             </div>
             <div class="container">
                 <table>
@@ -58,9 +57,16 @@
                     <%-- 예시 데이터. 실제론 서버에서 List<UserVO> userList 전달 --%>
                         <c:forEach var="user" items="${userList}">
                             <tr>
-                                <td>사용자 이름:${user.user_name}</td>
-                                <td>사용자 메일:${user.user_email}</td>
-                                <td class="more-options">⋯</td>
+                                <td>${user.userName}</td>
+                                <td>${user.userEmail}</td>
+                                <td class="deleteUser">
+                                    <div class="dropdown-content">
+                                        <form action="${pageContext.request.contextPath}/admin/deleteUser" method="post">
+                                            <input type="hidden" name="userId" value="${user.userId}"/>
+                                            <button class="more-btn" type="submit" onclick="return confirm('정말 삭제하시겠습니까?');">삭제</button>
+                                        </form>
+                                    </div>
+                                </td>
                             </tr>
                         </c:forEach>
                     </tbody>

@@ -21,7 +21,7 @@
 
           <!-- 뒤로가기 넣을 때 -->
           <div class="back-button">
-              <a href="${contextPath}/mypage/loginSelect">←</a>
+              <a href="${contextPath}/loginSelect">←</a>
           </div>
           <!-- 뒤로가기 넣을 때 -->
 

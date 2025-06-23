@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -20,7 +21,7 @@
 
           <!-- 뒤로가기 넣을 때 -->
           <div class="back-button">
-              <a href="${contextPath}/mypage/loginForm">← </a>
+              <a href="${contextPath}/loginForm">← </a>
           </div>
           <!-- 뒤로가기 넣을 때 -->
 

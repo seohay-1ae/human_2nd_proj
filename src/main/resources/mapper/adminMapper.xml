@@ -3,11 +3,15 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.project.travelquest.user.dao.UserDAO">
+<mapper namespace="com.project.travelquest.admin.dao.AdminUserDAO">
 
-    <select id="selectAllUsers" resultType="com.project.travelquest.user.vo.UserVO">
+    <select id="selectAllUsers" resultType="com.project.travelquest.admin.vo.AdminUserVO">
         SELECT user_id, user_name, user_email
-        FROM TB_USER
+        FROM tb_user
     </select>
+
+    <delete id="deleteUser" parameterType="Long">
+        DELETE FROM tb_user WHERE user_id = #{userId}
+    </delete>
 
 </mapper>
