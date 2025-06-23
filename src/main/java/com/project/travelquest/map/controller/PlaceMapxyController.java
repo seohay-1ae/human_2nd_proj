@@ -17,8 +17,8 @@ public class PlaceMapxyController {
     }
 
     @GetMapping("/place/location")
-    public Map<String, Object> getPlaceLocation(@RequestParam("contentid") int contentId) {
-        Location location = locationMapper.getLocationById((long) contentId);  // 오타 수정 및 형변환
+    public Map<String, Object> getPlaceLocation(@RequestParam("contentid") String contentId) {
+        Location location = locationMapper.getLocationById(contentId);  // 오타 수정 및 형변환
         Map<String, Object> map = new HashMap<>();
         map.put("mapx", location.getMapx());
         map.put("mapy", location.getMapy());

@@ -12,7 +12,7 @@ public interface LocationMapper {
 
     List<Location> getLocationsByFilter(@Param("region") String region, @Param("subregion") String subregion);
 
-    Location getLocationById(@Param("contentid") Long contentid);
+    Location getLocationById(@Param("contentid") String contentid);
 
     Location getBadgeImgbyContentId(@Param("contentId") String contentid);
 
