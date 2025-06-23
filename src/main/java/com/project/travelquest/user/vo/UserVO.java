@@ -30,4 +30,5 @@ public class UserVO {
     // 인증번호 확인용: DB 저장 제외
     private transient String phone_number;
     private transient String cert_number;
+
 }

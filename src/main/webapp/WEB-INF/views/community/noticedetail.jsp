@@ -2,13 +2,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>공지사항</title>
+  <title>명소신청</title>
 
 
   <!-- 공통 및 페이지별 CSS -->
@@ -64,34 +63,21 @@
   <div class="page-container">
     <div class="page-content">
       <div class="container">
+        <h2>${notice.title}</h2>
+            <p><strong>작성일:</strong> <fmt:formatDate value="${notice.regDate}" pattern="yyyy-MM-dd"/></p>
+            <hr/>
+            <div>
+                ${notice.content}
+            </div>
 
-      <a href="${pageContext.request.contextPath}/community/notice">공지사항</a>
-      <a href="${pageContext.request.contextPath}/community">게시판</a>
-      <a href="${pageContext.request.contextPath}/community/registerPlace">명소신청</a>
+            <br/>
+            <a href="${pageContext.request.contextPath}/admin/notice">목록으로</a>
+        <a href="${pageContext.request.contextPath}/community/notice">공지사항</a>
+        <a href="${pageContext.request.contextPath}/community">게시판</a>
+        <a href="${pageContext.request.contextPath}/community/registerPlace">명소신청</a>
 
-        <table border="1" width="100%">
-            <thead>
-                <tr>
-                    <th>제목</th>
-                    <th>작성일</th>
-                </tr>
-            </thead>
-            <tbody>
-                <c:forEach var="notice" items="${list}">
-                    <tr>
-                        <td>
-                            <a href="${pageContext.request.contextPath}/community/notice/${notice.noticeId}"">
-                                ${notice.title}
 
-                            </a>
-                        </td>
-                        <td>
-                            <fmt:formatDate value="${notice.regDate}" pattern="yyyy-MM-dd"/>
-                        </td>
-                    </tr>
-                </c:forEach>
-            </tbody>
-        </table>
+
 
 
       </div>

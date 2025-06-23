@@ -1,6 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 
 <!DOCTYPE html>
@@ -65,34 +64,20 @@
     <div class="page-content">
       <div class="container">
 
-      <a href="${pageContext.request.contextPath}/community/notice">공지사항</a>
-      <a href="${pageContext.request.contextPath}/community">게시판</a>
-      <a href="${pageContext.request.contextPath}/community/registerPlace">명소신청</a>
+        <h2>공지사항 작성</h2>
 
-        <table border="1" width="100%">
-            <thead>
-                <tr>
-                    <th>제목</th>
-                    <th>작성일</th>
-                </tr>
-            </thead>
-            <tbody>
-                <c:forEach var="notice" items="${list}">
-                    <tr>
-                        <td>
-                            <a href="${pageContext.request.contextPath}/community/notice/${notice.noticeId}"">
-                                ${notice.title}
+        <form action="${pageContext.request.contextPath}/admin/notice/write" method="post">
+            <label for="title">제목</label><br>
+            <input type="text" id="title" name="title" required><br><br>
 
-                            </a>
-                        </td>
-                        <td>
-                            <fmt:formatDate value="${notice.regDate}" pattern="yyyy-MM-dd"/>
-                        </td>
-                    </tr>
-                </c:forEach>
-            </tbody>
-        </table>
+            <label for="content">내용</label><br>
+            <textarea id="content" name="content" rows="10" cols="50" required></textarea><br><br>
 
+            <button type="submit">등록</button>
+        </form>
+
+        <br>
+        <a href="${pageContext.request.contextPath}/admin/notice">← 목록으로</a>
 
       </div>
     </div>

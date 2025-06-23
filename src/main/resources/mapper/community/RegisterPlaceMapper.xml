@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.project.travelquest.comu.dao.ComuDAO">
+
+    <resultMap id="registerPlaceResultMap" type="com.project.travelquest.comu.vo.RegisterPlaceVO">
+        <id property="id" column="ID"/>
+        <result property="title" column="TITLE"/>
+        <result property="writer" column="WRITER"/>
+        <result property="address" column="ADDRESS"/>
+        <result property="description" column="DESCRIPTION"/>
+        <result property="imageUrl" column="IMAGE_URL"/>
+        <result property="createdAt" column="CREATED_AT"/>
+    </resultMap>
+
+    <!-- 명소 신청 등록 -->
+    <insert id="insertRegisterPlace" parameterType="com.project.travelquest.comu.vo.RegisterPlaceVO">
+        INSERT INTO TB_REGISTER_PLACE (
+        ID,
+        TITLE,
+        WRITER,
+        ADDRESS,
+        DESCRIPTION,
+        IMAGE_URL,
+        CREATED_AT
+        ) VALUES (
+        SEQ_REGISTER_PLACE.NEXTVAL,  -- 시퀀스
+        #{title},
+        #{writer},
+        #{address},
+        #{description},
+        #{imageUrl},
+        SYSDATE
+        )
+    </insert>
+
+    <select id="selectRegisterPlaceList" resultType="com.project.travelquest.comu.vo.RegisterPlaceVO">
+        SELECT
+        ID,
+        TITLE,
+        WRITER,
+        ADDRESS,
+        DESCRIPTION,
+        IMAGE_URL,
+        CREATED_AT
+        FROM TB_REGISTER_PLACE
+        ORDER BY ID DESC
+    </select>
+
+</mapper>

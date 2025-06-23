@@ -129,6 +129,7 @@ public class MypageController {
         return "mypage/likedPost";
     }
 
+    // 로그인
     @PostMapping("/login")
     public String login(UserVO userVO, HttpSession session, Model model) {
 
@@ -140,7 +141,7 @@ public class MypageController {
 
             // user_role이 '0'이면 관리자 페이지로 이동
             if ("0".equals(loginUser.getUser_role())) {
-                return "redirect:/adminPage"; // 관리자 페이지 URL로 변경
+                return "redirect:/admin/adminPage"; // 관리자 페이지 URL로 변경
             }
 
             return "redirect:/mypage"; // 일반 유저는 마이페이지로
