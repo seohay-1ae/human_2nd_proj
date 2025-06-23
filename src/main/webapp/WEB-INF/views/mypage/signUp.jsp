@@ -9,10 +9,9 @@
 <html>
 <head>
     <title>회원가입</title>
-    <script src="/js/signUp.js"></script>
      <!-- 공통 및 페이지별 CSS -->
       <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css"/> <!-- (필수) -->
-      <link rel="stylesheet" href="${pageContext.request.contextPath}/css/<!--각 페이지에서만 쓰이는 css(만들것).css -->"/>
+      <link rel="stylesheet" href="${pageContext.request.contextPath}/css/signUp.css"/>
 </head>
 <body>
     <body>
@@ -71,5 +70,7 @@
 
      <!-- 하단 nav바 -->
        <jsp:include page="/WEB-INF/views/common/bottomNav.jsp"/> <!-- (필수) -->
+
+    <script src="/js/signUp.js"></script>
 </body>
 </html>

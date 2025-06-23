@@ -16,7 +16,7 @@ public class SignUpController {
     SUserService sUserService;
 
     // 이메일 중복 확인용 Api
-    @GetMapping("/check-user_email")
+    @GetMapping("/check-email")
     @ResponseBody
     public EmailCheckResponse checkEmail(@RequestParam("user_email") String user_email) {
         boolean exists = sUserService.existsByEmail(user_email);

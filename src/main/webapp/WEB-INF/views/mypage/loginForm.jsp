@@ -46,7 +46,7 @@
                        placeholder="비밀번호를 입력해주세요" required/>
 
                 <div class="find">
-                    <a href="#">이메일 찾기</a>
+                    <a href="${contextPath}/findEmail">이메일 찾기</a>
                     <a href="#">비밀번호 찾기</a>
                 </div>
 
