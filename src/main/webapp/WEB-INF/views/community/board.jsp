@@ -19,6 +19,7 @@
             position: relative;
             padding-bottom: 190px; /* 배너 높이 + 여유 공간 */
         }
+
         .post-header {
             display: flex;
             align-items: center;
@@ -99,7 +100,8 @@
                         <div class="post-footer">
                             <!-- ❤️ 좋아요 버튼 -->
                             <span class="likes" data-post-id="${post.postId}">
-                              <i class="${post.likedByUser ? 'fa-solid' : 'fa-regular'} fa-heart" style="color: red;"></i>
+                              <i class="${post.likedByUser ? 'fa-solid' : 'fa-regular'} fa-heart"
+                                 style="color: red;"></i>
                               <span class="like-count" style="color: black;">${post.heartCount}</span>
                             </span>
 

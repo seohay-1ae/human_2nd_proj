@@ -124,10 +124,10 @@ public class MypageController {
     }
 
     // 관심 글
-    @RequestMapping("/likedPost")
-    public String likedPost() {
-        return "mypage/likedPost";
-    }
+//    @RequestMapping("/likedPost")
+//    public String likedPost() {
+//        return "mypage/likedPost";
+//    }
 
     // 로그인
     @PostMapping("/login")

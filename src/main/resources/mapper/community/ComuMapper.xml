@@ -13,17 +13,21 @@
         <result property="heartCount" column="heart_count"/>
         <result property="writeCount" column="write_count"/>
         <result property="reportCount" column="report_count"/>
-        
+
     </resultMap>
 
     <!-- 게시글 전체 리스트 -->
     <select id="getPostList" resultMap="comuPostMap">
-        SELECT * FROM tb_comu_post ORDER BY post_id DESC
+        SELECT *
+        FROM tb_comu_post
+        ORDER BY post_id DESC
     </select>
 
     <!-- 게시글 상세 조회 -->
     <select id="getPostDetail" parameterType="int" resultMap="comuPostMap">
-        SELECT * FROM tb_comu_post WHERE post_id = #{id}
+        SELECT *
+        FROM tb_comu_post
+        WHERE post_id = #{id}
     </select>
 
     <!-- 게시글 등록 -->
@@ -54,12 +58,25 @@
 
     <!-- 게시글 삭제 -->
     <delete id="deletePost" parameterType="int">
-        DELETE FROM tb_comu_post WHERE post_id = #{postId}
+        DELETE
+        FROM tb_comu_post
+        WHERE post_id = #{postId}
     </delete>
 
     <!-- 게시글에 딸린 신고 기록 삭제 -->
     <delete id="deleteReportsByPostId" parameterType="int">
-        DELETE FROM tb_comu_report WHERE post_id = #{postId}
+        DELETE
+        FROM tb_comu_report
+        WHERE post_id = #{postId}
     </delete>
+
+    <!-- 내가 좋아요(하트) 누른 게시글 목록 조회 -->
+    <select id="selectMyHeartPosts" parameterType="string" resultType="com.project.travelquest.comu.vo.ComuVO">
+        SELECT p.*
+        FROM tb_comu_post p
+                 JOIN tb_comu_heart h ON p.post_id = h.post_id
+        WHERE h.user_id = #{userId}
+        ORDER BY h.post_id DESC
+    </select>
 
 </mapper>

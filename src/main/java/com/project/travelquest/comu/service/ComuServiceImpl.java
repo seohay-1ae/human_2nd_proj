@@ -97,4 +97,9 @@ public class ComuServiceImpl implements ComuService {
     public List<RegisterPlaceVO> selectRegisterPlaceList() {
         return comuDAO.selectRegisterPlaceList();
     }
+
+    @Override
+    public List<ComuVO> selectMyHeartPosts(String userId) {
+        return comuDAO.selectMyHeartPosts(userId);
+    }
 }

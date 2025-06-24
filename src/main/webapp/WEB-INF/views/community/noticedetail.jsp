@@ -39,21 +39,35 @@
     <div class="page-content">
         <div class="container">
 
-<%--            <div class="top-link">--%>
-<%--                <a href="${pageContext.request.contextPath}/admin/notice">목록으로</a>--%>
-<%--&lt;%&ndash;                <a href="${pageContext.request.contextPath}/community/notice">공지사항</a>&ndash;%&gt;--%>
-<%--&lt;%&ndash;                <a href="${pageContext.request.contextPath}/community">게시판</a>&ndash;%&gt;--%>
-<%--&lt;%&ndash;                <a href="${pageContext.request.contextPath}/community/registerPlace">명소신청</a>&ndash;%&gt;--%>
-<%--            </div>--%>
+            <%--            <div class="top-link">--%>
+            <%--                <a href="${pageContext.request.contextPath}/admin/notice">목록으로</a>--%>
+            <%--&lt;%&ndash;                <a href="${pageContext.request.contextPath}/community/notice">공지사항</a>&ndash;%&gt;--%>
+            <%--&lt;%&ndash;                <a href="${pageContext.request.contextPath}/community">게시판</a>&ndash;%&gt;--%>
+            <%--&lt;%&ndash;                <a href="${pageContext.request.contextPath}/community/registerPlace">명소신청</a>&ndash;%&gt;--%>
+            <%--            </div>--%>
 
             <h2 style="margin: 10px 0;">${notice.title}</h2>
-            <p style="margin-bottom: 10px;"><strong>작성일:</strong> <fmt:formatDate value="${notice.regDate}" pattern="yyyy-MM-dd"/></p>
+            <p style="margin-bottom: 10px;"><strong>작성일:</strong> <fmt:formatDate value="${notice.regDate}"
+                                                                                  pattern="yyyy-MM-dd"/></p>
             <hr/>
             <div style="margin-top: 10px;">
                 ${notice.content}
             </div>
 
             <br/>
+
+            <c:choose>
+                <c:when test="${param.source == 'admin'}">
+                    <a href="${pageContext.request.contextPath}/admin/notice">
+                        <button>← 목록으로</button>
+                    </a>
+                </c:when>
+                <c:otherwise>
+                    <a href="${pageContext.request.contextPath}/community/notice">
+                        <button>← 목록으로</button>
+                    </a>
+                </c:otherwise>
+            </c:choose>
         </div>
     </div>
 </div>

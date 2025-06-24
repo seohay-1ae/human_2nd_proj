@@ -100,5 +100,18 @@
     </div>
 </div>
 
+<!-- 뒤로가기 버튼 -->
+<c:choose>
+    <c:when test="${param.source == 'liked'}">
+        <a href="${pageContext.request.contextPath}/likedPost">
+            <button>← 목록으로</button>
+        </a>
+    </c:when>
+    <c:otherwise>
+        <a href="${pageContext.request.contextPath}/community">
+            <button>← 목록으로</button>
+        </a>
+    </c:otherwise>
+</c:choose>
 </body>
 </html>

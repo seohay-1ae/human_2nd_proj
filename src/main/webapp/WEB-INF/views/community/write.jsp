@@ -9,7 +9,6 @@
 
   <!-- 공통 및 페이지별 CSS -->
   <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css"/>
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/각 페이지에서만 쓰이는 css(만들것).css"/>
   <style>
       .writer-label{
           margin: 10px 0;

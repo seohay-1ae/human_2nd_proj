@@ -16,5 +16,5 @@ public interface ComuService {
     void deletePostAndReports(int postId);
     int insertRegisterPlace(RegisterPlaceVO vo);
     List<RegisterPlaceVO> selectRegisterPlaceList();
-
+    List<ComuVO> selectMyHeartPosts(String userId);
 }

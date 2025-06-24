@@ -105,9 +105,12 @@ public class ComuController {
     }
 
     @GetMapping("/community/notice/{id}")
-    public String showCommunityNoticeDetail(@PathVariable("id") int id, Model model) {
+    public String showCommunityNoticeDetail(@PathVariable("id") int id,
+                                            @RequestParam(value = "source", required = false) String source,
+                                            Model model) {
         NoticeVO notice = noticeService.getNoticeById(id);
         model.addAttribute("notice", notice);
+        model.addAttribute("source", source);
         return "community/noticedetail"; // community 폴더 안에 noticedetail.jsp 있어야 함
     }
 
@@ -127,5 +130,18 @@ public class ComuController {
 
         boolean already = comuService.insertReport(postId, reporterId);
         return already ? "이미 신고한 게시글입니다." : "신고가 접수되었습니다.";
+    }
+
+    @GetMapping("/likedPost")
+    public String likedPostPage(HttpSession session, Model model) {
+        UserVO loginUser = (UserVO) session.getAttribute("loginUser");
+        if (loginUser == null) {
+            // 로그인 페이지로 리다이렉트 또는 에러 처리
+            return "redirect:/user/login"; // 혹은 "redirect:/login"
+        }
+        String userId = loginUser.getUser_id().toString();
+        List<ComuVO> heartList = comuService.selectMyHeartPosts(userId);
+        model.addAttribute("heartList", heartList);
+        return "mypage/likedPost";
     }
 }

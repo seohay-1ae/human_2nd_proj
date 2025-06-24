@@ -58,6 +58,7 @@
         tbody tr:hover {
             background-color: #a5d3d9; /* 선택 사항: 마우스오버 효과 */
         }
+
         .clickable-row {
             cursor: pointer;
         }
@@ -95,7 +96,8 @@
                 </thead>
                 <tbody>
                 <c:forEach var="notice" items="${list}">
-                    <tr class="clickable-row" data-href="${pageContext.request.contextPath}/community/notice/${notice.noticeId}">
+                    <tr class="clickable-row"
+                        data-href="${pageContext.request.contextPath}/community/notice/${notice.noticeId}">
                         <td>${notice.title}</td>
                         <td>
                             <fmt:formatDate value="${notice.regDate}" pattern="yyyy-MM-dd"/>
@@ -106,9 +108,9 @@
             </table>
         </div>
     </div>
-        <div class="banner">
-            <img src="${pageContext.request.contextPath}/banner.png" alt="banner"/>
-        </div>
+    <div class="banner">
+        <img src="${pageContext.request.contextPath}/banner.png" alt="banner"/>
+    </div>
 </div>
 
 <!-- 하단 nav바 -->

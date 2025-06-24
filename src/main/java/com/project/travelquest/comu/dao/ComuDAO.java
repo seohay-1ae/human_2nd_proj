@@ -20,4 +20,5 @@ public interface ComuDAO {
     void deleteReportsByPostId(int postId);
     int insertRegisterPlace(RegisterPlaceVO vo);
     List<RegisterPlaceVO> selectRegisterPlaceList();
+    List<ComuVO> selectMyHeartPosts(String userId);
 }

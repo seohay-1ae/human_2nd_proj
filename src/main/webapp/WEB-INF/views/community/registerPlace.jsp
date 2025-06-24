@@ -52,8 +52,8 @@
             height: 25px;
             margin-bottom: 10px;
             box-sizing: border-box; /* padding 포함한 크기 계산 */
-            padding:10px;
-            font-size: 12px;  /* 원하는 텍스트 크기 설정 */
+            padding: 10px;
+            font-size: 12px; /* 원하는 텍스트 크기 설정 */
             font-weight: 400;
         }
 
@@ -85,8 +85,8 @@
             margin-bottom: 10px;
             resize: none;
             overflow: auto;
-            padding:10px;
-            font-size: 12px;  /* 원하는 텍스트 크기 설정 */
+            padding: 10px;
+            font-size: 12px; /* 원하는 텍스트 크기 설정 */
             font-weight: 400;
         }
     </style>
