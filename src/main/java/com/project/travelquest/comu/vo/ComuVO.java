@@ -16,5 +16,13 @@ public class ComuVO {
     private List<ComuCommentVO> comments;
     private boolean likedByUser;
     private int reportCount;
+    private String headPath;
 
+    // 아바타 이미지 경로 추가
+    private String hatsPath;
+    private String topsPath;
+    private String bottomsPath;
+    private String handsPath;
+    private String skinsPath;
+    private String linePath;
 }

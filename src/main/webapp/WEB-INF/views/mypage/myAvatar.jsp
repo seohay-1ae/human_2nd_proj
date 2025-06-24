@@ -45,11 +45,6 @@
 <body>
 <!-- 상단 네비게이션 -->
 <nav class="top-nav">
-    <!-- 뒤로가기 넣을 때 -->
-    <div class="back-button">
-        <a href="/mypage">← </a>
-    </div>
-    <!-- 뒤로가기 넣을 때 -->
 
     <!-- 타이틀 넣을 때 -->
     <div class="title">
@@ -89,7 +84,7 @@
 
             <div class="item-grid">
             </div>
-            <button class="buy-button" style="margin-top: 10px;">구입하기</button>
+
             <button class="save-button">저장하기</button>
         </div>
     </div>

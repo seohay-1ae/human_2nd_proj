@@ -21,4 +21,6 @@ public interface ComuDAO {
     int insertRegisterPlace(RegisterPlaceVO vo);
     List<RegisterPlaceVO> selectRegisterPlaceList();
     List<ComuVO> selectMyHeartPosts(String userId);
+    List<ComuVO> selectMyPosts(String userId);
+    List<ComuVO> getPostListWithAvatars();
 }

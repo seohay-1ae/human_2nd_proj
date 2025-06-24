@@ -29,9 +29,6 @@
 
 <body>
 <nav class="top-nav">
-    <div class="back-button">
-        <a href="/mypage">← </a>
-    </div>
     <div class="title">
         로그인
     </div>

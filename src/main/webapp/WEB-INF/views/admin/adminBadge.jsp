@@ -8,7 +8,7 @@
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>명소신청 목록</title>
+    <title>뱃지 연결</title>
 
 
     <!-- 공통 및 페이지별 CSS -->
@@ -71,38 +71,16 @@
             font-size: 14px;
         }
 
-        .approve {
-            background-color: #4CAF50;
-            color: white;
-        }
-
-        .reject {
-            background-color: #f44336;
-            color: white;
-        }
-
-        .approve:hover {
-            background-color: #45a049;
-        }
-
-        .reject:hover {
-            background-color: #e53935;
-        }
     </style>
 </head>
 
 <body>
 <!-- 상단 네비게이션 -->
 <nav class="top-nav">
-
-    <!-- 타이틀 넣을 때 -->
     <div class="title">
         <h2>관리자 페이지</h2>
     </div>
-    <!-- 타이틀 넣을 때 -->
-
 </nav>
-<!-- 상단 네비게이션 -->
 
 <div class="page-container">
     <div class="page-content">
@@ -110,21 +88,11 @@
 
             <div class="top-link">
                 <a href="${pageContext.request.contextPath}/admin/adminPage" class="tab-button">사용자 관리</a>
-                <a href="${pageContext.request.contextPath}/admin/notice" class="tab-button" style="color: #1E4CD1;">커뮤니티</a>
-                <a href="${pageContext.request.contextPath}/admin/adminBadgePage" class="tab-button">뱃지</a>
+                <a href="${pageContext.request.contextPath}/admin/notice" class="tab-button">커뮤니티</a>
+                <a href="${pageContext.request.contextPath}/admin/adminBadgePage" class="tab-button" style="color: #1E4CD1;">뱃지</a>
             </div>
 
-            <div>
-                <label for="categorySelect">목록 선택: </label>
-                <select id="categorySelect">
-                    <option value="notices" ${type eq 'notices' ? 'selected' : ''}>공지사항</option>
-                    <option value="reports" ${type eq 'reports' ? 'selected' : ''}>신고된 게시물</option>
-                    <option value="registPlace" ${type eq 'registPlace' ? 'selected' : ''}>명소 등록 요청</option>
-                </select>
-            </div>
-
-
-            <h2 style="margin-top: 10px;">명소신청 목록</h2>
+            <h2 style="margin-top: 10px;">뱃지 등록</h2>
 
             <div class="table-container">
                 <table border="1">
@@ -132,11 +100,10 @@
                     <tr>
                         <th>명소명</th>
                         <th>주소</th>
-                        <th>작성자</th>
                         <th>소개글</th>
                         <th>이미지</th>
-                        <th>신청일</th>
-                        <th>승인/거절</th>
+                        <th>뱃지설정</th>
+
                     </tr>
                     </thead>
                     <tbody>
@@ -144,19 +111,13 @@
                         <tr>
                             <td class="ellipsis">${place.title}</td>
                             <td class="ellipsis">${place.address}</td>
-                            <td class="nowrap">${place.writer}</td>
                             <td class="ellipsis">${place.description}</td>
                             <td>
                                 <c:if test="${not empty place.imageUrl}">
                                     <img src="${pageContext.request.contextPath}/upload/${place.imageUrl}" width="80"/>
                                 </c:if>
                             </td>
-                            <td class="nowrap"><fmt:formatDate value="${place.createdAt}" pattern="yy-MM-dd"/></td>
-
-                            <td class="action-buttons">
-                                <button class="approve">승인</button>
-                                <button class="reject">거절</button>
-                            </td>
+                            <td><button>설정</button></td>
                         </tr>
                     </c:forEach>
                     </tbody>
@@ -169,15 +130,5 @@
 <!-- 하단 nav바 -->
 <jsp:include page="/WEB-INF/views/common/bottomNav.jsp"/>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const select = document.getElementById('categorySelect');
-        select.addEventListener('change', function () {
-            const selectedType = this.value;
-            console.log("선택된 타입:", selectedType); // 🔥 반드시 보고
-            window.location.href = "/admin/notice?type=" + selectedType;
-        });
-    });
-</script>
 </body>
 </html>

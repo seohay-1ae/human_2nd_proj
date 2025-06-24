@@ -67,4 +67,60 @@
                              src.AVATAR_HATS
                          )
     </insert>
+    <select id="getAvatarPathsByPostId" parameterType="int" resultType="map">
+        SELECT
+            hats.avatar_item_path    AS hats,
+            tops.avatar_item_path    AS tops,
+            bottoms.avatar_item_path AS bottoms,
+            hands.avatar_item_path   AS hands,
+            skins.avatar_item_path   AS skins,
+            line.avatar_item_path    AS line
+        FROM TB_COMU_POST post
+                 JOIN TB_USER u ON post.writer = u.user_name
+                 JOIN TB_AVATAR_PRESET p ON u.USER_ID = p.USER_ID
+                 LEFT JOIN TB_AVATAR hats    ON p.AVATAR_HATS    = hats.avatar_item_id
+                 LEFT JOIN TB_AVATAR tops    ON p.AVATAR_TOPS    = tops.avatar_item_id
+                 LEFT JOIN TB_AVATAR bottoms ON p.AVATAR_BOTTOMS = bottoms.avatar_item_id
+                 LEFT JOIN TB_AVATAR hands   ON p.AVATAR_HANDS   = hands.avatar_item_id
+                 LEFT JOIN TB_AVATAR skins   ON p.AVATAR_SKINS   = skins.avatar_item_id
+                 LEFT JOIN TB_AVATAR line    ON p.AVATAR_LINE    = line.avatar_item_id
+        WHERE post.post_id = #{postId}
+    </select>
+
+    <select id="getPostDetail" parameterType="int" resultType="com.project.travelquest.comu.vo.ComuVO">
+        SELECT
+            post_id,
+            content,
+            writer,
+            created_at,
+            heart_count,
+            write_count,
+            report_count
+        FROM tb_comu_post
+        WHERE post_id = #{postId}
+    </select>
+
+    <select id="getAvatarPathsByUserName" parameterType="string" resultType="com.project.travelquest.comu.vo.ComuVO">
+        SELECT
+            p.post_id,
+            p.content,
+            p.writer AS writer,
+            p.created_at,
+            hats.avatar_item_path AS hatsPath,
+            tops.avatar_item_path AS topsPath,
+            bottoms.avatar_item_path AS bottomsPath,
+            hands.avatar_item_path AS handsPath,
+            skins.avatar_item_path AS skinsPath,
+            line.avatar_item_path AS linePath
+        FROM tb_comu_post p
+                 JOIN tb_user u ON p.writer = u.user_name
+                 LEFT JOIN tb_avatar_preset preset ON u.user_id = preset.user_id
+                 LEFT JOIN tb_avatar hats ON preset.avatar_hats = hats.avatar_item_id
+                 LEFT JOIN tb_avatar tops ON preset.avatar_tops = tops.avatar_item_id
+                 LEFT JOIN tb_avatar bottoms ON preset.avatar_bottoms = bottoms.avatar_item_id
+                 LEFT JOIN tb_avatar hands ON preset.avatar_hands = hands.avatar_item_id
+                 LEFT JOIN tb_avatar skins ON preset.avatar_skins = skins.avatar_item_id
+                 LEFT JOIN tb_avatar line ON preset.avatar_line = line.avatar_item_id
+        WHERE p.writer = #{userName}
+    </select>
 </mapper>

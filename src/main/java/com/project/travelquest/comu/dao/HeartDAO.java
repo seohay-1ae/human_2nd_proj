@@ -12,5 +12,6 @@ public interface HeartDAO {
     void insert(@Param("postId") int postId, @Param("userId") String userId);       // 좋아요 추가
     void delete(@Param("postId") int postId, @Param("userId") String userId);       // 좋아요 제거
     int count(@Param("postId") int postId);
+    void deleteByPostId(int postId); // <-- 여기도 반드시 추가
 
 }

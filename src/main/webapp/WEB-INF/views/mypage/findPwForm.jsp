@@ -15,9 +15,6 @@
 
     <body>
         <nav class="top-nav">
-            <div class="back-button">
-                <a href="/mypage">← </a>
-            </div>
             <div class="title">
                 비밀번호 찾기
             </div>

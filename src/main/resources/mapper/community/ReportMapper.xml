@@ -30,6 +30,11 @@
         WHERE post_id = #{postId} AND reporter_id = #{reporterId}
     </select>
 
+    <!-- 신고기록 삭제 -->
+    <delete id="deleteReportsByPostId" parameterType="int">
+        DELETE FROM tb_comu_report
+        WHERE post_id = #{postId}
+    </delete>
 
 
 </mapper>

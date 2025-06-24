@@ -13,7 +13,6 @@
             padding: 6px 10px;
             background-color: lightgrey;
             color: black;
-            margin-left: 5px;
             border: none;
             border-radius: 4px;
             cursor: pointer;
@@ -157,7 +156,7 @@
                         </div>
                     </div>
                     <div>
-                        <button class="profile_button" onclick="location.href='/introduction'">소개글 설정</button>
+                        <button class="profile_button" onclick="location.href='/introduction'">소개글</button>
                         <button class="profile_button" onclick="location.href='/logout'">로그아웃</button>
                     </div>
                 </div>

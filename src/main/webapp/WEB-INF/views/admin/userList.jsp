@@ -14,9 +14,6 @@
 
     <body>
         <nav class="top-nav">
-            <div class="back-button">
-                <a href="/mypage">← </a>
-            </div>
             <div class="title">
                 사용자 목록
             </div>

@@ -46,7 +46,7 @@ public class AdminController {
     //회원계정 맵핑(뱃지 관리)
     @GetMapping("/adminBadgePage")
     public String showAdminBadgePage() {
-        return "admin/adminBadgePage"; // adminBadgePage.jsp
+        return "admin/adminBadge"; // adminBadge.jsp
     }
 
     // --- 아래부터 notice 관련 ---

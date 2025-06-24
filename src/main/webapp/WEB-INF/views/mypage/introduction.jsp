@@ -111,11 +111,6 @@
 <!-- 상단 네비게이션 -->
 <nav class="top-nav">
 
-    <!-- 뒤로가기 넣을 때 -->
-    <div class="back-button">
-        <a href="/mypage">← </a>
-    </div>
-
     <!-- 타이틀 넣을 때 -->
     <div class="title">
         소개글 설정

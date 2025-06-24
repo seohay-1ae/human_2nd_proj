@@ -17,4 +17,8 @@ public interface ComuService {
     int insertRegisterPlace(RegisterPlaceVO vo);
     List<RegisterPlaceVO> selectRegisterPlaceList();
     List<ComuVO> selectMyHeartPosts(String userId);
+
+    List<ComuVO> selectMyPosts(String userId);
+    // 🔥 아바타 포함 글 목록 조회 (추가)
+    List<ComuVO> getPostListWithAvatars();
 }

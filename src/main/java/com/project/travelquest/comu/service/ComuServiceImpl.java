@@ -81,8 +81,9 @@ public class ComuServiceImpl implements ComuService {
 
     @Override
     public void deletePostAndReports(int postId) {
-        comuDAO.deleteReportsByPostId(postId);  // 1. 신고 먼저 삭제
-        comuDAO.deletePost(postId);             // 2. 그 다음 게시글 삭제
+        heartDAO.deleteByPostId(postId);            // 1. 좋아요 먼저 삭제
+        reportDAO.deleteReportsByPostId(postId);    // 2. 신고 삭제
+        comuDAO.deletePost(postId);                 // 3. 게시글 삭제
     }
 
 
@@ -101,5 +102,13 @@ public class ComuServiceImpl implements ComuService {
     @Override
     public List<ComuVO> selectMyHeartPosts(String userId) {
         return comuDAO.selectMyHeartPosts(userId);
+    }
+
+    @Override
+    public List<ComuVO> selectMyPosts(String userId) {return comuDAO.selectMyPosts(userId);}
+
+    @Override
+    public List<ComuVO> getPostListWithAvatars() {
+        return comuDAO.getPostListWithAvatars(); // ✅ 올바른 방식
     }
 }

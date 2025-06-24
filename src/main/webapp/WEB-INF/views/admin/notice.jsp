@@ -31,6 +31,9 @@
         .table-container {
             margin: 20px 0;
         }
+        .clickable-row {
+            cursor: pointer;
+        }
 
     </style>
 </head>
@@ -80,15 +83,10 @@
                     </thead>
                     <tbody>
                     <c:forEach var="notice" items="${list}">
-                        <tr>
-
+                        <tr class="clickable-row"
+                            data-href="${pageContext.request.contextPath}/community/notice/${notice.noticeId}?source=admin">
                             <td>
-                                    <%--                                <a href="${pageContext.request.contextPath}/admin/notice/${notice.noticeId}">--%>
-                                    <%--                                        ${notice.title}--%>
-                                    <%--                                </a>--%>
-                                <a href="${pageContext.request.contextPath}/community/notice/${notice.noticeId}?source=admin">
-                                        ${notice.title}
-                                </a>
+                                    ${notice.title}
                             </td>
                             <td><fmt:formatDate value="${notice.regDate}" pattern="yyyy-MM-dd "/></td>
                             <td>
@@ -120,6 +118,16 @@
             const selectedType = this.value;
             console.log("선택된 타입:", selectedType); // 🔥 반드시 보고
             window.location.href = "/admin/notice?type=" + selectedType;
+        });
+
+        const rows = document.querySelectorAll(".clickable-row");
+        rows.forEach(row => {
+            row.addEventListener("click", function () {
+                const href = this.dataset.href;
+                if (href) {
+                    window.location.href = href;
+                }
+            });
         });
     });
 </script>

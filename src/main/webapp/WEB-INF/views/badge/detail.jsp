@@ -47,9 +47,6 @@
 
 <!-- 상단 네비게이션 -->
 <nav class="top-nav">
-    <div class="back-button">
-        <a href="${pageContext.request.contextPath}/badges">←</a>
-    </div>
 </nav>
 
 <div class="page-container">

@@ -56,11 +56,14 @@
         WHERE post_id = #{postId}
     </update>
 
+    <!-- 하트 기록 삭제 -->
+    <delete id="deleteHeartsByPostId" parameterType="int">
+        DELETE FROM tb_comu_heart WHERE post_id = #{postId}
+    </delete>
+
     <!-- 게시글 삭제 -->
     <delete id="deletePost" parameterType="int">
-        DELETE
-        FROM tb_comu_post
-        WHERE post_id = #{postId}
+        DELETE FROM tb_comu_post WHERE post_id = #{postId}
     </delete>
 
     <!-- 게시글에 딸린 신고 기록 삭제 -->
@@ -79,4 +82,39 @@
         ORDER BY h.post_id DESC
     </select>
 
+    <!-- 내 게시글 조회 -->
+    <select id="selectMyPosts" parameterType="string" resultType="com.project.travelquest.comu.vo.ComuVO">
+        SELECT p.*
+        FROM tb_comu_post p
+                 JOIN tb_user u ON p.writer = u.user_name
+        WHERE u.user_id = #{userId}
+        ORDER BY p.post_id DESC
+    </select>
+
+    <select id="getPostListWithAvatars" resultType="com.project.travelquest.comu.vo.ComuVO">
+        SELECT
+            p.post_id,
+            p.content,
+            p.writer,
+            p.created_at,
+            p.heart_count,
+            p.write_count,
+            p.report_count,
+            hats.avatar_item_path AS hatsPath,
+            tops.avatar_item_path AS topsPath,
+            bottoms.avatar_item_path AS bottomsPath,
+            hands.avatar_item_path AS handsPath,
+            skins.avatar_item_path AS skinsPath,
+            line.avatar_item_path AS linePath
+        FROM tb_comu_post p
+                 JOIN tb_user u ON p.writer = u.user_name
+                 LEFT JOIN tb_avatar_preset preset ON u.user_id = preset.user_id
+                 LEFT JOIN tb_avatar hats ON preset.avatar_hats = hats.avatar_item_id
+                 LEFT JOIN tb_avatar tops ON preset.avatar_tops = tops.avatar_item_id
+                 LEFT JOIN tb_avatar bottoms ON preset.avatar_bottoms = bottoms.avatar_item_id
+                 LEFT JOIN tb_avatar hands ON preset.avatar_hands = hands.avatar_item_id
+                 LEFT JOIN tb_avatar skins ON preset.avatar_skins = skins.avatar_item_id
+                 LEFT JOIN tb_avatar line ON preset.avatar_line = line.avatar_item_id
+        ORDER BY p.created_at DESC
+    </select>
 </mapper>

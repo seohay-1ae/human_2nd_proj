@@ -2,6 +2,7 @@ package com.project.travelquest.comu.controller;
 
 import com.project.travelquest.admin.service.NoticeService;
 import com.project.travelquest.admin.vo.NoticeVO;
+import com.project.travelquest.avatar.service.MyAvatarService;
 import com.project.travelquest.comu.service.ComuService;
 import com.project.travelquest.comu.service.ComuCommentService;
 import com.project.travelquest.comu.vo.ComuVO;
@@ -30,30 +31,44 @@ public class ComuController {
     @Autowired
     private ComuCommentService comuCommentService;
 
+    @Autowired
+    private MyAvatarService myAvatarService; // 아바타 서비스 주입
+
     // 커뮤니티 목록 페이지 (글 목록 + 각 글의 댓글 포함)
     @GetMapping("/community")
     public String showCommunityPage(Model model, HttpSession session) {
-        // 로그인 유저 가져오기
         UserVO loginUser = (UserVO) session.getAttribute("loginUser");
         String userId = (loginUser != null) ? String.valueOf(loginUser.getUser_id()) : "guest";
 
-        List<ComuVO> postList = comuService.getPostList();
+        // 🟢 아바타 정보까지 포함된 게시글 목록 조회
+        List<ComuVO> postList = comuService.getPostListWithAvatars();
 
         for (ComuVO post : postList) {
             int postId = post.getPostId();
 
-            // 해당 게시글의 댓글
+            // 댓글 설정
             List<ComuCommentVO> comments = comuCommentService.getCommentListByPostId(postId);
             post.setComments(comments);
 
-            // 하트를 눌렀는지 여부 설정
+            // 좋아요 상태 설정
             boolean liked = comuService.isPostLikedByUser(postId, userId);
             post.setLikedByUser(liked);
         }
 
+        // 게시글 목록에 각 게시글 작성자의 아바타가 이미 포함됨
         model.addAttribute("posts", postList);
+
+        // 로그인한 사용자의 아바타는 별도 avatarPaths로 제공 (자기 글에만 필요하면 뷰에서 분기처리)
+        if (loginUser != null) {
+            Map<String, String> myAvatarPaths = myAvatarService.getAvatarPathsByEmail(loginUser.getUser_email());
+            model.addAttribute("avatarPaths", myAvatarPaths);
+            model.addAttribute("loginUser", loginUser);
+        }
+
         return "community/board";
     }
+
+
 
     // 글쓰기 폼
     @GetMapping("/community/write")
@@ -143,5 +158,23 @@ public class ComuController {
         List<ComuVO> heartList = comuService.selectMyHeartPosts(userId);
         model.addAttribute("heartList", heartList);
         return "mypage/likedPost";
+    }
+
+    @GetMapping("/myPost")
+    public String myPost(HttpSession session, Model model) {
+        UserVO loginUser = (UserVO) session.getAttribute("loginUser");
+        if (loginUser == null) {
+            // 로그인 안 돼 있으면 로그인 페이지로 리다이렉트
+            return "redirect:/user/login";
+        }
+
+        String userId = loginUser.getUser_id().toString();
+
+        // 🔁 내가 작성한 게시글 리스트 가져오기
+        List<ComuVO> myPostList = comuService.selectMyPosts(userId);
+
+        model.addAttribute("myPostList", myPostList);
+
+        return "mypage/myPost"; // 보여줄 JSP 경로
     }
 }

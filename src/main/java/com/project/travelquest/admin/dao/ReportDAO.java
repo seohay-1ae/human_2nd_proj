@@ -14,6 +14,7 @@ public interface ReportDAO {
 
     int isAlreadyReported(@Param("postId") int postId, @Param("reporterId") String reporterId);
 
+    void deleteReportsByPostId(int postId);
 
     List<ReportVO> getReportList();
 

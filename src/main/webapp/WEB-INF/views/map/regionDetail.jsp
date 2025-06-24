@@ -49,9 +49,6 @@
 </head>
 <body>
 <nav class="top-nav">
-    <div class="back-button">
-        <a href="/">← </a>
-    </div>
     <div class="title">
         ${regionKr} 지도
     </div>

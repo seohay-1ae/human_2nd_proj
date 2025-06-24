@@ -2,8 +2,10 @@ package com.project.travelquest.avatar.service;
 
 import com.project.travelquest.avatar.mapper.AvatarMapper;
 import com.project.travelquest.avatar.vo.AvatarPresetVO;
+import com.project.travelquest.comu.vo.ComuVO;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -35,5 +37,10 @@ public class MyAvatarService {
 
 
         avatarMapper.insertOrUpdateAvatarPreset(preset);
+
+    }
+
+    public List<ComuVO> getAvatarPathsByUserName(String userName) {
+        return avatarMapper.getAvatarPathsByUserName(userName);
     }
 }

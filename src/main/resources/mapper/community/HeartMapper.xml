@@ -33,5 +33,9 @@
         WHERE post_id = #{postId}
     </select>
 
+    <!--좋아요 삭제-->
+    <delete id="deleteByPostId" parameterType="int">
+        DELETE FROM tb_comu_heart WHERE post_id = #{postId}
+    </delete>
 
 </mapper>

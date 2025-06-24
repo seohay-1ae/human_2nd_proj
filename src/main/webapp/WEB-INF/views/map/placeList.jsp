@@ -92,9 +92,6 @@
 </head>
 <body>
 <nav class="top-nav">
-    <div class="back-button">
-        <a href="/region/${region}">← </a>
-    </div>
     <div class="title">
         ${regionKr} ${subregionKr} 관광지 리스트
     </div>

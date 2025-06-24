@@ -23,7 +23,7 @@
         .post-header {
             display: flex;
             align-items: center;
-            gap: 10px; /* 작성자와 시간 사이 간격 */
+            gap: 7px; /* 작성자와 시간 사이 간격 */
         }
 
         .banner {
@@ -31,6 +31,7 @@
             bottom: 55px;
             width: 420px;
             text-align: center;
+            z-index: 1000; /* 충분히 큰 값으로 설정 */
         }
 
         .top-link {
@@ -58,6 +59,58 @@
             margin-bottom: 10px;
             border-radius: 10px;
             padding: 10px;
+        }
+
+        .my-avatar {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 2px solid #ccc;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            position: relative;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+
+        .my-avatar img.layer {
+            position: absolute;
+            top: 4px;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+        }
+
+        .hands {
+            z-index: 10;
+        }
+
+        .skins {
+            z-index: 20;
+        }
+
+        .line {
+            z-index: 30;
+        }
+
+        .bottoms {
+            z-index: 40;
+        }
+
+        .tops {
+            z-index: 50;
+        }
+
+        .hats {
+            z-index: 70;
         }
     </style>
 </head>
@@ -89,9 +142,24 @@
                 <c:forEach var="post" items="${posts}">
                     <div class="post">
                         <div class="post-header">
+                            <div class="my-avatar"
+                                 data-hats="${pageContext.request.contextPath}/${post.hatsPath}"
+                                 data-tops="${pageContext.request.contextPath}/${post.topsPath}"
+                                 data-bottoms="${pageContext.request.contextPath}/${post.bottomsPath}"
+                                 data-hands="${pageContext.request.contextPath}/${post.handsPath}"
+                                 data-skins="${pageContext.request.contextPath}/${post.skinsPath}"
+                                 data-line="${pageContext.request.contextPath}/${post.linePath}">
+                                <img src="${pageContext.request.contextPath}/${post.hatsPath}" class="layer hats"/>
+                                <img src="${pageContext.request.contextPath}/${post.topsPath}" class="layer tops"/>
+                                <img src="${pageContext.request.contextPath}/${post.bottomsPath}" class="layer bottoms"/>
+                                <img src="${pageContext.request.contextPath}/${post.handsPath}" class="layer hands"/>
+                                <img src="${pageContext.request.contextPath}/${post.skinsPath}" class="layer skins"/>
+                                <img src="${pageContext.request.contextPath}/${post.linePath}" class="layer line"/>
+                            </div>
+
                             <span class="writer" style="color: blue">${post.writer}</span>
                             <span class="time" style="color: black"><fmt:formatDate value="${post.createdAt}"
-                                                                                    pattern="yyyy-MM-dd HH:mm"/></span>
+                                                                                    pattern="yy-MM-dd HH:mm"/></span>
                             <button class="reportBtn" data-postid="${post.postId}">⚠️ 신고</button>
                         </div>
                         <div class="post-content">
@@ -130,6 +198,8 @@
 </div>
 
 <jsp:include page="/WEB-INF/views/common/bottomNav.jsp"/>
+
+
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
@@ -195,10 +265,54 @@
             });
         });
     });
+    // 모달 닫기 함수
+    function closeAvatarModal() {
+        document.getElementById("avatarModal").style.display = "none";
+    }
 
+    // 모달 열기 및 이미지 설정
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll(".my-avatar").forEach(avatar => {
+            avatar.addEventListener("click", function () {
+                const hats = this.dataset.hats;
+                const tops = this.dataset.tops;
+                const bottoms = this.dataset.bottoms;
+                const hands = this.dataset.hands;
+                const skins = this.dataset.skins;
+                const line = this.dataset.line;
+
+                document.getElementById("modal-hats").src = hats;
+                document.getElementById("modal-tops").src = tops;
+                document.getElementById("modal-bottoms").src = bottoms;
+                document.getElementById("modal-hands").src = hands;
+                document.getElementById("modal-skins").src = skins;
+                document.getElementById("modal-line").src = line;
+
+                document.getElementById("avatarModal").style.display = "flex";
+            });
+        });
+    });
 
 </script>
-
-
+<!-- 아바타 모달 -->
+<div id="avatarModal" style="display: none; position: fixed; top: 0; left: 0;
+     width: 100vw; height: 100vh; background: rgba(0, 0, 0, 0.6);
+     z-index: 9999; justify-content: center; align-items: center;">
+    <div style="position: relative; width: 300px; height: 400px; background: white;
+         border-radius: 10px; padding: 20px; display: flex; justify-content: center; align-items: center;">
+        <div class="avatar-layers" style="width: 100px; height: 100px; position: relative;">
+            <img id="modal-hats" class="layer hats" style="width: 100%; height: 100%; position: absolute;">
+            <img id="modal-tops" class="layer tops" style="width: 100%; height: 100%; position: absolute;">
+            <img id="modal-bottoms" class="layer bottoms" style="width: 100%; height: 100%; position: absolute;">
+            <img id="modal-hands" class="layer hands" style="width: 100%; height: 100%; position: absolute;">
+            <img id="modal-skins" class="layer skins" style="width: 100%; height: 100%; position: absolute;">
+            <img id="modal-line" class="layer line" style="width: 100%; height: 100%; position: absolute;">
+        </div>
+        <button onclick="closeAvatarModal()"
+                style="position: absolute; top: 0px; right: -7px; color: white; background: transparent; border: none; font-size: 18px; cursor: pointer;">
+            ❌
+        </button>
+    </div>
+</div>
 </body>
 </html>

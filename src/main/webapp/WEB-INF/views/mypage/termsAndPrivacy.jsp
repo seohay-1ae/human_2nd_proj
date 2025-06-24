@@ -21,9 +21,6 @@
 
 <body>
 <nav class="top-nav">
-    <div class="back-button">
-        <a href="/mypage">← </a>
-    </div>
     <div class="title">
         약관 및 정책
     </div>
