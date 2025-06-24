@@ -13,7 +13,9 @@ html, body {
     height: 100dvh; /* 또는 100% if no mobile */
     font-family: 'Noto Sans KR', sans-serif;
 }
-
+.banner{
+    bottom:60px;
+}
 /* Layout */
 .page-container {
     display: flex;
