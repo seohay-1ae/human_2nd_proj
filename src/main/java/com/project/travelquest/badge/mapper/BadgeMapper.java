@@ -1,6 +1,7 @@
 package com.project.travelquest.badge.mapper;
 
 import com.project.travelquest.badge.model.BadgeDTO;
+import com.project.travelquest.map.model.Location;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 

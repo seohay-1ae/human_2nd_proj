@@ -7,111 +7,202 @@
     <title>마이페이지</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <!--아이콘 cnd 연결-->
     <style>
         .profile_button {
-            font-size: 10px;
-            padding: 0.3rem 0.5rem;
+            font-size: 12px;
+            padding: 6px 10px;
             background-color: lightgrey;
             color: black;
-            margin-right: 3px;
-
-        }
-        .menu-list li{
+            margin-left: 5px;
+            border: none;
+            border-radius: 4px;
             cursor: pointer;
+        }
+
+        .menu-list li {
+            cursor: pointer;
+        }
+
+        .my-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 2px solid #ccc;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            position: relative;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+
+        .my-avatar img.layer {
+            position: absolute;
+            top: 4px;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+        }
+
+        .hands {
+            z-index: 10;
+        }
+
+        .skins {
+            z-index: 20;
+        }
+
+        .line {
+            z-index: 30;
+        }
+
+        .bottoms {
+            z-index: 40;
+        }
+
+        .tops {
+            z-index: 50;
+        }
+
+        .hats {
+            z-index: 70;
+        }
+
+        .profile-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .profile-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .user-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .user-text .name {
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .user-text .email {
+            font-size: 14px;
+            color: gray;
+        }
+
+        .menu-list {
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+            margin: 10px 0;
+        }
+
+        .menu-list li i {
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+
+        .section {
+            padding: 30px 20px;
+        }
+
+        hr {
+            border: 0.8px solid #ccc;
+            margin: 0;
         }
     </style>
 </head>
 <body>
 <nav class="top-nav">
-    <div class="title">
-        마이페이지
-    </div>
+    <div class="title">마이페이지</div>
 </nav>
+
 <div class="page-container">
     <div class="page-content">
-        <%-- 이 화면 로딩하는데 필요한 파일 mypageController , UserVO <- 이 놈은 없으면 로그아웃 상태
-            또 a 태그에 경로 제대로 표시 해주고 컨트롤러에 맵핑 해주기(아직안함)-->
-        <%-- 로그인 상태에 따라 분기 --%>
         <c:choose>
 
-            <%--로그인 상태일 때 --%> <%--로그인 상태 원할시 http://localhost:18090/loginDummy 로 요청--%>
             <c:when test="${not empty sessionScope.loginUser}">
-                <div class="container">
-                        <%-- 프로필 영역 --%>
-                    <div class="profile-section"
-                         style=" display: flex; align-items: center; justify-content: space-between; padding:20px 0;">
-                        <div style="display: flex; align-items: center;">
-                            <img src="/avatars/line.png" alt="프로필"
-                                 style="width: 60px; height: 60px; border-radius: 50%; margin-right: 15px;">
-                            <div>
-                                <div style="font-weight: bold; font-size: 16px;">
-                                        ${loginUser.user_name}
-                                </div>
-                                <div style="font-size: 14px; color: gray;">
-                                        ${loginUser.user_email}
-                                </div>
-                            </div>
+
+                <div class="profile-section">
+                    <div class="profile-info">
+                        <div class="my-avatar">
+                            <img src="${pageContext.request.contextPath}/${avatarPaths.HATS_PATH}" alt="모자"
+                                 class="layer hats"/>
+                            <img src="${pageContext.request.contextPath}/${avatarPaths.TOPS_PATH}" alt="상의"
+                                 class="layer tops"/>
+                            <img src="${pageContext.request.contextPath}/${avatarPaths.BOTTOMS_PATH}" alt="하의"
+                                 class="layer bottoms"/>
+                            <img src="${pageContext.request.contextPath}/${avatarPaths.HANDS_PATH}" alt="손"
+                                 class="layer hands"/>
+                            <img src="${pageContext.request.contextPath}/${avatarPaths.SKINS_PATH}" alt="피부"
+                                 class="layer skins"/>
+                            <img src="${pageContext.request.contextPath}/${avatarPaths.LINE_PATH}" alt="외곽선"
+                                 class="layer line"/>
                         </div>
-
-                        <div>
-                            <button class="profile_button">프로필 편집</button>
-                            <button class="profile_button" onclick="location.href='/logout'">로그아웃</button>
-
-                            <i class="bi bi-gear-fill"></i>
+                        <div class="user-text">
+                            <span class="name">${loginUser.user_name}</span>
+                            <span class="email">${loginUser.user_email}</span>
                         </div>
                     </div>
+                    <div>
+                        <button class="profile_button" onclick="location.href='/introduction'">소개글 설정</button>
+                        <button class="profile_button" onclick="location.href='/logout'">로그아웃</button>
+                    </div>
                 </div>
-                <hr style="border: 0.8px solid #ccc;"/>
 
-                <div class="container">
-                        <%-- 아이콘 메뉴 --%>
-                    <ul class="menu-list"
-                        style="display: flex; justify-content: space-around; text-align: center; padding:40px 0;">
-                        <li>
-                            <i class="fa-regular fa-bookmark" style="font-size: 24px; margin-bottom: 5px;"></i>
-                            <div>관심지역</div>
-                        </li>
+                <hr/>
+
+
+                <div class="section">
+                    <ul class="menu-list">
                         <li onclick="location.href='/myavatar'">
-                            <i class="fa-regular fa-user" style="font-size: 24px; margin-bottom: 5px;"></i>
-                            <div>내 캐릭터</div>
+                            <i class="fa-regular fa-user"></i>
+                            <div>내 아바타</div>
                         </li>
-                        <li>
-                            <i class="fa-regular fa-pen-to-square" style="font-size: 24px; margin-bottom: 5px;"></i>
+                        <li onclick="location.href='/myPost'">
+                            <i class="fa-regular fa-pen-to-square"></i>
                             <div>내가 쓴 글</div>
                         </li>
-                        <li>
-                            <i class="fa-regular fa-heart" style="font-size: 24px; margin-bottom: 5px;"></i>
+                        <li onclick="location.href='/likedPost'">
+                            <i class="fa-regular fa-heart"></i>
                             <div>관심 글</div>
                         </li>
                     </ul>
                 </div>
-                <hr style="border: 0.8px solid #ccc;"/>
 
-                <div class="container">
-                        <%-- 문의 및 알림 --%>
-                    <div style="padding-top: 30px;">
-                        <h3 style="margin-bottom: 10px;">문의 및 알림</h3>
-                        <ul style="line-height: 2;">
-                            <li><a href="/customerCenter">고객 센터</a></li>
-                            <li><a href="/termsAndPrivacy">약관 및 정책</a></li>
-                        </ul>
-                    </div>
+                <hr/>
+
+
+                <div class="section">
+                    <h3 style="margin-bottom: 10px;">문의 및 알림</h3>
+                    <ul style="line-height: 2;">
+                        <li><a href="/customerCenter">고객 센터</a></li>
+                        <li><a href="/termsAndPrivacy">약관 및 정책</a></li>
+                    </ul>
                 </div>
             </c:when>
 
-            <%-- ❗ 비회원 상태일 때 --%>
             <c:otherwise>
                 <script>
                     location.href = '${pageContext.request.contextPath}/loginSelect';
                 </script>
             </c:otherwise>
-
         </c:choose>
     </div>
 </div>
 
-<%-- 하단 네비게이션 --%>
 <jsp:include page="/WEB-INF/views/common/bottomNav.jsp"/>
 </body>
 </html>

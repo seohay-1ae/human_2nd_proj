@@ -1,7 +1,7 @@
 package com.project.travelquest.user.controller;
 
 import com.project.travelquest.user.dto.EmailCheckResponse;
-import com.project.travelquest.user.service.SUserService;
+import com.project.travelquest.user.service.UserService;
 import com.project.travelquest.user.vo.UserVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,13 +13,13 @@ public class SignUpController {
 
     //UserService 호출(DB에 저장하기 위해)
     @Autowired
-    SUserService sUserService;
+    UserService UserService;
 
     // 이메일 중복 확인용 Api
     @GetMapping("/check-email")
     @ResponseBody
     public EmailCheckResponse checkEmail(@RequestParam("user_email") String user_email) {
-        boolean exists = sUserService.existsByEmail(user_email);
+        boolean exists = UserService.existsByEmail(user_email);
         return new EmailCheckResponse(exists);
     }
 
@@ -34,7 +34,7 @@ public class SignUpController {
     public String processSignUp(@ModelAttribute UserVO user, Model model) {
 
         // 모든 회원가입 처리 로직을 UserService에 위임
-        String errorMessage = sUserService.validateAndSaveUser(user);
+        String errorMessage = UserService.validateAndSaveUser(user);
         if (errorMessage != null) {
             model.addAttribute("error", errorMessage);
             return "mypage/signUp";

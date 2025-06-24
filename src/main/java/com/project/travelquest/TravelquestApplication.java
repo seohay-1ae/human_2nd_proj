@@ -11,7 +11,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
         "com.project.travelquest.openapi.mapper",
         "com.project.travelquest.review.mapper",
         "com.project.travelquest.user.dao",
-        "com.project.travelquest.admin.dao"})
+        "com.project.travelquest.admin.dao",
+        "com.project.travelquest.comu.dao"
+})
 public class TravelquestApplication {
 
     public static void main(String[] args) {

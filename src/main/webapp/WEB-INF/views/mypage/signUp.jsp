@@ -51,8 +51,8 @@
                     <label for="user_name">이름</label><br />
                     <input type="text" id="user_name" name="user_name" maxlength=4 required/><br />
 
-                    <label for="phone_number">휴대폰 번호</label><br />
-                    <input type="text" id="phone_number" name="phone_number" maxlength=11 required/>
+                    <label for="user_phone_num">휴대폰 번호</label><br />
+                    <input type="text" id="user_phone_num" name="user_phone_num" maxlength=11 required/>
                     <button type="button" onclick="sendCertNumber()">인증번호 받기</button>
                     <br/>
 

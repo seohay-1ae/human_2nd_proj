@@ -17,8 +17,8 @@ window.onload = function () {
                 map: map,
                 title: "내 위치",
                 image: new kakao.maps.MarkerImage(
-                    'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png',
-                    new kakao.maps.Size(24, 35)
+                    'catIcon/cat3.png',
+                    new kakao.maps.Size(75, 75)
                 )
             });
 

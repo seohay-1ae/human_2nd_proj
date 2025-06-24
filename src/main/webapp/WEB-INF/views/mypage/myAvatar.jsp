@@ -19,8 +19,8 @@
             justify-content: center;
             align-items: center;
             position: relative;
-            height: 250px;
             background-color: #fff;
+            MARGIN-TOP: 35PX;
         }
 
         .my-character {
@@ -35,6 +35,10 @@
             left: 0;
             width: 100%;
             height: 100%;
+        }
+        .point-box{
+            margin-left: 20px;
+            margin-bottom: 30px;
         }
     </style>
 </head>
@@ -71,7 +75,7 @@
                 <img src="${pageContext.request.contextPath}/${avatarPaths.LINE_PATH}" alt="외곽선" class="layer line"/>
             </div>
         </div>
-        <div class="point-box">현재 보유 포인트<br>120p</div>
+        <div class="point-box">현재 보유 포인트:&nbsp;&nbsp; <span>120p</span></div>
 
 
         <div class="container">
@@ -85,7 +89,7 @@
 
             <div class="item-grid">
             </div>
-            <button class="buy-button">구입하기</button>
+            <button class="buy-button" style="margin-top: 10px;">구입하기</button>
             <button class="save-button">저장하기</button>
         </div>
     </div>

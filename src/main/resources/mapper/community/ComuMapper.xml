@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.project.travelquest.comu.dao.ComuDAO">
+
+    <resultMap id="comuPostMap" type="com.project.travelquest.comu.vo.ComuVO">
+        <result property="postId" column="post_id"/>
+        <result property="content" column="content"/>
+        <result property="writer" column="writer"/>
+        <result property="createdAt" column="created_at"/>
+        <result property="heartCount" column="heart_count"/>
+        <result property="writeCount" column="write_count"/>
+        <result property="reportCount" column="report_count"/>
+        
+    </resultMap>
+
+    <!-- 게시글 전체 리스트 -->
+    <select id="getPostList" resultMap="comuPostMap">
+        SELECT * FROM tb_comu_post ORDER BY post_id DESC
+    </select>
+
+    <!-- 게시글 상세 조회 -->
+    <select id="getPostDetail" parameterType="int" resultMap="comuPostMap">
+        SELECT * FROM tb_comu_post WHERE post_id = #{id}
+    </select>
+
+    <!-- 게시글 등록 -->
+    <insert id="insertPost" parameterType="com.project.travelquest.comu.vo.ComuVO">
+        INSERT INTO tb_comu_post (post_id, content, writer, created_at)
+        VALUES (seq_comu_post.NEXTVAL, #{content}, #{writer}, SYSDATE)
+    </insert>
+
+    <!-- 좋아요 수 증가 -->
+    <update id="increaseHeartCount" parameterType="int">
+        UPDATE tb_comu_post
+        SET heart_count = heart_count + 1
+        WHERE post_id = #{postId}
+    </update>
+
+    <!-- 좋아요 수 감소 -->
+    <update id="decreaseHeartCount" parameterType="int">
+        UPDATE tb_comu_post
+        SET heart_count = heart_count - 1
+        WHERE post_id = #{postId}
+    </update>
+
+    <update id="increaseReportCount" parameterType="int">
+        UPDATE tb_comu_post
+        SET report_count = report_count + 1
+        WHERE post_id = #{postId}
+    </update>
+
+    <!-- 게시글 삭제 -->
+    <delete id="deletePost" parameterType="int">
+        DELETE FROM tb_comu_post WHERE post_id = #{postId}
+    </delete>
+
+    <!-- 게시글에 딸린 신고 기록 삭제 -->
+    <delete id="deleteReportsByPostId" parameterType="int">
+        DELETE FROM tb_comu_report WHERE post_id = #{postId}
+    </delete>
+
+</mapper>

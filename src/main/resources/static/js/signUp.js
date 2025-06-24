@@ -42,7 +42,7 @@
 
         // 인증번호 받기
             function sendCertNumber() {
-                const phoneInput = document.forms["signUpForm"]["phone_number"];
+                const phoneInput = document.forms["signUpForm"]["user_phone_num"];
                 const phone = phoneInput.value.trim();
 
                 // 기본 유효셩 검사

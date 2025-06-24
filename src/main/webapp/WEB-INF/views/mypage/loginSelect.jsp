@@ -23,16 +23,16 @@
         <div class="login-select-wrapper">
             <div class="basic-character">
                 <img src="/avatars/line.png" alt="프로필"
-                     style="width: 60px; height: 60px; border-radius: 50%; margin-right: 15px;">
+                     style="width: 200px; height: 200px; border-radius: 50%; margin-top: 15px;">
             </div>
 
             <div class="login-select-buttons">
                 <form action="${contextPath}/login" method="get">
-                    <button type="submit" class="login-button">로그인 하기</button>
+                    <button type="submit" class="login-button" style="width:140px;">로그인 하기</button>
                 </form>
 
                 <form action="${contextPath}/signUp" method="get">
-                    <button type="submit" class="join-button">이메일 가입하기</button>
+                    <button type="submit" class="join-button" style="width:140px;">이메일 가입하기</button>
                 </form>
             </div>
         </div>

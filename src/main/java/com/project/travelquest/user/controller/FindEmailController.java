@@ -1,6 +1,6 @@
 package com.project.travelquest.user.controller;
 
-import com.project.travelquest.user.service.SUserService;
+import com.project.travelquest.user.service.UserService;
 import com.project.travelquest.user.vo.UserVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,12 +12,12 @@ public class FindEmailController {
 
     //UserService 호출(DB에 저장하기 위해)(DB에 저장된 정보를 불러오기 위해)
     @Autowired
-    SUserService sUserService;
+    UserService UserService;
 
     @GetMapping("/user/user_name")
     @ResponseBody
     public UserVO getUserInfoByUsername(@RequestParam String user_name) {
-        return sUserService.getUserByUsername(user_name);
+        return UserService.getUserByUsername(user_name);
     }
 
     //이메일 찾기 폼 페이지
@@ -30,7 +30,7 @@ public class FindEmailController {
     @PostMapping("/findEmail")
     public String processFindEmail(@ModelAttribute UserVO user, Model model) {
         String user_name = user.getUser_name(); // 입력값에서 이름 가져오기
-        UserVO foundUser = sUserService.getUserByUsername(user_name);
+        UserVO foundUser = UserService.getUserByUsername(user_name);
 
         if (foundUser != null) {
             model.addAttribute("user_email", foundUser.getUser_email());
