@@ -110,6 +110,15 @@ p {
 span {
     color:#1E4CD1;
 }
+.top-link {
+    margin: 20px 0;
+}
+
+.top-link a {
+    font-size: 18px;
+    font-weight: 600;
+    margin-right: 15px; /* 원하는 간격 설정 */
+}
 /* 공통 버튼 스타일 */
 button {
     display: inline-block;

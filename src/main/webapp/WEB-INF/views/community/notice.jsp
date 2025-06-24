@@ -10,7 +10,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>공지사항</title>
 
-
     <!-- 공통 및 페이지별 CSS -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css"/>
 
