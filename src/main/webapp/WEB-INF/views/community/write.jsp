@@ -5,44 +5,48 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>제목</title>
+  <title>글쓰기</title>
 
   <!-- 공통 및 페이지별 CSS -->
   <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css"/>
   <link rel="stylesheet" href="${pageContext.request.contextPath}/css/각 페이지에서만 쓰이는 css(만들것).css"/>
   <style>
-            .top-nav {
-                position: fixed;
-                top: 0;
-                width: 100%;
-                height: 60px;
-                background: #fff;
-                border-bottom: 1px solid #ccc;
-                display: flex;
-                justify-content: space-around;
-                align-items: center;
-                z-index: 999;
-            }
-
-            .logo {
-                width: 50%;
-            }
-
-            .koreaMap {
-                width: 80%;
-                margin: 10px auto 0 auto;
-                padding:0;
-            }
+      .writer-label{
+          margin: 10px 0;
+          font-size: 20px;  /* 원하는 텍스트 크기 설정 */
+          font-weight: 600;
+      }
+      textarea {
+          width: 380px;
+          height: 300px;
+          margin-bottom: 10px;
+          resize: none;
+          overflow: auto;
+          padding:10px;
+          font-size: 17px;  /* 원하는 텍스트 크기 설정 */
+          font-weight: 600;
+      }
 
    </style>
 </head>
 
 <body>
-  <nav class="top-nav">
-      <div class="logo">
-          <img src="${pageContext.request.contextPath}/logo.png" alt="logo"/>
-      </div>
-  </nav>
+<!-- 상단 네비게이션 -->
+<nav class="top-nav">
+    <!-- 뒤로가기 넣을 때 -->
+    <div class="back-button">
+        <a href="/community">← </a>
+    </div>
+    <!-- 뒤로가기 넣을 때 -->
+
+    <!-- 타이틀 넣을 때 -->
+    <div class="title">
+        글 쓰기
+    </div>
+    <!-- 타이틀 넣을 때 -->
+
+</nav>
+<!-- 상단 네비게이션 -->
   <div class="page-container">
     <div class="page-content">
       <div class="container">

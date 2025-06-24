@@ -48,14 +48,17 @@
         }
 
         .form-input {
-            width: 370px;
-            height: 23px;
+            width: 380px;
+            height: 25px;
             margin-bottom: 10px;
             box-sizing: border-box; /* padding 포함한 크기 계산 */
+            padding:10px;
+            font-size: 12px;  /* 원하는 텍스트 크기 설정 */
+            font-weight: 400;
         }
 
         #map {
-            width: 370px;
+            width: 380px;
             height: 300px;
             margin-bottom: 15px;
         }
@@ -63,7 +66,7 @@
         .file-and-button {
             display: flex;
             align-items: center;
-            width: 370px;
+            width: 378px;
             margin-top: 10px;
         }
 
@@ -77,11 +80,14 @@
         }
 
         textarea {
-            width: 370px;
+            width: 380px;
             height: 80px;
             margin-bottom: 10px;
             resize: none;
             overflow: auto;
+            padding:10px;
+            font-size: 12px;  /* 원하는 텍스트 크기 설정 */
+            font-weight: 400;
         }
     </style>
 </head>
