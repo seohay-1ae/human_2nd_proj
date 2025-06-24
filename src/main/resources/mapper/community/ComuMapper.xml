@@ -100,6 +100,7 @@
             p.heart_count,
             p.write_count,
             p.report_count,
+            u.user_id AS userId,
             hats.avatar_item_path AS hatsPath,
             tops.avatar_item_path AS topsPath,
             bottoms.avatar_item_path AS bottomsPath,

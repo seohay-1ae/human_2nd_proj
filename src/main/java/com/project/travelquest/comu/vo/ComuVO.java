@@ -6,7 +6,7 @@ import java.util.List;
 
 @Data
 public class ComuVO {
-
+    private Long userId;
     private int postId;        // 게시글 ID
     private String content;    // 내용
     private String writer;     // 작성자(유저네임)

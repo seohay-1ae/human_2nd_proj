@@ -3,6 +3,8 @@ package com.project.travelquest.comu.controller;
 import com.project.travelquest.admin.service.NoticeService;
 import com.project.travelquest.admin.vo.NoticeVO;
 import com.project.travelquest.avatar.service.MyAvatarService;
+import com.project.travelquest.badge.mapper.BadgeMapper;
+import com.project.travelquest.badge.model.BadgeDTO;
 import com.project.travelquest.comu.service.ComuService;
 import com.project.travelquest.comu.service.ComuCommentService;
 import com.project.travelquest.comu.vo.ComuVO;
@@ -33,6 +35,9 @@ public class ComuController {
 
     @Autowired
     private MyAvatarService myAvatarService; // 아바타 서비스 주입
+
+    @Autowired
+    private BadgeMapper badgeMapper;
 
     // 커뮤니티 목록 페이지 (글 목록 + 각 글의 댓글 포함)
     @GetMapping("/community")
@@ -176,5 +181,12 @@ public class ComuController {
         model.addAttribute("myPostList", myPostList);
 
         return "mypage/myPost"; // 보여줄 JSP 경로
+        }
+
+        // 뱃지 정보 json으로 변환
+        @GetMapping("/community/userBadges")
+        @ResponseBody
+        public List<BadgeDTO> getUserBadges(@RequestParam Long userId) {
+            return badgeMapper.selectBadgesByUserId(userId);
     }
 }

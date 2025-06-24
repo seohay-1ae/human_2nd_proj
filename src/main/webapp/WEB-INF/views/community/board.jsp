@@ -143,6 +143,7 @@
                     <div class="post">
                         <div class="post-header">
                             <div class="my-avatar"
+                                 data-userid="${post.userId}"
                                  data-hats="${pageContext.request.contextPath}/${post.hatsPath}"
                                  data-tops="${pageContext.request.contextPath}/${post.topsPath}"
                                  data-bottoms="${pageContext.request.contextPath}/${post.bottomsPath}"
@@ -289,6 +290,32 @@
                 document.getElementById("modal-line").src = line;
 
                 document.getElementById("avatarModal").style.display = "flex";
+
+                const userId = this.dataset.userid;
+
+                fetch(`${contextPath}/community/userBadges?userId=\${userId}`)
+                    .then(res => res.json())
+                    .then(data => {
+                        const container = document.getElementById("badgeContainer");
+                        container.innerHTML = ''; // 초기화
+
+                        if (data.length === 0) {
+                            container.innerHTML = '<span style="color: #888;">획득한 뱃지가 없습니다.</span>';
+                            return;
+                        }
+
+                        data.forEach(badge => {
+                            const img = document.createElement("img");
+                            img.src = `${contextPath}/badge/\${badge.badgeIconPath}`;
+                            img.alt = badge.badgeName;
+                            img.title = badge.badgeName;
+                            img.style.width = "48px";
+                            img.style.height = "48px";
+                            img.style.borderRadius = "5px";
+                            img.style.filter = badge.userBadgeStatus === '1' ? 'none' : 'grayscale(100%)';
+                            container.appendChild(img);
+                        });
+                    });
             });
         });
     });
@@ -299,7 +326,8 @@
      width: 100vw; height: 100vh; background: rgba(0, 0, 0, 0.6);
      z-index: 9999; justify-content: center; align-items: center;">
     <div style="position: relative; width: 300px; height: 400px; background: white;
-         border-radius: 10px; padding: 20px; display: flex; justify-content: center; align-items: center;">
+     border-radius: 10px; padding: 20px;
+     display: flex; flex-direction: column; justify-content: start; align-items: center;">
         <div class="avatar-layers" style="width: 100px; height: 100px; position: relative;">
             <img id="modal-hats" class="layer hats" style="width: 100%; height: 100%; position: absolute;">
             <img id="modal-tops" class="layer tops" style="width: 100%; height: 100%; position: absolute;">
@@ -308,6 +336,8 @@
             <img id="modal-skins" class="layer skins" style="width: 100%; height: 100%; position: absolute;">
             <img id="modal-line" class="layer line" style="width: 100%; height: 100%; position: absolute;">
         </div>
+        <div id="badgeContainer"
+             style="margin-top: 10px; display: flex; gap: 5px; flex-wrap: wrap;"></div>
         <button onclick="closeAvatarModal()"
                 style="position: absolute; top: 0px; right: -7px; color: white; background: transparent; border: none; font-size: 18px; cursor: pointer;">
             ❌
