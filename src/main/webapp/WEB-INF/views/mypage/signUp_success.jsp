@@ -12,7 +12,15 @@
     <script src="/js/signUp.js"></script>
      <!-- 공통 및 페이지별 CSS -->
       <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css"/> <!-- (필수) -->
-      <link rel="stylesheet" href="${pageContext.request.contextPath}/css/<!--각 페이지에서만 쓰이는 css(만들것).css -->"/>
+
+    <style>
+        .container{
+            margin-top: 20px;
+        }
+        p{
+            margin-bottom: 10px;
+        }
+    </style>
 </head>
 <body>
       <!-- 상단 네비게이션 -->

@@ -144,6 +144,7 @@
                         <div class="post-header">
                             <div class="my-avatar"
                                  data-userid="${post.userId}"
+                                 data-writer="${post.writer}"
                                  data-hats="${pageContext.request.contextPath}/${post.hatsPath}"
                                  data-tops="${pageContext.request.contextPath}/${post.topsPath}"
                                  data-bottoms="${pageContext.request.contextPath}/${post.bottomsPath}"
@@ -152,7 +153,8 @@
                                  data-line="${pageContext.request.contextPath}/${post.linePath}">
                                 <img src="${pageContext.request.contextPath}/${post.hatsPath}" class="layer hats"/>
                                 <img src="${pageContext.request.contextPath}/${post.topsPath}" class="layer tops"/>
-                                <img src="${pageContext.request.contextPath}/${post.bottomsPath}" class="layer bottoms"/>
+                                <img src="${pageContext.request.contextPath}/${post.bottomsPath}"
+                                     class="layer bottoms"/>
                                 <img src="${pageContext.request.contextPath}/${post.handsPath}" class="layer hands"/>
                                 <img src="${pageContext.request.contextPath}/${post.skinsPath}" class="layer skins"/>
                                 <img src="${pageContext.request.contextPath}/${post.linePath}" class="layer line"/>
@@ -199,7 +201,6 @@
 </div>
 
 <jsp:include page="/WEB-INF/views/common/bottomNav.jsp"/>
-
 
 
 <script>
@@ -266,6 +267,7 @@
             });
         });
     });
+
     // 모달 닫기 함수
     function closeAvatarModal() {
         document.getElementById("avatarModal").style.display = "none";
@@ -275,6 +277,9 @@
     document.addEventListener("DOMContentLoaded", function () {
         document.querySelectorAll(".my-avatar").forEach(avatar => {
             avatar.addEventListener("click", function () {
+                const writer = this.dataset.writer;
+                document.getElementById("modal-writer").textContent = writer;
+
                 const hats = this.dataset.hats;
                 const tops = this.dataset.tops;
                 const bottoms = this.dataset.bottoms;
@@ -336,6 +341,8 @@
             <img id="modal-skins" class="layer skins" style="width: 100%; height: 100%; position: absolute;">
             <img id="modal-line" class="layer line" style="width: 100%; height: 100%; position: absolute;">
         </div>
+        <span id="modal-writer" style=" font-weight: bold;"></span>
+
         <div id="badgeContainer"
              style="margin-top: 10px; display: flex; gap: 5px; flex-wrap: wrap;"></div>
         <button onclick="closeAvatarModal()"
