@@ -134,7 +134,7 @@ window.onload = function () {
                     <span style="color: ${status === '영업중' ? '#1E4CD1' : 'red'};">${status}</span>
                     <p>휴무: ${loc.restdate || ''}</p>
                     <p>영업시간: ${loc.usetime || ''}</p>
-                    <p>contentid: ${loc.contentid || ''}</p>
+                    
                     <img src="${loc.firstimage}" alt="${loc.title}" style="width: 100%; max-width: 390px; margin: 5px auto 0 auto; max-height: 150px; object-fit: cover;" />
                 </div>
             `;

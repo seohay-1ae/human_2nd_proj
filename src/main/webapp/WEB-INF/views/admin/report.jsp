@@ -32,6 +32,7 @@
         .table-container {
             margin: 20px 0;
         }
+
         /* 말줄임표용 셀 */
         .ellipsis {
             max-width: 150px;
@@ -93,7 +94,11 @@
                     <tbody>
                     <c:forEach var="report" items="${list}">
                         <tr>
-                            <td class="ellipsis">
+                            <td class="ellipsis" onclick="openReportModal({
+                                    content: '${fn:escapeXml(report.content)}',
+                                    reportCount: '${report.reportCount}',
+                                    createdAt: '${fn:substring(report.createdAt, 0, 10)}'
+                                    })" style="cursor:pointer;">
                                 <c:choose>
                                     <c:when test="${fn:length(report.content) > 10}">
                                         ${fn:substring(report.content, 0, 10)}...
@@ -104,7 +109,7 @@
                                 </c:choose>
                             </td>
 
-                            <td class="nowrap"> <fmt:formatDate value="${report.createdAt}" pattern="yy-MM-dd"/></td>
+                            <td class="nowrap"><fmt:formatDate value="${report.createdAt}" pattern="yy-MM-dd"/></td>
                             <td>${report.reportCount}</td>
                             <td>
                                 <form action="${pageContext.request.contextPath}/admin/notice/deleteReportedPost"
@@ -119,6 +124,20 @@
                     </tbody>
                 </table>
             </div>
+            <!-- 신고 게시글 내용 모달 -->
+
+            <div id="reportModal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh;
+    background:rgba(0,0,0,0.5); justify-content:center; align-items:center; z-index:9999;">
+                <div style="background:white; padding:20px; border-radius:10px; max-width:420px; width:90%; max-height: 80vh; display: flex; flex-direction: column;">
+                    <h3>신고된 게시글 상세</h3>
+                    <div id="reportModalContent"
+                         style="white-space:pre-wrap; line-height:0.8; max-height: 60vh; overflow-y: auto; flex-grow: 1;"></div>
+                    <div style="display: flex; justify-content: flex-end; margin-top: 10px;">
+                        <button onclick="closeReportModal()">닫기</button>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>
@@ -134,6 +153,21 @@
             window.location.href = "/admin/notice?type=" + selectedType;
         });
     });
+
+    function openReportModal(data) {
+        const modalContent = `
+        <p><b>📃 게시글 내용:</b><br><br>\${data.content}</p>
+        <p><b>📅 작성일:</b> \${data.createdAt}</p>
+        <p><b>🚨 신고수:</b> \${data.reportCount}회</p>
+    `;
+        document.getElementById("reportModalContent").innerHTML = modalContent;
+        document.getElementById("reportModal").style.display = "flex";
+    }
+
+
+    function closeReportModal() {
+        document.getElementById("reportModal").style.display = "none";
+    }
 </script>
 
 </body>
