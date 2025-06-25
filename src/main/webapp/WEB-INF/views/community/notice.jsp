@@ -2,7 +2,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -10,14 +9,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>공지사항</title>
 
-    <!-- 공통 및 페이지별 CSS -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css"/>
 
     <style>
-
         .page-content {
             position: relative;
-            padding-bottom: 190px; /* 배너 높이 + 여유 공간 */
+            padding-bottom: 230px; /* 배너 높이 + 여유 공간 */
         }
 
         .banner {
@@ -25,6 +22,7 @@
             bottom: 55px;
             width: 420px;
             text-align: center;
+            z-index: 1000; /* 충분히 큰 값으로 설정 */
         }
 
         .top-link {
@@ -36,95 +34,75 @@
             font-weight: 600;
             margin-right: 15px; /* 원하는 간격 설정 */
         }
+        .notice-list { margin-top: 20px; }
 
-        table {
-            width: 100%;
-            border-collapse: collapse; /* 테두리 겹침 제거 */
-            border: 2px solid #ccc; /* 테이블 전체 테두리 */
-        }
+        .notice-card {
+            background: #f5f5f5;
+            border-radius: 10px;
+            padding: 12px 14px;
+            margin-bottom: 12px;
+            box-shadow: 0 1px 3px rgba(0,0,0,.1);
 
-        thead th {
-            background-color: #b3e9ee;
-            border: 1px solid #ccc; /* 셀 테두리 */
-            padding: 10px;
-            text-align: left;
-        }
-
-        tbody td {
-            border: 1px solid #ccc; /* 셀 테두리 */
-            padding: 10px;
-        }
-
-        tbody tr:hover {
-            background-color: #a5d3d9; /* 선택 사항: 마우스오버 효과 */
-        }
-
-        .clickable-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             cursor: pointer;
+            transition: background .15s ease;
         }
+        .notice-card:hover { background: #e9e9e9; }
+
+        .notice-title { color: black; font-weight: 600; }
+        .notice-date  { color: #666; font-size: .9rem; }
     </style>
 </head>
 
 <body>
 <!-- 상단 네비게이션 -->
 <nav class="top-nav">
-
-    <!-- 타이틀 넣을 때 -->
-    <div class="title">
-        공지사항
-    </div>
-    <!-- 타이틀 넣을 때 -->
-
+    <div class="title">공지사항</div>
 </nav>
-<!-- 상단 네비게이션 -->
+<!-- // 상단 네비게이션 -->
+
 <div class="page-container">
     <div class="page-content">
-        <div class="container"> <!-- (양옆으로 마진20 필요할 때) -->
-
+        <div class="container">
+            <!-- 상단 링크 -->
             <div class="top-link">
-                <a href="${pageContext.request.contextPath}/community/notice" style="color: #1E4CD1">공지사항</a>
+                <a href="${pageContext.request.contextPath}/community/notice" style="color:#1E4CD1">공지사항</a>
                 <a href="${pageContext.request.contextPath}/community">게시판</a>
                 <a href="${pageContext.request.contextPath}/community/registerPlace">명소신청</a>
             </div>
 
-            <table border="1" width="100%">
-                <thead>
-                <tr>
-                    <th>제목</th>
-                    <th>작성일</th>
-                </tr>
-                </thead>
-                <tbody>
+            <!-- 공지사항 목록 -->
+            <div class="notice-list">
                 <c:forEach var="notice" items="${list}">
-                    <tr class="clickable-row"
-                        data-href="${pageContext.request.contextPath}/community/notice/${notice.noticeId}">
-                        <td>${notice.title}</td>
-                        <td>
-                            <fmt:formatDate value="${notice.regDate}" pattern="yyyy-MM-dd"/>
-                        </td>
-                    </tr>
+                    <div class="notice-card clickable-row"
+                         data-href="${pageContext.request.contextPath}/community/notice/${notice.noticeId}">
+                        <span class="notice-title">${notice.title}</span>
+                        <span class="notice-date">
+        <fmt:formatDate value="${notice.regDate}" pattern="yy-MM-dd"/>
+      </span>
+                    </div>
                 </c:forEach>
-                </tbody>
-            </table>
+            </div>
         </div>
     </div>
+
+    <!-- 배너 이미지 -->
     <div class="banner">
-        <img src="${pageContext.request.contextPath}/banner.png" alt="banner"/>
+        <img src="${pageContext.request.contextPath}/banner.png" alt="banner" />
     </div>
 </div>
 
-<!-- 하단 nav바 -->
+<!-- 하단 네비게이션 -->
 <jsp:include page="/WEB-INF/views/common/bottomNav.jsp"/>
 
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const rows = document.querySelectorAll(".clickable-row");
-        rows.forEach(row => {
-            row.addEventListener("click", function () {
-                const href = this.dataset.href;
-                if (href) {
-                    window.location.href = href;
-                }
+    document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('.clickable-row').forEach(row => {
+            row.addEventListener('click', () => {
+                const href = row.dataset.href;
+                if (href) window.location.href = href;
             });
         });
     });

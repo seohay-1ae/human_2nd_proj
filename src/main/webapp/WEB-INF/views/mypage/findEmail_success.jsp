@@ -1,4 +1,3 @@
->
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -6,13 +5,15 @@
     <!-- 공통 및 페이지별 CSS -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css"/> <!-- (필수) -->
     <style>
-        .container{
+        .container {
             margin-top: 20px;
         }
-        h2{
+
+        h2 {
             margin-bottom: 10px;
         }
-        p{
+
+        p {
             margin-bottom: 10px;
         }
     </style>
@@ -34,11 +35,10 @@
             <h2>가입된 이메일</h2>
             <p>이메일: ${user_email}</p>
             <form action="${pageContext.request.contextPath}/loginSelect" method="get">
-                <button type="submit" class="findEmail_check">확인</button>
+                <button type="submit" class="findEmail_check" style="float: right;">확인</button>
             </form>
         </div>
     </div>
 </div>
-<script src="/js/signUp.js"></script>
 </body>
 </html>

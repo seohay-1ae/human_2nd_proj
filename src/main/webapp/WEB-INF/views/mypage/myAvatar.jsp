@@ -180,9 +180,9 @@
         })
         .then(res => {
             if (res.ok) {
-                alert('아바타 저장 완료!');
+                alert('아바타 저장이 완료되었습니다.');
             } else {
-                alert('저장 실패!');
+                alert('아바타 저장에 실패하였습니다.');
             }
         })
         .catch(err => {

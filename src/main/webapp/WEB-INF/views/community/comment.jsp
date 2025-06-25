@@ -101,7 +101,7 @@
                 <div class="post-header">
                     <strong>작성자:</strong> ${post.writer} <br/>
                     <strong>작성일:</strong>
-                    <fmt:formatDate value="${post.createdAt}" pattern="yyyy-MM-dd HH:mm" />
+                    <fmt:formatDate value="${post.createdAt}" pattern="yy-MM-dd HH:mm" />
                     <br/><br/>
                 </div>
                 <div class="post-body">
@@ -118,7 +118,7 @@
                         <div class="comment-header">
                             <strong>${comment.writer}</strong>
                             <span class="comment-date">
-                    <fmt:formatDate value="${comment.createdAt}" pattern="yyyy-MM-dd HH:mm"/>
+                    <fmt:formatDate value="${comment.createdAt}" pattern="yy-MM-dd HH:mm"/>
                 </span>
                         </div>
                         <div class="comment-content">

@@ -16,6 +16,6 @@ public class ComuCommentVO {
     private String writer;     // 작성자
     private String content;    // 내용
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")
     private Date createdAt;    // 작성 시간
 }

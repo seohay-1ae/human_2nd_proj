@@ -87,10 +87,10 @@ function loadReviews(contentId) {
             }
             listDiv.innerHTML = reviews.map(r => `
                 <div class="review-item" data-review-id="${r.reviewId}">
-                    <strong>${r.userName}</strong> <small>${new Date(r.createdTime).toLocaleString()}</small>
+                    <span>${r.userName}</span> <small>${new Date(r.createdTime).toLocaleString()}</small>
                     <button class="delete-btn" onclick="deleteReview(${r.reviewId}, ${contentId})" style="margin-left:10px !important; color:white !important; background-color:#FF4D69 !important; padding:3px 5px !important; float:right !important;">삭제</button>
                     <br/>
-                    <span>${r.reviewContent}</span>
+                    <strong>${r.reviewContent}</strong>
                 </div>
             `).join('');
         })

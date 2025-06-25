@@ -15,7 +15,7 @@ function sendCode() {
             alert(message);
         },
         error: function () {
-            alert("인증번호 전송 실패");
+            alert("인증번호 전송에 실패했습니다.");
         }
     });
 }
@@ -34,15 +34,15 @@ function verifyCode() {
         },
         success: function (message) {
             if (message === "인증 성공") {
-                alert("인증 성공");
+                alert("확인되었습니다.");
                 $("#resetPwSection").show();
                 $("#verifyEmail").val(email);
             } else {
-                alert("인증 실패");
+                alert("인증에 실패히였습니다. 다시 시도해주세요.");
             }
         },
         error: function () {
-            alert("서버 오류");
+            alert("서버 오류입니다. 관리자에게 문의하세요.");
         }
     });
 }

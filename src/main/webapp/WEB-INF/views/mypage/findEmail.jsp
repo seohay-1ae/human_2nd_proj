@@ -36,7 +36,7 @@
                 <input type="text" id="user_name" name="user_name" maxlength=4 required/><br/>
 
                 <label for="phone_number">휴대폰 번호</label><br/>
-                <input type="text" id="phone_number" name="phone_number" maxlength=11 required/>
+                <input type="text" placeholder=" - 없이 입력해주세요." id="phone_number" name="phone_number" maxlength=11 required/>
                 <button type="button" onclick="sendCertNumber()">인증번호 받기</button>
                 <br/>
 
@@ -45,7 +45,7 @@
                 <button type="button" onclick="verifyCertNumber()" required>인증번호 확인</button>
                 <br/>
                 <br/>
-                <button type="submit" value="다음">다음</button>
+                <button type="submit" value="다음" style="float:right;">다음</button>
             </form>
         </div>
     </div>

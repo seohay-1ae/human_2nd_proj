@@ -16,7 +16,7 @@
 
                 // 인증번호 6자리 난수 생성
                 generatedCertNumber = Math.floor(100000 + Math.random() * 900000).toString();
-                alert("인증번호: " + generatedCertNumber + "\n(프젝용 테스트)");
+                alert("인증번호: " + generatedCertNumber);
 
                 // 실제 구현 시 이곳에서 SMS API 호출
             }
@@ -32,7 +32,7 @@
                 }
 
                 if (cert === generatedCertNumber) {
-                    alert("인증이 완료되었습니다.");
+                    alert("확인되었습니다.");
                     phoneCertified = true;
                 } else {
                     alert("인증번호가 올바르지 않습니다.");
