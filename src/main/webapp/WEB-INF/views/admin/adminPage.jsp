@@ -39,11 +39,12 @@
 <!-- 상단 네비게이션 -->
 <nav class="top-nav">
 
-    <!-- 타이틀 넣을 때 -->
     <div class="title">
-        <h2>관리자 페이지</h2>
+        관리자 페이지
     </div>
-    <!-- 타이틀 넣을 때 -->
+    <div class="logout-nav">
+        <button onclick="window.location.href='/logout'">로그아웃</button>
+    </div>
 
 </nav>
 <!-- 상단 네비게이션 -->

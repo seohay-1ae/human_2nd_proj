@@ -78,8 +78,12 @@
 <!-- 상단 네비게이션 -->
 <nav class="top-nav">
     <div class="title">
-        <h2>관리자 페이지</h2>
+        관리자 페이지
     </div>
+    <div class="logout-nav">
+        <button onclick="window.location.href='/logout'">로그아웃</button>
+    </div>
+
 </nav>
 
 <div class="page-container">

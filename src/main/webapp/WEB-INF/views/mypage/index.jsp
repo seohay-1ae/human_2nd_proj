@@ -156,7 +156,15 @@
                         </div>
                     </div>
                     <div>
-                        <button class="profile_button" onclick="location.href='/introduction'">소개글</button>
+                        <c:choose>
+                            <c:when test="${loginUser.user_role == 0}">
+                                <button class="profile_button" onclick="location.href='/admin/adminPage'">관리자</button>
+                            </c:when>
+                            <c:otherwise>
+                                <button class="profile_button" onclick="location.href='/introduction'">소개글</button>
+                            </c:otherwise>
+                        </c:choose>
+
                         <button class="profile_button" onclick="location.href='/logout'">로그아웃</button>
                     </div>
                 </div>

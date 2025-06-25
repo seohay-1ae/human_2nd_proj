@@ -67,6 +67,7 @@
             margin-top: 10px;
             padding: 8px 16px;
             cursor: pointer;
+
         }
 
         .avatar {
@@ -136,7 +137,7 @@
                 <textarea class="profileText" name="profileText" rows="6" cols="50" placeholder="자기소개"><c:out
                         value="${loginUser.user_profile_text}"/></textarea>
                 <br/>
-                <button type="submit">저장하기</button>
+                <button type="submit" style="float:right;">저장하기</button>
             </form>
             <br/>
             <c:if test="${not empty message}">

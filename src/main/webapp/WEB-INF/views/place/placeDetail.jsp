@@ -90,10 +90,11 @@
     </div>
 
     <div id="tab-review" class="tab-content">
-        <form id="reviewForm" class="review-form">
+        <form id="reviewForm" class="review-form" style="margin-bottom:30px;">
             <textarea name="content" placeholder="리뷰를 작성해주세요"></textarea>
-            <button type="submit">리뷰 등록</button>
+            <button type="submit" style="float: right;">리뷰 등록</button>
         </form>
+        <br/>
         <div id="reviewList">
             <!-- 리뷰 목록이 여기에 표시됩니다 -->
         </div>

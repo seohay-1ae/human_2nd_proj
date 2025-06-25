@@ -15,7 +15,6 @@
             height: 100%;
             display: block;
         }
-
     </style>
     <!-- ✅ 카카오맵 SDK (autoload=false 설정 필수) -->
     <script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=965da81937482b91465d0c491e837eba&libraries=services&autoload=false"></script>

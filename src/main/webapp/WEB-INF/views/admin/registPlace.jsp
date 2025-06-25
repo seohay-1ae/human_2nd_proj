@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 
 <!DOCTYPE html>
@@ -88,6 +89,17 @@
         .reject:hover {
             background-color: #e53935;
         }
+
+        .ellipsis.expanded {
+            white-space: normal;
+            overflow: visible;
+            text-overflow: unset;
+            max-width: none;
+        }
+
+        #modalRowContent p {
+            margin: 0; /* 위아래 마진 최소화 */
+        }
     </style>
 </head>
 
@@ -95,11 +107,12 @@
 <!-- 상단 네비게이션 -->
 <nav class="top-nav">
 
-    <!-- 타이틀 넣을 때 -->
     <div class="title">
-        <h2>관리자 페이지</h2>
+        관리자 페이지
     </div>
-    <!-- 타이틀 넣을 때 -->
+    <div class="logout-nav">
+        <button onclick="window.location.href='/logout'">로그아웃</button>
+    </div>
 
 </nav>
 <!-- 상단 네비게이션 -->
@@ -141,7 +154,14 @@
                     </thead>
                     <tbody>
                     <c:forEach var="place" items="${list}">
-                        <tr>
+                        <tr onclick="openRowModal({
+                                title: '${place.title}',
+                                address: '${place.address}',
+                                writer: '${place.writer}',
+                                description: '${place.description}',
+                                createdAt: '${fn:substring(place.createdAt, 0, 10)}',
+                                imageUrl: '${pageContext.request.contextPath}/upload/${place.imageUrl}'
+                                })" style="cursor:pointer;">
                             <td class="ellipsis">${place.title}</td>
                             <td class="ellipsis">${place.address}</td>
                             <td class="nowrap">${place.writer}</td>
@@ -151,8 +171,9 @@
                                     <img src="${pageContext.request.contextPath}/upload/${place.imageUrl}" width="80"/>
                                 </c:if>
                             </td>
-                            <td class="nowrap"><fmt:formatDate value="${place.createdAt}" pattern="yy-MM-dd"/></td>
-
+                            <td class="nowrap">
+                                <fmt:formatDate value="${place.createdAt}" pattern="yy-MM-dd"/>
+                            </td>
                             <td class="action-buttons">
                                 <button class="approve">승인</button>
                                 <button class="reject">거절</button>
@@ -162,8 +183,23 @@
                     </tbody>
                 </table>
             </div>
+            <!-- 행 전체 정보 표시용 모달 -->
+            <!-- 모달 본문 래퍼에 flex column 적용해서 버튼 오른쪽 정렬 및 간격 확보 -->
+            <div id="rowModal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh;
+    background:rgba(0,0,0,0.5); justify-content:center; align-items:center; z-index:9999;">
+                <div style="background:white; padding:20px; border-radius:10px; max-width:420px; width:90%; max-height: 80vh; display: flex; flex-direction: column;">
+                    <h3>명소 신청 상세</h3>
+                    <div id="modalRowContent"
+                         style="white-space:pre-wrap; line-height:0.8; max-height: 60vh; overflow-y: auto; flex-grow: 1;"></div>
+                    <div style="display: flex; justify-content: flex-end; margin-top: 10px;">
+                        <button onclick="closeRowModal()">닫기</button>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
+</div>
 </div>
 
 <!-- 하단 nav바 -->
@@ -178,6 +214,28 @@
             window.location.href = "/admin/notice?type=" + selectedType;
         });
     });
+
+    function openRowModal(data) {
+        let modalContent = `
+            <p><b>🗺️ 명소명:</b> \${data.title}</p>
+            <p><b>🏠 주소:</b> \${data.address}</p>
+            <p><b>✍️ 작성자:</b> \${data.writer}</p>
+            <p><b>📃 소개글:</b><br><br><br>\${data.description}</p>
+            <p><b>🕒 신청일:</b> \${data.createdAt}</p>
+        `;
+        /* 이미지가 있는 경우 이미지도 추가*/
+        if (data.imageUrl && data.imageUrl.trim() !== '') {
+            modalContent += `<p><img src="\${data.imageUrl}" alt="이미지" style="max-width:100%; height:auto; margin-top:10px;" /></p>`;
+        }
+
+        document.getElementById("modalRowContent").innerHTML = modalContent;
+        document.getElementById("rowModal").style.display = "flex";
+    }
+
+    function closeRowModal() {
+        document.getElementById("rowModal").style.display = "none";
+    }
+
 </script>
 </body>
 </html>

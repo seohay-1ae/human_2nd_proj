@@ -50,7 +50,7 @@
 
           <textarea name="content" placeholder="지금 하고있는 생각을 쓰세요!" required></textarea>
         </form>
-        <button form="postForm" type="submit" class="post-btn">게시</button>
+        <button form="postForm" type="submit" style="float: right;" class="post-btn">등록</button>
       </div>
     </div>
  </div>

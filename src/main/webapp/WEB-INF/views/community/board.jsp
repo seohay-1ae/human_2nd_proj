@@ -17,7 +17,7 @@
     <style>
         .page-content {
             position: relative;
-            padding-bottom: 190px; /* 배너 높이 + 여유 공간 */
+            padding-bottom: 230px; /* 배너 높이 + 여유 공간 */
         }
 
         .post-header {
@@ -71,6 +71,14 @@
             position: relative;
             margin-right: 15px;
             flex-shrink: 0;
+        }
+
+        .my-avatar:hover {
+            cursor: pointer;
+            border-color: #1E4CD1; /* 파란 테두리 */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25); /* 그림자 효과 */
+            transform: translateY(-2px) scale(1.02); /* 살짝 튀어나오는 느낌 */
+            transition: all 0.25s ease;
         }
 
         .my-avatar img.layer {
@@ -188,7 +196,7 @@
 
             <div class="write-button">
                 <a href="${pageContext.request.contextPath}/community/write">
-                    <button type="button" class="write-button">
+                    <button type="button" class="write-button" style="float: right;">
                         <i class="fas fa-edit"></i> 글쓰기
                     </button>
                 </a>

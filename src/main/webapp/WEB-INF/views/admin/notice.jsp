@@ -31,6 +31,7 @@
         .table-container {
             margin: 20px 0;
         }
+
         .clickable-row {
             cursor: pointer;
         }
@@ -41,11 +42,12 @@
 <!-- 상단 네비게이션 -->
 <nav class="top-nav">
 
-    <!-- 타이틀 넣을 때 -->
     <div class="title">
-        <h2>관리자 페이지</h2>
+        관리자 페이지
     </div>
-    <!-- 타이틀 넣을 때 -->
+    <div class="logout-nav">
+        <button onclick="window.location.href='/logout'">로그아웃</button>
+    </div>
 
 </nav>
 <!-- 상단 네비게이션 -->
@@ -88,7 +90,7 @@
                             <td>
                                     ${notice.title}
                             </td>
-                            <td><fmt:formatDate value="${notice.regDate}" pattern="yyyy-MM-dd "/></td>
+                            <td><fmt:formatDate value="${notice.regDate}" pattern="yy-MM-dd HH:mm"/></td>
                             <td>
                                 <form action="${pageContext.request.contextPath}/admin/notice/deleteNotice"
                                       method="post"
@@ -103,7 +105,7 @@
                 </table>
             </div>
 
-            <button type="button" onclick="location.href='${pageContext.request.contextPath}/admin/notice/write'">
+            <button type="button" style="float:right;" onclick="location.href='${pageContext.request.contextPath}/admin/notice/write'">
                 글쓰기
             </button>
         </div>

@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -31,18 +32,30 @@
         .table-container {
             margin: 20px 0;
         }
+        /* 말줄임표용 셀 */
+        .ellipsis {
+            max-width: 150px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* 줄바꿈 방지용 셀 */
+        .nowrap {
+            white-space: nowrap;
+        }
     </style>
 </head>
 <body>
 <!-- 상단 네비게이션 -->
 <nav class="top-nav">
 
-    <!-- 타이틀 넣을 때 -->
     <div class="title">
-        <h2>관리자 페이지</h2>
+        관리자 페이지
     </div>
-    <!-- 타이틀 넣을 때 -->
-
+    <div class="logout-nav">
+        <button onclick="window.location.href='/logout'">로그아웃</button>
+    </div>
 </nav>
 <!-- 상단 네비게이션 -->
 
@@ -72,15 +85,15 @@
                     <thead>
                     <tr>
                         <th>게시글 내용</th>
-                        <th>게시글 작성일</th>
-                        <th>신고수</th>
+                        <th>작성일</th>
+                        <th class="nowrap">신고수</th>
                         <th></th>
                     </tr>
                     </thead>
                     <tbody>
                     <c:forEach var="report" items="${list}">
                         <tr>
-                            <td>
+                            <td class="ellipsis">
                                 <c:choose>
                                     <c:when test="${fn:length(report.content) > 10}">
                                         ${fn:substring(report.content, 0, 10)}...
@@ -91,7 +104,7 @@
                                 </c:choose>
                             </td>
 
-                            <td>${report.createdAt}</td>
+                            <td class="nowrap"> <fmt:formatDate value="${report.createdAt}" pattern="yy-MM-dd"/></td>
                             <td>${report.reportCount}</td>
                             <td>
                                 <form action="${pageContext.request.contextPath}/admin/notice/deleteReportedPost"

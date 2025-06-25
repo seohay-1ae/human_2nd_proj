@@ -43,7 +43,7 @@
 
             <h2 style="margin: 10px 0;">${notice.title}</h2>
             <p style="margin-bottom: 10px;"><strong>작성일:</strong> <fmt:formatDate value="${notice.regDate}"
-                                                                                  pattern="yyyy-MM-dd"/></p>
+                                                                                  pattern="yyyy-MM-dd HH:mm"/></p>
             <hr/>
             <div style="margin-top: 10px;">
                 ${notice.content}
