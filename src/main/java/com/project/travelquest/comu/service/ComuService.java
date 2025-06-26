@@ -21,4 +21,6 @@ public interface ComuService {
     List<ComuVO> selectMyPosts(String userId);
     // 🔥 아바타 포함 글 목록 조회 (추가)
     List<ComuVO> getPostListWithAvatars();
+    List<RegisterPlaceVO> selectMyRegisterPlaces(String writer);
+
 }

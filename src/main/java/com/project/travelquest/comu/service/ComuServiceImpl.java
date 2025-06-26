@@ -111,4 +111,9 @@ public class ComuServiceImpl implements ComuService {
     public List<ComuVO> getPostListWithAvatars() {
         return comuDAO.getPostListWithAvatars(); // ✅ 올바른 방식
     }
+    @Override
+    public List<RegisterPlaceVO> selectMyRegisterPlaces(String writer) {
+        return comuDAO.selectMyRegisterPlaces(writer);
+    }
+
 }

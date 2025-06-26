@@ -1,6 +1,8 @@
 package com.project.travelquest.mypage.controller;
 
 import com.project.travelquest.avatar.service.MyAvatarService;
+import com.project.travelquest.comu.service.ComuService;
+import com.project.travelquest.comu.vo.RegisterPlaceVO;
 import com.project.travelquest.user.service.UserService;
 import com.project.travelquest.user.service.VerifyService;
 import com.project.travelquest.user.vo.UserVO;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -28,6 +31,9 @@ public class MypageController {
 
     @Autowired
     VerifyService verifyService;
+
+    @Autowired
+    ComuService comuService;
 
     // 로그인하기 / 이메일로 가입하기 선택하는 페이지
     @RequestMapping("/loginSelect")
@@ -181,5 +187,21 @@ public class MypageController {
         model.addAttribute("message", "비밀번호 변경 완료");
         model.addAttribute("messageType", "resetSuccess");
         return "mypage/loginForm";
+    }
+
+    // 신청한 명소 보기
+    @RequestMapping("/myRegister")
+    public String myRegister(HttpSession session, Model model) {
+        UserVO loginUser = (UserVO) session.getAttribute("loginUser");
+        if (loginUser == null) {
+            return "redirect:/login";
+        }
+
+        // 사용자 이름 기반으로 신청한 명소 조회
+        String writer = loginUser.getUser_name(); // 또는 user_email 등
+        List<RegisterPlaceVO> myPlaces = comuService.selectMyRegisterPlaces(writer);
+
+        model.addAttribute("myPlaces", myPlaces);
+        return "mypage/myRegister";
     }
 };

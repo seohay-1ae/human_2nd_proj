@@ -178,7 +178,10 @@
                             <i class="fa-regular fa-user"></i>
                             <div>내 아바타</div>
                         </li>
-                        <li onclick="location.href='/myPost'">
+                        <li onclick="location.href='/myRegister'">
+                            <i class="fa-regular fa-flag"></i>
+                            <div>신청한 명소</div>
+                        </li><li onclick="location.href='/myPost'">
                             <i class="fa-regular fa-pen-to-square"></i>
                             <div>내가 쓴 글</div>
                         </li>

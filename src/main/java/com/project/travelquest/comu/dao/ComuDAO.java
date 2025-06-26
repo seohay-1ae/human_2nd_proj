@@ -23,4 +23,6 @@ public interface ComuDAO {
     List<ComuVO> selectMyHeartPosts(String userId);
     List<ComuVO> selectMyPosts(String userId);
     List<ComuVO> getPostListWithAvatars();
+    List<RegisterPlaceVO> selectMyRegisterPlaces(String writer);
+
 }

@@ -49,4 +49,19 @@
         ORDER BY ID DESC
     </select>
 
+    <!-- 내가 신청한 명소 조회 -->
+    <select id="selectMyRegisterPlaces" parameterType="String" resultMap="registerPlaceResultMap">
+        SELECT
+            ID,
+            TITLE,
+            WRITER,
+            ADDRESS,
+            DESCRIPTION,
+            IMAGE_URL,
+            CREATED_AT
+        FROM TB_REGISTER_PLACE
+        WHERE WRITER = #{writer}
+        ORDER BY ID DESC
+    </select>
+
 </mapper>
