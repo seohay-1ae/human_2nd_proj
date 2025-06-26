@@ -1,6 +1,7 @@
 package com.project.travelquest.admin.controller;
 
 import com.project.travelquest.admin.service.AdminUserService;
+import com.project.travelquest.comu.service.ComuService;
 import com.project.travelquest.admin.vo.AdminUserVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +16,9 @@ public class AdminController {
 
     @Autowired
     private AdminUserService adminUserService;
+
+    @Autowired
+    private ComuService comuService;
 
     //회원계정 맵핑(사용자 관리)
     @GetMapping("/adminPage")
@@ -47,6 +51,15 @@ public class AdminController {
     @GetMapping("/adminBadgePage")
     public String showAdminBadgePage() {
         return "admin/adminBadge"; // adminBadge.jsp
+    }
+
+
+    @PostMapping("/place/status")
+    @ResponseBody
+    public String updatePlaceStatus(@RequestParam int id,
+                                    @RequestParam String status) {
+        comuService.updateRegisterPlaceStatus(id, status);
+        return "OK";
     }
 
     // --- 아래부터 notice 관련 ---

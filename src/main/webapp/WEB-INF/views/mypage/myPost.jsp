@@ -57,6 +57,16 @@
             text-decoration: none;
             font-size: 0.95em;
         }
+        .likes i, .comments-link i {
+            transition: transform 0.25s ease, filter 0.25s ease;
+            cursor: pointer;
+            display: inline-block; /* transform 제대로 적용하려면 */
+        }
+
+        .likes i:hover, .comments-link i:hover {
+            transform: translateY(-2px) scale(1.1);
+            filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.25));
+        }
     </style>
 </head>
 
@@ -82,10 +92,10 @@
                     </div>
 
                     <div class="post-footer">
-                        <a href="${pageContext.request.contextPath}/community/comment?id=${post.postId}&source=my"
-                           class="comments-link">
-                            💬 ${post.writeCount}
+                        <a href="${pageContext.request.contextPath}/community/comment?id=${post.postId}&source=my" class="comments-link">
+                            <i class="fa-regular fa-comment"></i> ${post.writeCount}
                         </a>
+
                     </div>
                 </div>
             </c:forEach>

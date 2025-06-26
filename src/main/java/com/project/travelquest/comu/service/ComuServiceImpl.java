@@ -115,5 +115,8 @@ public class ComuServiceImpl implements ComuService {
     public List<RegisterPlaceVO> selectMyRegisterPlaces(String writer) {
         return comuDAO.selectMyRegisterPlaces(writer);
     }
-
+    @Override
+    public int updateRegisterPlaceStatus(int id, String status) {
+        return comuDAO.updateRegisterPlaceStatus(id, status);
+    }
 }

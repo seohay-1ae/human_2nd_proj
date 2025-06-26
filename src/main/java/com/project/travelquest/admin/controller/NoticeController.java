@@ -77,5 +77,7 @@ public class NoticeController {
         comuService.deletePostAndReports(postId);
         return "redirect:/admin/notice?type=reports";
     }
+
+
 }
 

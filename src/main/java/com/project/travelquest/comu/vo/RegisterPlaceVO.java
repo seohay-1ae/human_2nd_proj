@@ -14,4 +14,6 @@ public class RegisterPlaceVO {
     private String description;
     private String imageUrl;
     private Date createdAt;
+    private String status; // 상태: 대기 / 승인 / 거절
+
 }

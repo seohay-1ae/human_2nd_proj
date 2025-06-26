@@ -181,7 +181,7 @@
                 <a href="${pageContext.request.contextPath}/admin/adminPage" class="tab-button">사용자 관리</a>
                 <a href="${pageContext.request.contextPath}/admin/notice" class="tab-button"
                    style="color:#1E4CD1;">커뮤니티</a>
-<%--                <a href="${pageContext.request.contextPath}/admin/adminBadgePage" class="tab-button">뱃지</a>--%>
+                <%--                <a href="${pageContext.request.contextPath}/admin/adminBadgePage" class="tab-button">뱃지</a>--%>
             </div>
 
             <!-- 카테고리 선택 -->
@@ -199,7 +199,7 @@
             <!-- 명소 카드 목록 -->
             <div class="place-list">
                 <c:forEach var="place" items="${list}">
-                    <div class="place-card">
+                    <div class="place-card" data-id="${place.id}">
                         <div class="place-header">
                             <span class="place-title">${place.title}</span>
                             <span class="place-writer">${place.writer}</span>
@@ -218,9 +218,27 @@
                             </c:if>
                         </div>
                         <div class="action-buttons" onclick="event.stopPropagation();">
-                            <button class="approve">승인</button>
-                            <button class="reject">거절</button>
-                            <button class="status">처리대기중</button>
+                            <!-- 승인 버튼 -->
+                            <button class="approve"
+                                    <c:if test="${place.status eq '승인'}">disabled</c:if>>승인
+                            </button>
+
+                            <!-- 거절 버튼 -->
+                            <button class="reject"
+                                    <c:if test="${place.status eq '거절'}">disabled</c:if>>거절
+                            </button>
+                            <c:choose>
+                                <c:when test="${place.status eq '승인'}">
+                                    <button class="status done">승인됨</button>
+                                </c:when>
+                                <c:when test="${place.status eq '거절'}">
+                                    <button class="status done">거절됨</button>
+                                </c:when>
+                                <c:otherwise>
+                                    <button class="status">처리대기중</button>
+                                </c:otherwise>
+                            </c:choose>
+
                             <span class="place-date"><fmt:formatDate value="${place.createdAt}"
                                                                      pattern="yy-MM-dd"/></span>
                         </div>
@@ -243,22 +261,43 @@
         // 승인/거절 버튼 처리
         document.querySelectorAll('.approve, .reject').forEach(button => {
             button.addEventListener('click', function (e) {
-                e.stopPropagation(); // 카드 클릭 방지
+                e.stopPropagation();
 
                 const isApprove = this.classList.contains('approve');
-                alert(isApprove ? '승인되었습니다.' : '거절되었습니다.');
+                const status = isApprove ? '승인' : '거절';
 
-                const container = this.parentElement; // .action-buttons
-                const statusBtn = container.querySelector('.status');
+                const card = this.closest('.place-card');
+                const placeId = card.dataset.id;
 
-                // 상태 버튼 텍스트 및 스타일 변경
-                if (statusBtn) {
-                    statusBtn.textContent = isApprove ? '처리완료(승인)' : '처리완료(거절)';
-                    statusBtn.classList.remove('done');
-                    statusBtn.classList.add('done');
-                }
+                // 서버에 상태 업데이트 요청
+                fetch('/admin/place/status', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                    body: new URLSearchParams({id: placeId, status})
+                }).then(res => {
+                    if (res.ok) {
+                        alert(status + ' 처리되었습니다.');
+
+                        const statusBtn = card.querySelector('.status');
+                        if (statusBtn) {
+                            statusBtn.textContent = (status === '승인') ? '승인됨' : '거절됨';
+                            statusBtn.classList.add('done');
+                        }
+
+                        // 버튼 상태 갱신 (여러 번 클릭 가능하게 유지)
+                        if (status === '승인') {
+                            card.querySelector('.approve').disabled = true;
+                            card.querySelector('.reject').disabled = false;
+                        } else {
+                            card.querySelector('.approve').disabled = false;
+                            card.querySelector('.reject').disabled = true;
+                        }
+                    } else {
+                        alert('처리에 실패했습니다.');
+                    }
+                });
             });
-        });
+        })
     });
 </script>
 </body>

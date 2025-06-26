@@ -24,5 +24,6 @@ public interface ComuDAO {
     List<ComuVO> selectMyPosts(String userId);
     List<ComuVO> getPostListWithAvatars();
     List<RegisterPlaceVO> selectMyRegisterPlaces(String writer);
+    int updateRegisterPlaceStatus(@Param("id") int id, @Param("status") String status);
 
 }

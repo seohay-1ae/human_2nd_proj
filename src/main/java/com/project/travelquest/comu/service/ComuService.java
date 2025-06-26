@@ -22,5 +22,7 @@ public interface ComuService {
     // 🔥 아바타 포함 글 목록 조회 (추가)
     List<ComuVO> getPostListWithAvatars();
     List<RegisterPlaceVO> selectMyRegisterPlaces(String writer);
+    int updateRegisterPlaceStatus(int id, String status);
+
 
 }

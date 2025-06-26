@@ -66,7 +66,7 @@
             height: 55px;
             border-radius: 50%;
             overflow: hidden;
-            border: 2px solid #ccc;
+            border: 2px solid #1E4CD1;
             box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
             position: relative;
             margin-right: 15px;
@@ -75,7 +75,6 @@
 
         .my-avatar:hover {
             cursor: pointer;
-            border-color: #1E4CD1; /* 파란 테두리 */
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25); /* 그림자 효과 */
             transform: translateY(-2px) scale(1.02); /* 살짝 튀어나오는 느낌 */
             transition: all 0.25s ease;
@@ -119,6 +118,19 @@
 
         .hats {
             z-index: 70;
+        }
+        .likes i, .comments-link i {
+            transition: transform 0.25s ease, filter 0.25s ease;
+            cursor: pointer;
+            display: inline-block; /* transform 제대로 적용하려면 */
+        }
+
+        .likes i:hover, .comments-link i:hover {
+            transform: translateY(-2px) scale(1.1);
+            filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.25));
+        }
+        .likes{
+            margin-right: 10px;
         }
     </style>
 </head>
@@ -168,9 +180,9 @@
                                 <img src="${pageContext.request.contextPath}/${post.linePath}" class="layer line"/>
                             </div>
 
-                            <span class="writer" style="color: blue">${post.writer}</span>
-                            <span class="time" style="color: black"><fmt:formatDate value="${post.createdAt}"
-                                                                                    pattern="yy-MM-dd HH:mm"/></span>
+                            <span class="writer" style="color: black">${post.writer}</span>
+                            <span class="time" style="color: #919191; font-size:14px; "><fmt:formatDate value="${post.createdAt}"
+                                                                                                        pattern="yy-MM-dd HH:mm"/></span>
                             <button class="reportBtn" data-postid="${post.postId}">⚠️ 신고</button>
                         </div>
                         <div class="post-content">
@@ -185,9 +197,8 @@
                             </span>
 
                             <!-- 💬 댓글 링크 -->
-                            <a href="${pageContext.request.contextPath}/community/comment?id=${post.postId}"
-                               class="comments-link">
-                                💬 ${post.writeCount}
+                            <a href="${pageContext.request.contextPath}/community/comment?id=${post.postId}" class="comments-link">
+                                <i class="fa-regular fa-comment"></i> ${post.writeCount}
                             </a>
                         </div>
                     </div>

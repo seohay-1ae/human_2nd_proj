@@ -13,6 +13,7 @@
         <result property="description" column="DESCRIPTION"/>
         <result property="imageUrl" column="IMAGE_URL"/>
         <result property="createdAt" column="CREATED_AT"/>
+        <result property="status" column="STATUS"/>
     </resultMap>
 
     <!-- 명소 신청 등록 -->
@@ -36,18 +37,21 @@
         )
     </insert>
 
-    <select id="selectRegisterPlaceList" resultType="com.project.travelquest.comu.vo.RegisterPlaceVO">
+    <!-- 관리자용 전체 조회 -->
+    <select id="selectRegisterPlaceList" resultMap="registerPlaceResultMap">
         SELECT
-        ID,
-        TITLE,
-        WRITER,
-        ADDRESS,
-        DESCRIPTION,
-        IMAGE_URL,
-        CREATED_AT
+            ID,
+            TITLE,
+            WRITER,
+            ADDRESS,
+            DESCRIPTION,
+            IMAGE_URL,
+            CREATED_AT,
+            STATUS
         FROM TB_REGISTER_PLACE
         ORDER BY ID DESC
     </select>
+
 
     <!-- 내가 신청한 명소 조회 -->
     <select id="selectMyRegisterPlaces" parameterType="String" resultMap="registerPlaceResultMap">
@@ -58,10 +62,19 @@
             ADDRESS,
             DESCRIPTION,
             IMAGE_URL,
-            CREATED_AT
+            CREATED_AT,
+            STATUS
         FROM TB_REGISTER_PLACE
         WHERE WRITER = #{writer}
         ORDER BY ID DESC
     </select>
+
+    <!-- 승인/거절 처리용 -->
+   <update id="updateRegisterPlaceStatus">
+       UPDATE TB_REGISTER_PLACE
+       SET STATUS = #{status}
+       WHERE ID = #{id}
+   </update>
+
 
 </mapper>

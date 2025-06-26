@@ -13,8 +13,8 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css"/>
 
     <style>
-        .page-container {
-            padding: 20px;
+        .container{
+            margin-top: 20px;
         }
 
         .place-list {
@@ -119,6 +119,19 @@
                                 </div>
                                 <div class="place-date">
                                     <fmt:formatDate value="${place.createdAt}" pattern="yyyy-MM-dd"/>
+                                    <span style="margin-left: 10px; font-weight: bold;">
+                                        <c:choose>
+                                            <c:when test="${place.status eq '승인'}">
+                                                <span style="color: #4CAF50;">승인됨</span>
+                                            </c:when>
+                                            <c:when test="${place.status eq '거절'}">
+                                                <span style="color: #f44336;">거절됨</span>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <span style="color: #666;">처리대기중</span>
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </span>
                                 </div>
                             </div>
                         </c:forEach>
