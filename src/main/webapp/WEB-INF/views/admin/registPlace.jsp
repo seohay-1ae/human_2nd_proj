@@ -181,7 +181,7 @@
                 <a href="${pageContext.request.contextPath}/admin/adminPage" class="tab-button">사용자 관리</a>
                 <a href="${pageContext.request.contextPath}/admin/notice" class="tab-button"
                    style="color:#1E4CD1;">커뮤니티</a>
-                <a href="${pageContext.request.contextPath}/admin/adminBadgePage" class="tab-button">뱃지</a>
+<%--                <a href="${pageContext.request.contextPath}/admin/adminBadgePage" class="tab-button">뱃지</a>--%>
             </div>
 
             <!-- 카테고리 선택 -->

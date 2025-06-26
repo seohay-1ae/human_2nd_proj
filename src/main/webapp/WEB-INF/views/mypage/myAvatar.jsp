@@ -70,7 +70,7 @@
                 <img src="${pageContext.request.contextPath}/${avatarPaths.LINE_PATH}" alt="외곽선" class="layer line"/>
             </div>
         </div>
-        <div class="point-box">현재 보유 포인트:&nbsp;&nbsp; <span>120p</span></div>
+<%--        <div class="point-box">현재 보유 포인트:&nbsp;&nbsp; <span>120p</span></div>--%>
 
 
         <div class="container">

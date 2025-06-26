@@ -58,7 +58,7 @@
             <div class="top-link">
                 <a href="${pageContext.request.contextPath}/admin/adminPage" class="tab-button" style="color:#1E4CD1;">사용자 관리</a>
                 <a href="${pageContext.request.contextPath}/admin/notice" class="tab-button">커뮤니티</a>
-                <a href="${pageContext.request.contextPath}/admin/adminBadgePage" class="tab-button">뱃지</a>
+<%--                <a href="${pageContext.request.contextPath}/admin/adminBadgePage" class="tab-button">뱃지</a>--%>
             </div>
 
             <!-- 사용자 카드 목록 -->
