@@ -50,12 +50,13 @@ public class TourPlaceService {
 
             log.info("최종 요청 URL: {}", url);
 
+            URI apiUrl = new URI(url);
 
             HttpHeaders headers = new HttpHeaders();
             headers.set("User-Agent", "Mozilla/5.0");
             HttpEntity<String> entity = new HttpEntity<>(headers);
 
-            ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.GET, entity, String.class);
+            ResponseEntity<String> response = restTemplate.exchange(apiUrl, HttpMethod.GET, entity, String.class);
 
             if (response.getStatusCode() == HttpStatus.OK &&
                     response.getHeaders().getContentType() != null &&

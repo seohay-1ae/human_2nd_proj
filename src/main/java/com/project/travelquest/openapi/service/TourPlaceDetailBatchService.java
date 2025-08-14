@@ -40,7 +40,9 @@ public class TourPlaceDetailBatchService {
                         API_URL, encodedServiceKey, encodedContentId
                 );
 
-                String response = restTemplate.getForObject(requestUrl, String.class);
+                URI uri = new URI(requestUrl);
+
+                String response = restTemplate.getForObject(uri, String.class);
                 JsonNode root = objectMapper.readTree(response);
                 JsonNode itemsNode = root.path("response").path("body").path("items").path("item");
 
