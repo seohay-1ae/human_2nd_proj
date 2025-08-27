@@ -52,4 +52,4 @@
 ---
 
 프로젝트 관련 자세한 내용과 회고는 Velog 및 GitHub 레포지토리를 참고해 주세요.
-- [Velog 개발일지 및 회고](https://velog.io/@seoha1ae/series/sidemenu)
+- [Velog 개발일지 및 회고](https://velog.io/@seoha1ae/series/db.jar)
